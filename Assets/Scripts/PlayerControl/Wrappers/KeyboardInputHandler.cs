@@ -1,6 +1,5 @@
 /*A class to handle keyboard controls. */
 
-
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
@@ -17,7 +16,7 @@ public static class KeyboardInputHandler
         Right,
 
         Space,
-        Enter
+        Enter,
     }
 
     public class KeyboardDevice
@@ -54,7 +53,8 @@ public static class KeyboardInputHandler
 
         private KeyControl GetKeyControl(Key key)
         {
-            if (_keyboard == null) return null;
+            if (_keyboard == null)
+                return null;
 
             return key switch
             {
@@ -66,7 +66,7 @@ public static class KeyboardInputHandler
                 Key.Space => _keyboard.spaceKey,
                 Key.Enter => _keyboard.enterKey,
 
-                _ => null
+                _ => null,
             };
         }
     }

@@ -15,10 +15,10 @@ public static class GamepadInputHandler
         DPadDown,
         DPadLeft,
 
-        ButtonDown,   // South (A / Cross)
-        ButtonRight,  // East (B / Circle)
-        ButtonLeft,   // West (X / Square)
-        ButtonUp,     // North (Y / Triangle)
+        ButtonDown, // South (A / Cross)
+        ButtonRight, // East (B / Circle)
+        ButtonLeft, // West (X / Square)
+        ButtonUp, // North (Y / Triangle)
 
         LeftBumper,
         RightBumper,
@@ -27,7 +27,7 @@ public static class GamepadInputHandler
         Start,
 
         LeftStick,
-        RightStick
+        RightStick,
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public static class GamepadInputHandler
         RightX,
         RightY,
         LeftTrigger,
-        RightTrigger
+        RightTrigger,
     }
 
     /// <summary>
@@ -85,23 +85,32 @@ public static class GamepadInputHandler
 
         public float GetAxisMovement(Axis axis)
         {
-            if (_gamepad == null) return 0f;
+            if (_gamepad == null)
+                return 0f;
 
             switch (axis)
             {
-                case Axis.LeftX: return _gamepad.leftStick.x.ReadValue();
-                case Axis.LeftY: return _gamepad.leftStick.y.ReadValue();
-                case Axis.RightX: return _gamepad.rightStick.x.ReadValue();
-                case Axis.RightY: return _gamepad.rightStick.y.ReadValue();
-                case Axis.LeftTrigger: return _gamepad.leftTrigger.ReadValue();
-                case Axis.RightTrigger: return _gamepad.rightTrigger.ReadValue();
-                default: return 0f;
+                case Axis.LeftX:
+                    return _gamepad.leftStick.x.ReadValue();
+                case Axis.LeftY:
+                    return _gamepad.leftStick.y.ReadValue();
+                case Axis.RightX:
+                    return _gamepad.rightStick.x.ReadValue();
+                case Axis.RightY:
+                    return _gamepad.rightStick.y.ReadValue();
+                case Axis.LeftTrigger:
+                    return _gamepad.leftTrigger.ReadValue();
+                case Axis.RightTrigger:
+                    return _gamepad.rightTrigger.ReadValue();
+                default:
+                    return 0f;
             }
         }
 
         private ButtonControl GetButtonControl(Button button)
         {
-            if (_gamepad == null) return null;
+            if (_gamepad == null)
+                return null;
 
             return button switch
             {
@@ -124,7 +133,7 @@ public static class GamepadInputHandler
                 Button.LeftStick => _gamepad.leftStickButton,
                 Button.RightStick => _gamepad.rightStickButton,
 
-                _ => null
+                _ => null,
             };
         }
     }

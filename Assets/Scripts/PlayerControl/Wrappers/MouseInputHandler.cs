@@ -10,14 +10,14 @@ public static class MouseInputHandler
         Right,
         Middle,
         Forward,
-        Back
+        Back,
     }
 
     public enum Axis
     {
         X,
         Y,
-        Scroll
+        Scroll,
     }
 
     public class MouseDevice
@@ -54,14 +54,19 @@ public static class MouseInputHandler
 
         public Vector2 GetAxisMovement(Axis axis)
         {
-            if (_mouse == null) return Vector2.zero;
+            if (_mouse == null)
+                return Vector2.zero;
 
             switch (axis)
             {
-                case Axis.X: return new Vector2(_mouse.delta.x.ReadValue(), 0);
-                case Axis.Y: return new Vector2(0, _mouse.delta.y.ReadValue());
-                case Axis.Scroll: return _mouse.scroll.ReadValue();
-                default: return Vector2.zero;
+                case Axis.X:
+                    return new Vector2(_mouse.delta.x.ReadValue(), 0);
+                case Axis.Y:
+                    return new Vector2(0, _mouse.delta.y.ReadValue());
+                case Axis.Scroll:
+                    return _mouse.scroll.ReadValue();
+                default:
+                    return Vector2.zero;
             }
         }
 
@@ -77,7 +82,8 @@ public static class MouseInputHandler
 
         private ButtonControl GetButtonControl(Button button)
         {
-            if (_mouse == null) return null;
+            if (_mouse == null)
+                return null;
 
             return button switch
             {
@@ -86,7 +92,7 @@ public static class MouseInputHandler
                 Button.Middle => _mouse.middleButton,
                 Button.Forward => _mouse.forwardButton,
                 Button.Back => _mouse.backButton,
-                _ => null
+                _ => null,
             };
         }
     }
