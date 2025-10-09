@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private void Awake() { }
 
     /// <summary>
-    /// We find the reference of all our actions to take.
+    /// We find the reference of all the actions that are possible to take.
     /// </summary>
     private void Start()
     {
@@ -42,5 +42,20 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Une action est en cours");
         }
+    }
+
+    void OnColliderEnter (Collider other)
+    {
+        Debug.Log ("A collider has made contact with the DoorObject Collider");
+    }
+
+    private void TakeDamage()
+    {
+        // Check if the player nullifies damage with ability and then resolve effect.
+    }
+
+    private void Collect(Collectible collectible)
+    {
+        // Check if the player nullifies damage with ability and then resolve effect.
     }
 }
