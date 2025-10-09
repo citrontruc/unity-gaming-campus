@@ -12,15 +12,16 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     private InputAction _moveAction;
     private InputAction _specialAction;
-    [SerializeField] private float _baseSpeed = 10f;
-    [SerializeField] private float _currentSpeed = 10f;
+
+    [SerializeField]
+    private float _baseSpeed = 10f;
+
+    [SerializeField]
+    private float _currentSpeed = 10f;
 
     private int _playerHealth = 1;
 
-    private void Awake()
-    {
-        
-    }
+    private void Awake() { }
 
     /// <summary>
     /// We find the reference of all our actions to take.
