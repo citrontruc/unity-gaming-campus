@@ -3,12 +3,12 @@ A class to handle collisions between the player and other entities.
 Collision events are triggered by the player when he touches another entity.
 */
 
-
 using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerController player;
+    [SerializeField]
+    private PlayerController player;
 
     void OnEnable()
     {

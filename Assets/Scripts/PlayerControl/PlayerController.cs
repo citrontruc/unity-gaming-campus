@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnColliderEnter (Collider other)
+    void OnColliderEnter(Collider other)
     {
-        Debug.Log ("A collider has made contact with the DoorObject Collider");
+        Debug.Log("A collider has made contact with the DoorObject Collider");
     }
 
     private void TakeDamage()
