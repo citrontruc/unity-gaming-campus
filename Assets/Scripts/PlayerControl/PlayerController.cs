@@ -1,31 +1,45 @@
+/*A class to handle player movement.
+Uses the new unity input system.*/
+
 using UnityEngine;
-using UnityEngine.InputSystem; // 1. The Input System "using" statement
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // 2. These variables are to hold the Action references
-    InputAction moveAction;
-    InputAction jumpAction;
+    /// <summary>
+    /// Reference to the actions our player will take.
+    /// </summary>
+    [Header("Movement")]
+    private InputAction _moveAction;
+    private InputAction _specialAction;
+    [SerializeField] private float _baseSpeed = 10f;
+    [SerializeField] private float _currentSpeed = 10f;
 
-    private void Start()
+    private int _playerHealth = 1;
+
+    private void Awake()
     {
-        // 3. Find the references to the "Move" and "Jump" actions
-        moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
+        
     }
 
-    void Update()
+    /// <summary>
+    /// We find the reference of all our actions to take.
+    /// </summary>
+    private void Start()
     {
-        // 4. Read the "Move" action value, which is a 2D vector
-        // and the "Jump" action state, which is a boolean value
+        _moveAction = InputSystem.actions.FindAction("Move");
+        _specialAction = InputSystem.actions.FindAction("Jump");
+    }
 
-        Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        Debug.Log($"Move Value {moveValue}");
-        // your movement code here
+    private void Update()
+    {
+        Vector2 moveValue = _moveAction.ReadValue<Vector2>();
+        Vector3 moveTranslation = new(moveValue.x, 0f, moveValue.y);
+        transform.Translate(moveTranslation * _currentSpeed * Time.deltaTime);
 
-        if (jumpAction.IsPressed())
+        if (_specialAction.IsPressed())
         {
-            // your jump code here
+            Debug.Log("Une action est en cours");
         }
     }
 }
