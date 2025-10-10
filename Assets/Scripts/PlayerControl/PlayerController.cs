@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 _rotationDirection = Vector3.zero;
     private float _rotationSpeed = .5f;
 
-
     [SerializeField]
     private float _baseSpeed = 10f;
 
@@ -31,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private float _raycastDistance = .01f;
+
     [SerializeField]
     private float _jumpValue = 1f;
 

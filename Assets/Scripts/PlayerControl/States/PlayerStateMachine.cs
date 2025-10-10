@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class StateMachine
 {
-
     public enum PosibleState
     {
         Egg,
@@ -12,9 +11,9 @@ public class StateMachine
         Chicken,
         Rooster,
         SuperRooster,
-        Dinosaur
+        Dinosaur,
     }
-    
+
     public IState CurrentState { get; private set; }
 
     public void Initialize(IState startingState)

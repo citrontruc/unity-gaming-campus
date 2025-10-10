@@ -2,10 +2,10 @@
 A class for to create singletons and make sure that any duplicate instance gets deleted.
 */
 
-
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Component
+public class Singleton<T> : MonoBehaviour
+    where T : Component
 {
     private static T instance;
     public static T Instance
@@ -28,6 +28,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     {
         RemoveDuplicates();
     }
+
     private static void SetupInstance()
     {
         instance = (T)FindFirstObjectByType(typeof(T));
@@ -39,7 +40,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
             DontDestroyOnLoad(gameObj);
         }
     }
-    
+
     private void RemoveDuplicates()
     {
         if (instance == null)

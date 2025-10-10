@@ -3,14 +3,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-
 [RequireComponent(typeof(Collider))]
 public abstract class Collectible : MonoBehaviour
 {
-
     [Header("Collision Events")]
     [SerializeField]
     private UnityEvent _onCollision; // We cacn add audio source and a lot of things.
+
     [SerializeField]
     private string _canCollectTag = "player";
 
@@ -33,5 +32,4 @@ public abstract class Collectible : MonoBehaviour
             _onCollision?.Invoke();
         }
     }
-
 }

@@ -1,14 +1,11 @@
-
 using UnityEngine;
 
 public class Corn : Collectible
 {
-    [SerializeField] private float _rotationSpeed = .5f;
+    [SerializeField]
+    private float _rotationSpeed = .5f;
 
-    void Start()
-    {
-
-    }
+    void Start() { }
 
     void Update()
     {
