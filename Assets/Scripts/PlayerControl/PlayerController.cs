@@ -17,22 +17,15 @@ public class PlayerController : MonoBehaviour
     private InputAction _jumpAction;
     private InputAction _specialAction;
 
-    [Header("Rotation")]
-    private Vector3 _rotationDirection = Vector3.zero;
-    private float _rotationSpeed = .5f;
-
-    [SerializeField]
-    private float _baseSpeed = 10f;
-
     [SerializeField]
     private float _currentSpeed = 10f;
     private Vector3 _moveValue = Vector3.zero;
 
     [SerializeField]
-    private float _raycastDistance = .01f;
+    private float _raycastDistance = .6f;
 
     [SerializeField]
-    private float _jumpValue = 1f;
+    private float _jumpValue = .7f;
 
     private int _playerHealth = 1;
 
@@ -66,7 +59,8 @@ public class PlayerController : MonoBehaviour
 
         if (_jumpAction.IsPressed() && IsGrounded())
         {
-            _rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
+            //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
+            transform.Translate(Vector3.up * _jumpValue);
         }
     }
 
@@ -79,22 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        Debug.DrawRay(transform.position, Vector3.down * _raycastDistance, Color.red);
         return Physics.Raycast(transform.position, Vector3.down, _raycastDistance);
     }
 
-    void OnColliderEnter(Collider other)
-    {
-        Debug.Log("A collider has made contact with the DoorObject Collider");
-    }
-
-    private void TakeDamage()
-    {
-        // Check if the player nullifies damage with ability and then resolve effect.
-    }
-
-    private void Collect(Collectible collectible)
-    {
-        // Check if the player nullifies damage with ability and then resolve effect.
-    }
 }

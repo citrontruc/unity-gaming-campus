@@ -16,6 +16,10 @@ public class StateMachine
 
     public IState CurrentState { get; private set; }
 
+    /// <summary>
+    /// Initializes with our first state.
+    /// </summary>
+    /// <param name="startingState"></param>
     public void Initialize(IState startingState)
     {
         CurrentState = startingState;
@@ -29,11 +33,23 @@ public class StateMachine
         nextState.Enter();
     }
 
+    /// <summary>
+    /// Our States give additional powers to our main character.
+    /// We don't have any additional update to do.
+    /// </summary>
     public void Update()
+    {
+        
+    }
+
+    /// <summary>
+    /// Each state has a different special capacity.
+    /// </summary>
+    public void Special()
     {
         if (CurrentState != null)
         {
-            CurrentState.Update();
+            CurrentState.Special();
         }
     }
 }

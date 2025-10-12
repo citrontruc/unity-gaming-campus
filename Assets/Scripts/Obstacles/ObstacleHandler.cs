@@ -1,0 +1,3 @@
+/*
+A script to spawn new obstacles when necessary and handle the destruction of obstacles.
+*/
