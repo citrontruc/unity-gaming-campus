@@ -17,14 +17,21 @@ public class PlayerDataBase : Singleton<PlayerDataBase>
     private bool _enableDestroySmallObstacles = false;
     #endregion
 
-    private static int _playerScore = 0;
+    private int _playerHealth = 1;
 
-    public static int GetScore()
+    private int _playerScore = 0;
+
+    public void SetPlayerHealth(int healthValue)
+    {
+        _playerHealth = healthValue;
+    }
+
+    public int GetScore()
     {
         return _playerScore;
     }
 
-    public static void IncrementScore(int value)
+    public void IncrementScore(int value)
     {
         _playerScore += value;
     }

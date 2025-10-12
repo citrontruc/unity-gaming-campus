@@ -25,9 +25,7 @@ public class PlayerController : MonoBehaviour
     private float _raycastDistance = .6f;
 
     [SerializeField]
-    private float _jumpValue = .7f;
-
-    private int _playerHealth = 1;
+    private float _jumpValue = 2f;
 
     private void Awake()
     {

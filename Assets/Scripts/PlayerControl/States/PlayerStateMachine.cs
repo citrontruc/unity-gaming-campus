@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class StateMachine
+public class PlayerStateMachine : Singleton<PlayerStateMachine>
 {
     public enum PosibleState
     {

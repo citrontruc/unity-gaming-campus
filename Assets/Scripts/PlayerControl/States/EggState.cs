@@ -4,19 +4,31 @@ It's special makes him transform in a super egg that can withstand one blow.
 */
 
 using System.Collections;
+using UnityEngine;
 
 public class EggState : IState
 {
-    private PlayerController _player;
+    private PlayerDataBase _playerDataBase;
+    private int _powerUpDuration = 10;
 
     public void Enter() { }
 
     public void Update() { }
 
+    /// <summary>
+    /// The eggstate's special effect is to let the player withstand a blow.
+    /// We achieve that by making the player have two hitpoints for a limited amount of time.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Special()
     {
-        yield return null;
+        _playerDataBase.SetPlayerHealth(2);
+        yield return new WaitForSeconds(_powerUpDuration);
+        _playerDataBase.SetPlayerHealth(1);
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        
+    }
 }
