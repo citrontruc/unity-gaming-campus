@@ -8,10 +8,10 @@ public abstract class Collectible : MonoBehaviour
 {
     [Header("Collision Events")]
     [SerializeField]
-    private UnityEvent _onCollision; // We cacn add audio source and a lot of things.
+    private CollectableEventChannelSO CollectedEvent;
 
     [SerializeField]
-    private string _canCollectTag = "player";
+    private string _canCollectTag = "Player";
 
     private protected int _value;
 
@@ -29,7 +29,7 @@ public abstract class Collectible : MonoBehaviour
     {
         if (other.CompareTag(_canCollectTag))
         {
-            _onCollision?.Invoke();
+            CollectedEvent?.RaiseEvent();
         }
     }
 }

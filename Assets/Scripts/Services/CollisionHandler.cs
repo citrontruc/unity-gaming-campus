@@ -9,16 +9,23 @@ using UnityEngine.Events;
 public class CollisionHandler : Singleton<CollisionHandler>
 {
     [SerializeField]
-    private PlayerController player;
+    private CollectableEventChannelSO collectableEventChannelSO;
 
     void OnEnable()
     {
+        collectableEventChannelSO.onEventRaised += Printlog;
         //player.OnCollisionEvent += HandleCollision;
     }
 
     void OnDisable()
     {
+        collectableEventChannelSO.onEventRaised -= Printlog;
         //player.OnCollisionEvent -= HandleCollision;
+    }
+
+    private void Printlog()
+    {
+        Debug.Log("We got hit!");
     }
 
     private void HandleCollision(GameObject hitObject)

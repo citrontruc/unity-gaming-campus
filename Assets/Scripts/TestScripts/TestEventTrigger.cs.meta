@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 59177e78e93618a26bfa6bbbebdc910f
+guid: 8af0c75991dc3e80886fb98381b23100
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - collectableEventChannelSO: {fileID: 11400000, guid: b6ccb8c03e27a22bd871a48dd808719d, type: 2}
+  - channel: {fileID: 11400000, guid: b6ccb8c03e27a22bd871a48dd808719d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
