@@ -27,8 +27,5 @@ public class EggState : IState
         _playerDataBase.SetPlayerHealth(1);
     }
 
-    public void Exit()
-    {
-        
-    }
+    public void Exit() { }
 }

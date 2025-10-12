@@ -20,8 +20,5 @@ public class ChickenState : IState
         yield return null;
     }
 
-    public void Exit()
-    {
-        
-    }
+    public void Exit() { }
 }
