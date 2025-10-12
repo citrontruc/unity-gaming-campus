@@ -37,10 +37,7 @@ public class StateMachine
     /// Our States give additional powers to our main character.
     /// We don't have any additional update to do.
     /// </summary>
-    public void Update()
-    {
-        
-    }
+    public void Update() { }
 
     /// <summary>
     /// Each state has a different special capacity.

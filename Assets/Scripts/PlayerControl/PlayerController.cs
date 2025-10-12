@@ -75,5 +75,4 @@ public class PlayerController : MonoBehaviour
     {
         return Physics.Raycast(transform.position, Vector3.down, _raycastDistance);
     }
-
 }

@@ -8,23 +8,15 @@ using System.Collections;
 public class EggState : IState
 {
     private PlayerController _player;
-    public void Enter()
-    {
-        
-    }
 
-    public void Update()
-    {
+    public void Enter() { }
 
-    }
+    public void Update() { }
 
     public IEnumerator Special()
     {
         yield return null;
     }
-    
-    public void Exit()
-    {
-        
-    }
+
+    public void Exit() { }
 }
