@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-
     [Header("Collision Events")]
     [SerializeField]
     private ObstacleCollisionEventChannelSO CollisionEvent;
+
     public enum Resistance
     {
         small = 0,

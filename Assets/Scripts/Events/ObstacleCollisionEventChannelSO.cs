@@ -8,7 +8,4 @@ using UnityEngine;
     fileName = "ObstacleCollisionEventChannel_SO",
     menuName = "Events/ObstacleCollisionEventChannelSO"
 )]
-public class ObstacleCollisionEventChannelSO : VoidEventChannelSO<Obstacle.Resistance>
-{
-
-}
+public class ObstacleCollisionEventChannelSO : VoidEventChannelSO<Obstacle.Resistance> { }
