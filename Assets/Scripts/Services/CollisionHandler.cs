@@ -10,16 +10,21 @@ public class CollisionHandler : Singleton<CollisionHandler>
 {
     [SerializeField]
     private VoidEventChannelSO<int> collectableEventChannelSO;
+
+    [SerializeField]
+    private VoidEventChannelSO<Obstacle.Resistance> ObstacleEventChannelSO;
     private PlayerScore _playerScore => PlayerScore.Instance;
 
     void OnEnable()
     {
         collectableEventChannelSO.onEventRaised += HandleCollectible;
+        ObstacleEventChannelSO.onEventRaised += HandleObstacle;
     }
 
     void OnDisable()
     {
         collectableEventChannelSO.onEventRaised -= HandleCollectible;
+        ObstacleEventChannelSO.onEventRaised -= HandleObstacle;
     }
 
     /*
@@ -37,9 +42,9 @@ public class CollisionHandler : Singleton<CollisionHandler>
         }
         */
 
-    private void HandleObstacle(GameObject obstacle)
+    private void HandleObstacle(Obstacle.Resistance _resistance)
     {
-        Debug.Log("Player hit obstacle: " + obstacle.name);
+        Debug.Log($"Player hit obstacle: {_resistance}.");
         // Example: notify GameManager, reduce HP, etc.
     }
 
