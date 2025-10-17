@@ -1057,6 +1057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionHandler
   collectableEventChannelSO: {fileID: 11400000, guid: 711763cf59426cf50b0643d5e6335e0a, type: 2}
+  ObstacleEventChannelSO: {fileID: 11400000, guid: 7d9dd5833a206d231bcdf5745dc4c79c, type: 2}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f9a08fc87507220be6ea4f4d222104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScore
+  ScoreText: {fileID: 1025531926}
 --- !u!1 &1025531924
 GameObject:
   m_ObjectHideFlags: 0
