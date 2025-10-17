@@ -8,10 +8,10 @@ using UnityEngine.Events;
 public class CollectableEventChannelSO : ScriptableObject
 {
     public int point;
-    public UnityAction onEventRaised;
+    public UnityAction<int> onEventRaised;
 
-    public void RaiseEvent()
+    public void RaiseEvent(int value)
     {
-        onEventRaised?.Invoke();
+        onEventRaised?.Invoke(value);
     }
 }

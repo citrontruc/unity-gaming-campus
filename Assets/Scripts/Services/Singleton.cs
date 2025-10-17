@@ -4,24 +4,49 @@ A class for to create singletons and make sure that any duplicate instance gets 
 
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour
+public class Singleton<T> : MonoBehaviour where T : Component
 {
-    private static Singleton<T> _instance;
-
-    public static Singleton<T> Instance
+    private static T instance;
+    public static T Instance
     {
-        get { return _instance; }
+        get
+        {
+            if (instance == null)
+        {
+            instance = (T)FindObjectOfType(typeof(T));
+            if (instance == null)
+            {
+                SetupInstance();
+            }
+        }
+    return instance;
     }
-
-    private void Awake()
+    }
+    public virtual void Awake()
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
+    RemoveDuplicates();
+    }
+    private static void SetupInstance()
+    {
+    instance = (T)FindObjectOfType(typeof(T));
+    if (instance == null)
+    {
+    GameObject gameObj = new GameObject();
+    gameObj.name = typeof(T).Name;
+    instance = gameObj.AddComponent<T>();
+    DontDestroyOnLoad(gameObj);
+    }
+    }
+    private void RemoveDuplicates()
+    {
+    if (instance == null)
+    {
+    instance = this as T;
+    DontDestroyOnLoad(gameObject);
+    }
+    else
+    {
+    Destroy(gameObject);
+    }
     }
 }

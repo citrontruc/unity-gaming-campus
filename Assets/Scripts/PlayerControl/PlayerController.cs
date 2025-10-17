@@ -1,6 +1,7 @@
 /*A class to handle player movement.
 Uses the new unity input system.*/
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rb;
+    private PlayerDataBase _playerData => PlayerDataBase.Instance;
 
     /// <summary>
     /// Reference to the actions our player will take.
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _jumpAction;
     private InputAction _specialAction;
+    private bool _canJump = true;
 
     [SerializeField]
     private float _currentSpeed = 10f;
@@ -25,7 +28,8 @@ public class PlayerController : MonoBehaviour
     private float _raycastDistance = .6f;
 
     [SerializeField]
-    private float _jumpValue = 2f;
+    private float _jumpValue = 0.5f;
+    private string _groundTag = "Ground";
 
     private void Awake()
     {
@@ -40,8 +44,6 @@ public class PlayerController : MonoBehaviour
         _moveAction = InputSystem.actions.FindAction("Move");
         _jumpAction = InputSystem.actions.FindAction("Jump");
         _specialAction = InputSystem.actions.FindAction("Special");
-
-        //GetComponent<Collider>().isTrigger = true;
     }
 
     private void Update()
@@ -55,22 +57,64 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Une action est en cours");
         }
 
-        if (_jumpAction.IsPressed() && IsGrounded())
+        if (_jumpAction.IsPressed())
         {
-            //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
-            transform.Translate(Vector3.up * _jumpValue);
+            Jump();
         }
+
     }
 
     private void FixedUpdate()
     {
         //_rb.AddForce(_moveValue * _currentSpeed, ForceMode.Acceleration);
         transform.Translate(_moveValue * _currentSpeed * Time.deltaTime);
-        //transform.Rotate(_rotationDirection * _rotationSpeed);
     }
 
     private bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, _raycastDistance);
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _raycastDistance);
+        if (hit.collider is null)
+        {
+            return false;
+        }
+        if (hit.collider.CompareTag(_groundTag))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void Jump()
+    {
+        Debug.Log(_canJump);
+        if (_canJump)
+        {
+
+            switch (IsGrounded())
+            {
+                case false:
+                    if (_playerData.CanDoubleJump())
+                    {
+                        Debug.Log("Double saut");
+                        transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
+                        _playerData.ResolveDoubleJump();
+
+                    }
+                    break;
+                case true:
+                    //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
+                    transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
+                    _playerData.ResetDoubleJump();
+                    break;
+            }
+            StartCoroutine(JumpPress());
+        }
+    }
+
+    private IEnumerator JumpPress()
+    {
+        _canJump = false;
+        yield return new WaitForSeconds(0.1f);
+        _canJump = true;
     }
 }

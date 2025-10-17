@@ -11,6 +11,6 @@ public class TestEventRaise : MonoBehaviour
 
     void Start()
     {
-        channel.RaiseEvent();
+        channel.RaiseEvent(10);
     }
 }

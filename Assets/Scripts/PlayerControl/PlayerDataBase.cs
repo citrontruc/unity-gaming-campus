@@ -11,10 +11,15 @@ public class PlayerDataBase : Singleton<PlayerDataBase>
     #region Abilities
     [Header("Abilities")]
     private bool _enableSlide = false;
+    [SerializeField]
     private bool _enableDoubleJump = false;
     private bool _enableGlide = false;
     private bool _enableDash = false;
     private bool _enableDestroySmallObstacles = false;
+    #endregion
+
+    #region Temporary abilities
+    private bool _doubleJump = true;
     #endregion
 
     private int _playerHealth = 1;
@@ -34,5 +39,20 @@ public class PlayerDataBase : Singleton<PlayerDataBase>
     public void IncrementScore(int value)
     {
         _playerScore += value;
+    }
+
+    public bool CanDoubleJump()
+    {
+        return _doubleJump && _enableDoubleJump;
+    }
+
+    public void ResetDoubleJump()
+    {
+        _doubleJump = true;
+    }
+
+    public void ResolveDoubleJump()
+    {
+        _doubleJump = false;
     }
 }

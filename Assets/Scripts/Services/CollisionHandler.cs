@@ -14,18 +14,16 @@ public class CollisionHandler : Singleton<CollisionHandler>
     void OnEnable()
     {
         collectableEventChannelSO.onEventRaised += Printlog;
-        //player.OnCollisionEvent += HandleCollision;
     }
 
     void OnDisable()
     {
         collectableEventChannelSO.onEventRaised -= Printlog;
-        //player.OnCollisionEvent -= HandleCollision;
     }
 
-    private void Printlog()
+    private void Printlog(int score)
     {
-        Debug.Log("We got hit!");
+        Debug.Log($"We got hit! {score}");
     }
 
     private void HandleCollision(GameObject hitObject)

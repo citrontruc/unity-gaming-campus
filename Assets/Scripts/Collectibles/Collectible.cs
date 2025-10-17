@@ -13,11 +13,11 @@ public abstract class Collectible : MonoBehaviour
     [SerializeField]
     private string _canCollectTag = "Player";
 
-    private protected int _value;
+    protected int _value => GetValue();
 
     public int GetValue()
     {
-        return _value;
+        return CollectedEvent.point;
     }
 
     void Start()
@@ -29,7 +29,7 @@ public abstract class Collectible : MonoBehaviour
     {
         if (other.CompareTag(_canCollectTag))
         {
-            CollectedEvent?.RaiseEvent();
+            CollectedEvent?.RaiseEvent(_value);
         }
     }
 }

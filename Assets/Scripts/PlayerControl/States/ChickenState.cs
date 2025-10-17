@@ -7,7 +7,10 @@ public class ChickenState : IState
     private PlayerStateMachine _playerStateMachine;
     private int _powerUpDuration = 10;
 
-    public void Enter() { }
+    public void Enter()
+    {
+        // Unlock passive ability.
+    }
 
     public void Update() { }
 
