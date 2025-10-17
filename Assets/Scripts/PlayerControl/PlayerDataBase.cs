@@ -11,6 +11,7 @@ public class PlayerDataBase : Singleton<PlayerDataBase>
     #region Abilities
     [Header("Abilities")]
     private bool _enableSlide = false;
+
     [SerializeField]
     private bool _enableDoubleJump = false;
     private bool _enableGlide = false;

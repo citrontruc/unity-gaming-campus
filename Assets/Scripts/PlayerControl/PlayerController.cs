@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-
     }
 
     private void FixedUpdate()
@@ -89,7 +88,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log(_canJump);
         if (_canJump)
         {
-
             switch (IsGrounded())
             {
                 case false:
@@ -98,7 +96,6 @@ public class PlayerController : MonoBehaviour
                         Debug.Log("Double saut");
                         transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
                         _playerData.ResolveDoubleJump();
-
                     }
                     break;
                 case true:
