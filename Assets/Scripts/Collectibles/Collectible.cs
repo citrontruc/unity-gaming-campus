@@ -8,24 +8,20 @@ public abstract class Collectible : MonoBehaviour
 {
     [Header("Collision Events")]
     [SerializeField]
-    private CollectableEventChannelSO CollectedEvent;
+    private ScoreEventChannelSO CollectedEvent;
 
     [SerializeField]
     private string _canCollectTag = "Player";
 
-    protected int _value => GetValue();
-
-    public int GetValue()
-    {
-        return CollectedEvent.point;
-    }
+    [SerializeField]
+    protected int _value;
 
     void Start()
     {
         GetComponent<Collider>().isTrigger = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(_canCollectTag))
         {

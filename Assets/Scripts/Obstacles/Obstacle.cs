@@ -4,7 +4,7 @@ public class Obstacle
 {
     public enum Resistance
     {
-        destructible = 0,
-        indestructible = 1,
+        small = 0,
+        large = 1,
     }
 }

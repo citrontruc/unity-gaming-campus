@@ -9,27 +9,31 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rb;
-    private PlayerDataBase _playerData => PlayerDataBase.Instance;
+    private PlayerPowerUp _playerPowerUp => PlayerPowerUp.Instance;
 
     /// <summary>
     /// Reference to the actions our player will take.
     /// </summary>
+    #region Actions 
     [Header("Movement")]
     private InputAction _moveAction;
     private InputAction _jumpAction;
     private InputAction _specialAction;
-    private bool _canJump = true;
+    #endregion
 
     [SerializeField]
     private float _currentSpeed = 10f;
     private Vector3 _moveValue = Vector3.zero;
 
+    #region Jump properties
+    private bool _canJump = true;
     [SerializeField]
     private float _raycastDistance = .6f;
-
     [SerializeField]
     private float _jumpValue = 0.5f;
+    private float _jumpCooldown = 0.1f;
     private string _groundTag = "Ground";
+    #endregion
 
     private void Awake()
     {
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(_moveValue * _currentSpeed * Time.deltaTime);
     }
 
+    #region Jump & Double Jump
     private bool IsGrounded()
     {
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _raycastDistance);
@@ -83,25 +88,28 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// A method to handle jump and double jump.
+    /// </summary>
     private void Jump()
     {
-        Debug.Log(_canJump);
         if (_canJump)
         {
             switch (IsGrounded())
             {
+                // Double jump
                 case false:
-                    if (_playerData.CanDoubleJump())
+                    if (_playerPowerUp.CanDoubleJump())
                     {
-                        Debug.Log("Double saut");
                         transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
-                        _playerData.ResolveDoubleJump();
+                        _playerPowerUp.ResolveDoubleJump();
                     }
                     break;
+                    // Single jump
                 case true:
                     //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
                     transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
-                    _playerData.ResetDoubleJump();
+                    _playerPowerUp.ResetDoubleJump();
                     break;
             }
             StartCoroutine(JumpPress());
@@ -111,7 +119,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator JumpPress()
     {
         _canJump = false;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(_jumpCooldown);
         _canJump = true;
     }
+    #endregion
 }

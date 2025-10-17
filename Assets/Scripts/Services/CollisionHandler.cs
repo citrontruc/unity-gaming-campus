@@ -9,23 +9,20 @@ using UnityEngine.Events;
 public class CollisionHandler : Singleton<CollisionHandler>
 {
     [SerializeField]
-    private CollectableEventChannelSO collectableEventChannelSO;
+    private CollectableEventChannelSO<int> collectableEventChannelSO;
+    private PlayerScore _playerScore => PlayerScore.Instance;
 
     void OnEnable()
     {
-        collectableEventChannelSO.onEventRaised += Printlog;
+        collectableEventChannelSO.onEventRaised += HandleCollectible;
     }
 
     void OnDisable()
     {
-        collectableEventChannelSO.onEventRaised -= Printlog;
+        collectableEventChannelSO.onEventRaised -= HandleCollectible;
     }
 
-    private void Printlog(int score)
-    {
-        Debug.Log($"We got hit! {score}");
-    }
-
+/*
     private void HandleCollision(GameObject hitObject)
     {
         Debug.Log("We just hit something");
@@ -38,6 +35,7 @@ public class CollisionHandler : Singleton<CollisionHandler>
             HandleCollectible(hitObject);
         }
     }
+    */
 
     private void HandleObstacle(GameObject obstacle)
     {
@@ -45,9 +43,10 @@ public class CollisionHandler : Singleton<CollisionHandler>
         // Example: notify GameManager, reduce HP, etc.
     }
 
-    private void HandleCollectible(GameObject collectible)
+    private void HandleCollectible(int score)
     {
-        Debug.Log("Player picked collectible: " + collectible.name);
+        _playerScore.IncrementScore(score);
+        Debug.Log($"Collectible collected for {score}");
         // Example: collectible logic can also destroy itself
     }
 }

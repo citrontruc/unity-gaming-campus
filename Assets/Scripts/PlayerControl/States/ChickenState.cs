@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ChickenState : IState
 {
-    private PlayerDataBase _playerDataBase;
     private PlayerStateMachine _playerStateMachine;
     private int _powerUpDuration = 10;
 

@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class EggState : IState
 {
-    private PlayerDataBase _playerDataBase;
+    private PlayerPowerUp _playerPowerUp => PlayerPowerUp.Instance;
     private int _powerUpDuration = 10;
 
     public void Enter() { }
@@ -22,9 +22,9 @@ public class EggState : IState
     /// <returns></returns>
     public IEnumerator Special()
     {
-        _playerDataBase.SetPlayerHealth(2);
+        _playerPowerUp.SetPlayerHealth(2);
         yield return new WaitForSeconds(_powerUpDuration);
-        _playerDataBase.SetPlayerHealth(1);
+        _playerPowerUp.SetPlayerHealth(1);
     }
 
     public void Exit() { }

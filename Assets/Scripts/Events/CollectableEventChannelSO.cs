@@ -5,12 +5,11 @@ using UnityEngine.Events;
     fileName = "CollectableEventChannel_SO",
     menuName = "Events/CollectableEventChannelSO"
 )]
-public class CollectableEventChannelSO : ScriptableObject
+public class CollectableEventChannelSO<T> : ScriptableObject
 {
-    public int point;
-    public UnityAction<int> onEventRaised;
+    public UnityAction<T> onEventRaised;
 
-    public void RaiseEvent(int value)
+    public void RaiseEvent(T value)
     {
         onEventRaised?.Invoke(value);
     }

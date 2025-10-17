@@ -3,7 +3,7 @@ It is a singleton meant to represent the player score, preferences and other.*/
 
 using UnityEngine;
 
-public class PlayerDataBase : Singleton<PlayerDataBase>
+public class PlayerPowerUp : Singleton<PlayerPowerUp>
 {
     /// <summary>
     /// Since the player Abilities are cumulative, we switch them on when the user changes states.
@@ -25,22 +25,10 @@ public class PlayerDataBase : Singleton<PlayerDataBase>
 
     private int _playerHealth = 1;
 
-    private int _playerScore = 0;
-
     public void SetPlayerHealth(int healthValue)
     {
         _playerHealth = healthValue;
-    }
-
-    public int GetScore()
-    {
-        return _playerScore;
-    }
-
-    public void IncrementScore(int value)
-    {
-        _playerScore += value;
-    }
+    }    
 
     public bool CanDoubleJump()
     {
