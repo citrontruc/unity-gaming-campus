@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(
-    fileName = "CollectableEventChannel_SO",
-    menuName = "Events/CollectableEventChannelSO"
+    fileName = "VoidEventChannel_SO",
+    menuName = "Events/VoidEventChannelSO"
 )]
-public class CollectableEventChannelSO<T> : ScriptableObject
+public class VoidEventChannelSO<T> : ScriptableObject
 {
     public UnityAction<T> onEventRaised;
 

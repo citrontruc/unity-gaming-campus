@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class CollisionHandler : Singleton<CollisionHandler>
 {
     [SerializeField]
-    private CollectableEventChannelSO<int> collectableEventChannelSO;
+    private VoidEventChannelSO<int> collectableEventChannelSO;
     private PlayerScore _playerScore => PlayerScore.Instance;
 
     void OnEnable()
