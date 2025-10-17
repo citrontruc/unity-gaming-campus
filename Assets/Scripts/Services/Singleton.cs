@@ -31,7 +31,7 @@ public class Singleton<T> : MonoBehaviour
 
     private static void SetupInstance()
     {
-        instance = (T)FindObjectOfType(typeof(T));
+        instance = (T)FindFirstObjectByType(typeof(T));
         if (instance == null)
         {
             GameObject gameObj = new GameObject();
