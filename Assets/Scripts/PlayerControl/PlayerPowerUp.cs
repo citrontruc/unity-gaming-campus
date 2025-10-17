@@ -28,7 +28,7 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
     public void SetPlayerHealth(int healthValue)
     {
         _playerHealth = healthValue;
-    }    
+    }
 
     public bool CanDoubleJump()
     {

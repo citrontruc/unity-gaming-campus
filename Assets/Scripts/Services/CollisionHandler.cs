@@ -22,20 +22,20 @@ public class CollisionHandler : Singleton<CollisionHandler>
         collectableEventChannelSO.onEventRaised -= HandleCollectible;
     }
 
-/*
-    private void HandleCollision(GameObject hitObject)
-    {
-        Debug.Log("We just hit something");
-        if (hitObject.CompareTag("Obstacle"))
+    /*
+        private void HandleCollision(GameObject hitObject)
         {
-            HandleObstacle(hitObject);
+            Debug.Log("We just hit something");
+            if (hitObject.CompareTag("Obstacle"))
+            {
+                HandleObstacle(hitObject);
+            }
+            else if (hitObject.CompareTag("Collectible"))
+            {
+                HandleCollectible(hitObject);
+            }
         }
-        else if (hitObject.CompareTag("Collectible"))
-        {
-            HandleCollectible(hitObject);
-        }
-    }
-    */
+        */
 
     private void HandleObstacle(GameObject obstacle)
     {

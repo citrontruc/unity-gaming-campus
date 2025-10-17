@@ -9,6 +9,7 @@ public class Corn : Collectible
     {
         _value = 100;
     }
+
     void Start() { }
 
     void Update()

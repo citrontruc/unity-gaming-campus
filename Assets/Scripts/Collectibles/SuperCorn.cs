@@ -9,6 +9,7 @@ public class SuperCorn : Collectible
     {
         _value = 200;
     }
+
     void Start() { }
 
     void Update()

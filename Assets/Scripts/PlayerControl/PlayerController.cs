@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Reference to the actions our player will take.
     /// </summary>
-    #region Actions 
+    #region Actions
     [Header("Movement")]
     private InputAction _moveAction;
     private InputAction _jumpAction;
@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour
 
     #region Jump properties
     private bool _canJump = true;
+
     [SerializeField]
     private float _raycastDistance = .6f;
+
     [SerializeField]
     private float _jumpValue = 0.5f;
     private float _jumpCooldown = 0.1f;
@@ -105,7 +107,7 @@ public class PlayerController : MonoBehaviour
                         _playerPowerUp.ResolveDoubleJump();
                     }
                     break;
-                    // Single jump
+                // Single jump
                 case true:
                     //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
                     transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
