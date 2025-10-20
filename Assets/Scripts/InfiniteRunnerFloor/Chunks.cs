@@ -7,7 +7,7 @@ public class Chunk
     public enum ChunkState
     {
         active,
-        disabled
+        disabled,
     }
 
     private ChunkState _chunkState = ChunkState.disabled;

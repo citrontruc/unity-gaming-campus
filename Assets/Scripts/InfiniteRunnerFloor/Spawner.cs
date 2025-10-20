@@ -9,7 +9,7 @@ public class Spawner : Singleton<Spawner>
 {
     /// <summary>
     /// We have a list of chunks and every time, we want to generate tile,
-    /// we take a tile at random from our queue. 
+    /// we take a tile at random from our queue.
     /// </summary>
     private List<Chunk> _spawnQueue;
     private int _randomSeed = 42;
@@ -30,11 +30,9 @@ public class Spawner : Singleton<Spawner>
         _spawnQueue.RemoveAt(chunkPosition);
         return selectedChunk;
     }
-    
+
     private void EnqueueChunk(Chunk chunk)
     {
         _spawnQueue.Add(chunk);
     }
-
-
 }
