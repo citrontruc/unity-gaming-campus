@@ -12,7 +12,20 @@ public class Spawner : Singleton<Spawner>
     /// we take a tile at random from our queue.
     /// </summary>
     private List<Chunk> _spawnQueue;
+    private List<Chunk> _activeChunkList;
     private int _randomSeed = 42;
+
+    [SerializeField]
+    private float _levelSpeed = 5f;
+    public Transform SpawnPoint;
+
+    public enum ChunkType
+    {
+        BasicChunk
+    }
+
+    [SerializeField]
+    private Dictionary<ChunkType, int> _chunkRepartition = new();
 
     /// <summary>
     /// We set our seed for randomness in the Awake method.
@@ -21,6 +34,18 @@ public class Spawner : Singleton<Spawner>
     {
         base.Awake();
         Random.InitState(_randomSeed);
+        SpawnPoint = this.transform;
+        Initilialize();
+    }
+
+    private void Initilialize()
+    {
+        Object[] chunks = Resources.LoadAll("Prefabs/Chunks", typeof(Chunk));
+        _chunkRepartition[ChunkType.BasicChunk] = 20;
+        foreach (KeyValuePair<ChunkType, int> chunk in _chunkRepartition)
+        {
+            
+        }
     }
 
     private Chunk GetRandomChunk()

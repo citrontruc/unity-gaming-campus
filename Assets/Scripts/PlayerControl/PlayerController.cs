@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _jumpValue = 0.5f;
     private float _jumpCooldown = 0.1f;
-    private string _groundTag = "Ground";
+    private string _groundTag = "Chunk";
     #endregion
 
     private void Awake()

@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Obstacles
   - Collectibles
-  - Ground
+  - Chunk
   layers:
   - Default
   - TransparentFX
