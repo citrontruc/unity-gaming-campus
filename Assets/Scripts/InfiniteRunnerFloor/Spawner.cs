@@ -21,7 +21,7 @@ public class Spawner : Singleton<Spawner>
 
     public enum ChunkType
     {
-        BasicChunk
+        BasicChunk,
     }
 
     [SerializeField]
@@ -42,10 +42,7 @@ public class Spawner : Singleton<Spawner>
     {
         Object[] chunks = Resources.LoadAll("Prefabs/Chunks", typeof(Chunk));
         _chunkRepartition[ChunkType.BasicChunk] = 20;
-        foreach (KeyValuePair<ChunkType, int> chunk in _chunkRepartition)
-        {
-            
-        }
+        foreach (KeyValuePair<ChunkType, int> chunk in _chunkRepartition) { }
     }
 
     private Chunk GetRandomChunk()
