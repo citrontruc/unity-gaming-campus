@@ -14,13 +14,11 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
 
     [SerializeField]
     private bool _enableDoubleJump = false;
+    [SerializeField]
     private bool _enableGlide = false;
+    [SerializeField]
     private bool _enableDash = false;
     private bool _enableDestroySmallObstacles = false;
-    #endregion
-
-    #region Temporary abilities
-    private bool _doubleJump = true;
     #endregion
 
     private int _playerHealth = 1;
@@ -32,16 +30,16 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
 
     public bool CanDoubleJump()
     {
-        return _doubleJump && _enableDoubleJump;
+        return _enableDoubleJump;
     }
 
-    public void ResetDoubleJump()
+    public bool CanDash()
     {
-        _doubleJump = true;
+        return _enableDash;
     }
 
-    public void ResolveDoubleJump()
+    public bool CanGlide()
     {
-        _doubleJump = false;
+        return _enableGlide;
     }
 }
