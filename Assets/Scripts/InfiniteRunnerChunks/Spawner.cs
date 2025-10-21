@@ -3,9 +3,9 @@ A class to spawn new chunks and choose which chunks to use next.
 */
 
 using System.Collections.Generic;
-using UnityEngine;
-using Unity.VisualScripting;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class Spawner : Singleton<Spawner>
 {
@@ -49,9 +49,9 @@ public class Spawner : Singleton<Spawner>
         Object[] chunks = Resources.LoadAll("Chunks", typeof(GameObject));
         Object currentVal;
         Chunk myChunk;
-        for (int i = 0; i< chunks.Count(); i++)
+        for (int i = 0; i < chunks.Count(); i++)
         {
-            for (int j=0; j< 5; j++)
+            for (int j = 0; j < 5; j++)
             {
                 currentVal = Instantiate(chunks[i], new Vector3(0, 0, 0), Quaternion.identity);
                 myChunk = currentVal.GetComponent<Chunk>();
@@ -67,16 +67,24 @@ public class Spawner : Singleton<Spawner>
         Debug.Log($"SpawnQueue {_spawnQueue.Count}");
         if (_activeChunkList.Count < _numChunks)
         {
-            for (int i =0; i < _numChunks - _activeChunkList.Count; i++)
+            for (int i = 0; i < _numChunks - _activeChunkList.Count; i++)
             {
                 Chunk myChunk = GetRandomChunk();
                 if (_activeChunkList.Count == 0)
                 {
-                    myChunk.transform.position = new Vector3(SpawnPoint.position.x, SpawnPoint.position.y, Destroyer.position.z + _chunkSize);
+                    myChunk.transform.position = new Vector3(
+                        SpawnPoint.position.x,
+                        SpawnPoint.position.y,
+                        Destroyer.position.z + _chunkSize
+                    );
                 }
                 else
                 {
-                    myChunk.transform.position = new Vector3(SpawnPoint.position.x, SpawnPoint.position.y, _activeChunkList.Last().transform.position.z + _chunkSize);
+                    myChunk.transform.position = new Vector3(
+                        SpawnPoint.position.x,
+                        SpawnPoint.position.y,
+                        _activeChunkList.Last().transform.position.z + _chunkSize
+                    );
                 }
                 myChunk.Activate();
                 _activeChunkList.Add(myChunk);
@@ -100,7 +108,7 @@ public class Spawner : Singleton<Spawner>
         _spawnQueue.Remove(selectedChunk);
         return selectedChunk;
     }
-        
+
     public void EnqueueChunk(Chunk chunk)
     {
         _spawnQueue.Add(chunk);
