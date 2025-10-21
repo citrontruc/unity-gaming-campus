@@ -115,7 +115,6 @@ public class PlayerController : MonoBehaviour
             if (_playerPowerUp.CanGlide())
             {
                 _glideTimer += Time.deltaTime;
-                Debug.Log($"{_glideTimer}, {_glideTimer > _glideValue}");
                 if (_glideTimer < _glideValue)
                 {
                     _rb.linearVelocity = new Vector3(

@@ -6,7 +6,7 @@ public class Follow_player : MonoBehaviour
     private Transform _player;
 
     [SerializeField]
-    private Vector3 _lagDistance = new(0, 4, -7);
+    private Vector3 _lagDistance = new(0, 10, -7);
 
     // Update is called once per frame
     void LateUpdate()
