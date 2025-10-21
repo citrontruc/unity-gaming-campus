@@ -3,9 +3,9 @@ A class to spawn new chunks and choose which chunks to use next.
 */
 
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class Spawner : Singleton<Spawner>
 {
@@ -13,13 +13,17 @@ public class Spawner : Singleton<Spawner>
     /// We have a list of chunks and every time, we want to generate tile,
     /// we take a tile at random from our queue.
     /// </summary>
-    private List<Object> _spawnQueue = new();
-    private List<Object> _activeChunkList = new();
+    private List<Chunk> _spawnQueue = new();
+    private List<Chunk> _activeChunkList = new();
     private int _randomSeed = 42;
 
     [SerializeField]
     private float _levelSpeed = 5f;
-    public Transform SpawnPoint;
+
+    private int _numChunks;
+    private int _chunkSize = 20;
+    public Transform SpawnPoint => this.transform;
+    public Transform Destroyer => Singleton<ChunkDestroyer>.Instance.transform;
 
     public enum ChunkType
     {
@@ -36,64 +40,67 @@ public class Spawner : Singleton<Spawner>
     {
         base.Awake();
         Random.InitState(_randomSeed);
-        SpawnPoint = this.transform;
+        _numChunks = (int)(SpawnPoint.position.z - Destroyer.position.z) / _chunkSize + 1;
         Initilialize();
     }
 
     private void Initilialize()
     {
         Object[] chunks = Resources.LoadAll("Chunks", typeof(GameObject));
-        Object currentVal = Instantiate(chunks[0], new Vector3(0, 0, 20), Quaternion.identity);
-        Chunk myChunk = currentVal.GetComponent<Chunk>();
-        myChunk.Activate();
-        _activeChunkList.Add(currentVal);
-        currentVal = Instantiate(chunks[1], new Vector3(0, 0, 40), Quaternion.identity);
-        myChunk = currentVal.GetComponent<Chunk>();
-        myChunk.Activate();
-        _activeChunkList.Add(currentVal);
-        /*
-        foreach (KeyValuePair<ChunkType, int> chunk in _chunkRepartition)
+        Object currentVal;
+        Chunk myChunk;
+        for (int i = 0; i< chunks.Count(); i++)
         {
-            Instantiate(chunks[0], new Vector3(0, 0, 20), Quaternion.identity);
-        }
-        */
-    }
-
-    public void Update()
-    {
-        if (_spawnQueue.Count > 0)
-        {
-            Object currentVal = Instantiate(
-                _spawnQueue[0],
-                new Vector3(0, 0, 40),
-                Quaternion.identity
-            );
-            _spawnQueue.RemoveAt(0);
-            Chunk myChunk = currentVal.GetComponent<Chunk>();
-            myChunk.Activate();
-            _activeChunkList.Add(currentVal);
-        }
-        for (int i = 0; i < _activeChunkList.Count(); i++)
-        {
-            Object currentVal = _activeChunkList[i];
-            Chunk myChunk = currentVal.GetComponent<Chunk>();
-            myChunk.transform.Translate(0, 0, -10f * Time.deltaTime);
-            if (myChunk.GetChunkState() == Chunk.ChunkState.disabled)
+            for (int j=0; j< 5; j++)
             {
-                _activeChunkList.RemoveAt(i);
+                currentVal = Instantiate(chunks[i], new Vector3(0, 0, 0), Quaternion.identity);
+                myChunk = currentVal.GetComponent<Chunk>();
+                myChunk.Deactivate();
             }
         }
     }
 
-    /*
-        private Chunk GetRandomChunk()
+    public void Update()
+    {
+        Debug.Log($"ActiveChunks {_activeChunkList.Count}");
+        Debug.Log(_numChunks);
+        Debug.Log($"SpawnQueue {_spawnQueue.Count}");
+        if (_activeChunkList.Count < _numChunks)
         {
-            int chunkPosition = Random.Range(0, _spawnQueue.Count);
-            Object selectedChunk = _spawnQueue[chunkPosition];
-            _spawnQueue.RemoveAt(chunkPosition);
-            return selectedChunk;
+            for (int i =0; i < _numChunks - _activeChunkList.Count; i++)
+            {
+                Chunk myChunk = GetRandomChunk();
+                if (_activeChunkList.Count == 0)
+                {
+                    myChunk.transform.position = new Vector3(SpawnPoint.position.x, SpawnPoint.position.y, Destroyer.position.z + _chunkSize);
+                }
+                else
+                {
+                    myChunk.transform.position = new Vector3(SpawnPoint.position.x, SpawnPoint.position.y, _activeChunkList.Last().transform.position.z + _chunkSize);
+                }
+                myChunk.Activate();
+                _activeChunkList.Add(myChunk);
+            }
         }
-    */
+        for (int i = _activeChunkList.Count - 1; i >= 0; i--)
+        {
+            Chunk myChunk = _activeChunkList[i];
+            myChunk.transform.Translate(0, 0, -_levelSpeed * Time.deltaTime);
+            if (myChunk.GetChunkState() == Chunk.ChunkState.disabled)
+            {
+                _activeChunkList.Remove(myChunk);
+            }
+        }
+    }
+
+    private Chunk GetRandomChunk()
+    {
+        int chunkPosition = Random.Range(0, _spawnQueue.Count);
+        Chunk selectedChunk = _spawnQueue[chunkPosition];
+        _spawnQueue.Remove(selectedChunk);
+        return selectedChunk;
+    }
+        
     public void EnqueueChunk(Chunk chunk)
     {
         _spawnQueue.Add(chunk);
