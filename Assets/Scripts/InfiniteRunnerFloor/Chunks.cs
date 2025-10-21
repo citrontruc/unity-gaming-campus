@@ -24,7 +24,10 @@ public class Chunk : MonoBehaviour
         _collider = GetComponent<Collider>();
         if (_collider == null)
         {
-            Debug.LogError($"Chunk '{gameObject.name}' is missing a Collider component! Please add one to the root GameObject.", this);
+            Debug.LogError(
+                $"Chunk '{gameObject.name}' is missing a Collider component! Please add one to the root GameObject.",
+                this
+            );
         }
     }
 

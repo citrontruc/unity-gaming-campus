@@ -63,7 +63,11 @@ public class Spawner : Singleton<Spawner>
     {
         if (_spawnQueue.Count > 0)
         {
-            Object currentVal = Instantiate(_spawnQueue[0], new Vector3(0, 0, 40), Quaternion.identity);
+            Object currentVal = Instantiate(
+                _spawnQueue[0],
+                new Vector3(0, 0, 40),
+                Quaternion.identity
+            );
             _spawnQueue.RemoveAt(0);
             Chunk myChunk = currentVal.GetComponent<Chunk>();
             myChunk.Activate();
@@ -80,15 +84,16 @@ public class Spawner : Singleton<Spawner>
             }
         }
     }
-/*
-    private Chunk GetRandomChunk()
-    {
-        int chunkPosition = Random.Range(0, _spawnQueue.Count);
-        Object selectedChunk = _spawnQueue[chunkPosition];
-        _spawnQueue.RemoveAt(chunkPosition);
-        return selectedChunk;
-    }
-*/
+
+    /*
+        private Chunk GetRandomChunk()
+        {
+            int chunkPosition = Random.Range(0, _spawnQueue.Count);
+            Object selectedChunk = _spawnQueue[chunkPosition];
+            _spawnQueue.RemoveAt(chunkPosition);
+            return selectedChunk;
+        }
+    */
     public void EnqueueChunk(Chunk chunk)
     {
         _spawnQueue.Add(chunk);
