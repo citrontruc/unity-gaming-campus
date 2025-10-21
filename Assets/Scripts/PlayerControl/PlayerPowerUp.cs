@@ -14,8 +14,10 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
 
     [SerializeField]
     private bool _enableDoubleJump = false;
+
     [SerializeField]
     private bool _enableGlide = false;
+
     [SerializeField]
     private bool _enableDash = false;
     private bool _enableDestroySmallObstacles = false;

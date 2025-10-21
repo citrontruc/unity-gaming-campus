@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     #region Dash properties
     private bool _canDash = true;
+
     [SerializeField]
     private float _dashValue = 20f;
     private float _dashCooldown = 1f;
@@ -91,7 +92,11 @@ public class PlayerController : MonoBehaviour
                 switch (_grounded)
                 {
                     case false:
-                        if (!_jumpContinuousPress && _playerPowerUp.CanDoubleJump() && _canDoubleJump)
+                        if (
+                            !_jumpContinuousPress
+                            && _playerPowerUp.CanDoubleJump()
+                            && _canDoubleJump
+                        )
                         {
                             Jump();
                             _canDoubleJump = false;
@@ -108,14 +113,18 @@ public class PlayerController : MonoBehaviour
             // If the player can glide, he will glide by maintaining the jump button.
             // Note : we can disable gravity for the player object but rather keep it because it looks nice.
             if (_playerPowerUp.CanGlide())
+            {
+                _glideTimer += Time.deltaTime;
+                Debug.Log($"{_glideTimer}, {_glideTimer > _glideValue}");
+                if (_glideTimer < _glideValue)
                 {
-                    _glideTimer += Time.deltaTime;
-                    Debug.Log($"{_glideTimer}, {_glideTimer > _glideValue}");
-                    if (_glideTimer < _glideValue)
-                    {
-                        _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, 0f, _rb.linearVelocity.z);
-                    }
+                    _rb.linearVelocity = new Vector3(
+                        _rb.linearVelocity.x,
+                        0f,
+                        _rb.linearVelocity.z
+                    );
                 }
+            }
             _jumpContinuousPress = true;
         }
         else
@@ -157,7 +166,7 @@ public class PlayerController : MonoBehaviour
     {
         //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
         transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
-        StartCoroutine(JumpPress());            
+        StartCoroutine(JumpPress());
     }
 
     private IEnumerator JumpPress()
@@ -191,6 +200,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     private IEnumerator DashPress()
     {
         _canDash = false;
@@ -198,5 +208,4 @@ public class PlayerController : MonoBehaviour
         _canDash = true;
     }
     #endregion
-    
 }
