@@ -8,7 +8,10 @@ public class Follow_player : MonoBehaviour
     [SerializeField]
     private Vector3 _lagDistance = new(0, 10, -7);
 
-    // Update is called once per frame
+    /// <summary>
+    /// Camera is fixed on the y axis to avoid violent movements on the y axis.
+    /// We follow the player object.
+    /// </summary>
     void LateUpdate()
     {
         Vector3 playerPosition = _player.transform.position;
