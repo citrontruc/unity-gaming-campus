@@ -29,9 +29,14 @@ public abstract class Collectible : MonoBehaviour, IActivatable
     #endregion
 
     #region  Monobehaviour methods
-    void Start()
+
+    void Awake()
     {
         GetComponent<Collider>().isTrigger = true;
+    }
+    
+    void Start()
+    {
         Activate();
     }
 

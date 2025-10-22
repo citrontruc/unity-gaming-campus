@@ -4,7 +4,6 @@ Collision events are triggered by the player when he touches another entity.
 */
 
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CollisionHandler : Singleton<CollisionHandler>
 {
@@ -15,6 +14,7 @@ public class CollisionHandler : Singleton<CollisionHandler>
     private VoidEventChannelSO<Obstacle.Resistance> ObstacleEventChannelSO;
     private PlayerScore _playerScore => PlayerScore.Instance;
 
+    #region Subscribe to events
     void OnEnable()
     {
         collectableEventChannelSO.onEventRaised += HandleCollectible;
@@ -26,22 +26,9 @@ public class CollisionHandler : Singleton<CollisionHandler>
         collectableEventChannelSO.onEventRaised -= HandleCollectible;
         ObstacleEventChannelSO.onEventRaised -= HandleObstacle;
     }
+    #endregion
 
-    /*
-        private void HandleCollision(GameObject hitObject)
-        {
-            Debug.Log("We just hit something");
-            if (hitObject.CompareTag("Obstacle"))
-            {
-                HandleObstacle(hitObject);
-            }
-            else if (hitObject.CompareTag("Collectible"))
-            {
-                HandleCollectible(hitObject);
-            }
-        }
-        */
-
+    #region Handle collisions with items
     private void HandleObstacle(Obstacle.Resistance _resistance)
     {
         Debug.Log($"Player hit obstacle: {_resistance}.");
@@ -51,7 +38,7 @@ public class CollisionHandler : Singleton<CollisionHandler>
     private void HandleCollectible(int score)
     {
         _playerScore.IncrementScore(score);
-        Debug.Log($"Collectible collected for {score}");
-        // Example: collectible logic can also destroy itself
+        //Debug.Log($"Collectible collected for {score}");
     }
+    #endregion
 }

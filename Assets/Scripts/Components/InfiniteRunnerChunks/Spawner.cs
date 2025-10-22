@@ -33,6 +33,13 @@ public class Spawner : Singleton<Spawner>
     [SerializeField]
     private Dictionary<ChunkType, int> _chunkRepartition = new();
 
+    #region Getters and Setters
+    public void MultiplyLevelSpeed(float value)
+    {
+        _levelSpeed *= value;
+    }
+    #endregion
+
     /// <summary>
     /// We set our seed for randomness in the Awake method.
     /// </summary>
@@ -101,6 +108,7 @@ public class Spawner : Singleton<Spawner>
         }
     }
 
+    #region Retrieve chunks from lists
     private Chunk GetRandomChunk()
     {
         int chunkPosition = Random.Range(0, _spawnQueue.Count);
@@ -113,4 +121,5 @@ public class Spawner : Singleton<Spawner>
     {
         _spawnQueue.Add(chunk);
     }
+    #endregion
 }

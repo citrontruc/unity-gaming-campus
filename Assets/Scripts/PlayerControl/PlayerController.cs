@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     private Rigidbody _rb;
     private PlayerPowerUp _playerPowerUp => PlayerPowerUp.Instance;
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _currentSpeed = 10f;
     private Vector3 _moveValue = Vector3.zero;
+    private int _playerHealth = 1;
 
     #region Jump properties
     private bool _grounded = true;
@@ -51,8 +52,17 @@ public class PlayerController : MonoBehaviour
     private float _dashCooldown = 1f;
     #endregion
 
-    private void Awake()
+    #region Setters and Getters7
+    public void SetHealth(int healthValue)
     {
+        _playerHealth = healthValue;
+    }
+    #endregion
+
+    #region Monobehaviour Methods
+    public override void Awake()
+    {
+        base.Awake();
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -142,6 +152,7 @@ public class PlayerController : MonoBehaviour
         //_rb.AddForce(_moveValue * _currentSpeed, ForceMode.Acceleration);
         transform.Translate(_moveValue * _currentSpeed * Time.deltaTime);
     }
+    #endregion
 
     #region Jump & Double Jump
     private bool IsGrounded()

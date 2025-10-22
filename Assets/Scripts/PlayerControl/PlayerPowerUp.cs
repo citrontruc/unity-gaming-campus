@@ -23,13 +23,6 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
     private bool _enableDestroySmallObstacles = false;
     #endregion
 
-    private int _playerHealth = 1;
-
-    public void SetPlayerHealth(int healthValue)
-    {
-        _playerHealth = healthValue;
-    }
-
     public bool CanDoubleJump()
     {
         return _enableDoubleJump;
