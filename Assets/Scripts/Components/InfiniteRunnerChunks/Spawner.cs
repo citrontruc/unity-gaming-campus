@@ -21,6 +21,12 @@ public class Spawner : Singleton<Spawner>
     private float _levelSpeed = 5f;
 
     private int _numChunks;
+    /// <summary>
+    /// How many empty chunks do we have before we start having chunks with collectibles and Obstacles?
+    /// </summary>
+    private int _numChunksAtBeginning = 3;
+    private string _chunkFolderName = "Chunks";
+    private string _beginningChunkName = "EmptyChunk";
     private int _chunkSize = 20;
     public Transform SpawnPoint => this.transform;
     public Transform Destroyer => Singleton<ChunkDestroyer>.Instance.transform;
@@ -53,7 +59,7 @@ public class Spawner : Singleton<Spawner>
 
     private void Initilialize()
     {
-        Object[] chunks = Resources.LoadAll("Chunks", typeof(GameObject));
+        Object[] chunks = Resources.LoadAll(_chunkFolderName, typeof(GameObject));
         Object currentVal;
         Chunk myChunk;
         for (int i = 0; i < chunks.Count(); i++)
@@ -67,6 +73,14 @@ public class Spawner : Singleton<Spawner>
                 EnqueueChunk(myChunk);
             }
         }
+
+        Object beginningChunk = Resources.Load($"{_chunkFolderName}/{_beginningChunkName}");
+        for (int i = 0; i < _numChunksAtBeginning; i++)
+        {
+            currentVal = Instantiate(beginningChunk, new Vector3(0, 0, 0), Quaternion.identity);
+            myChunk = currentVal.GetComponent<Chunk>();
+            AddChunkToActiveChunks(myChunk);
+        }
     }
 
     public void Update()
@@ -76,24 +90,7 @@ public class Spawner : Singleton<Spawner>
             for (int i = 0; i < _numChunks - _activeChunkList.Count; i++)
             {
                 Chunk myChunk = GetRandomChunk();
-                if (_activeChunkList.Count == 0)
-                {
-                    myChunk.transform.position = new Vector3(
-                        SpawnPoint.position.x,
-                        SpawnPoint.position.y,
-                        Destroyer.position.z + _chunkSize
-                    );
-                }
-                else
-                {
-                    myChunk.transform.position = new Vector3(
-                        SpawnPoint.position.x,
-                        SpawnPoint.position.y,
-                        _activeChunkList.Last().transform.position.z + _chunkSize
-                    );
-                }
-                myChunk.Activate();
-                _activeChunkList.Add(myChunk);
+                AddChunkToActiveChunks(myChunk);
             }
         }
         for (int i = _activeChunkList.Count - 1; i >= 0; i--)
@@ -103,12 +100,38 @@ public class Spawner : Singleton<Spawner>
             if (myChunk.GetChunkState() == Chunk.ChunkState.disabled)
             {
                 _activeChunkList.Remove(myChunk);
-                EnqueueChunk(myChunk);
+                int NumApparitions = myChunk.GetChunkRarity();
+                if (NumApparitions > 0)
+                {
+                    EnqueueChunk(myChunk);
+                }
             }
         }
     }
 
     #region Retrieve chunks from lists
+    private void AddChunkToActiveChunks(Chunk chunk)
+    {
+        if (_activeChunkList.Count == 0)
+            {
+                chunk.transform.position = new Vector3(
+                    SpawnPoint.position.x,
+                    SpawnPoint.position.y,
+                    Destroyer.position.z + _chunkSize
+                );
+            }
+            else
+            {
+                chunk.transform.position = new Vector3(
+                    SpawnPoint.position.x,
+                    SpawnPoint.position.y,
+                    _activeChunkList.Last().transform.position.z + _chunkSize
+                );
+            }
+            chunk.Activate();
+            _activeChunkList.Add(chunk);
+    }
+    
     private Chunk GetRandomChunk()
     {
         int chunkPosition = Random.Range(0, _spawnQueue.Count);
