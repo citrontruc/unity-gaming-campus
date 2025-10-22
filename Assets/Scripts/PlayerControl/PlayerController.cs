@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _jumpValue = 2f;
     private float _jumpCooldown = 0.2f;
-    private string _groundTag = "Chunk";
+    private string _groundTag = "Ground";
     private float _glideValue = 3f;
     private float _glideTimer = 0f;
     private bool _jumpContinuousPress = false;

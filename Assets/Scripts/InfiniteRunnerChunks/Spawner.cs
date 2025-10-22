@@ -51,20 +51,19 @@ public class Spawner : Singleton<Spawner>
         Chunk myChunk;
         for (int i = 0; i < chunks.Count(); i++)
         {
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < 3; j++)
             {
                 currentVal = Instantiate(chunks[i], new Vector3(0, 0, 0), Quaternion.identity);
                 myChunk = currentVal.GetComponent<Chunk>();
                 myChunk.Deactivate();
+                EnqueueChunk(myChunk);
             }
         }
     }
 
     public void Update()
     {
-        Debug.Log($"ActiveChunks {_activeChunkList.Count}");
-        Debug.Log(_numChunks);
-        Debug.Log($"SpawnQueue {_spawnQueue.Count}");
+        Debug.Log(_spawnQueue.Count);
         if (_activeChunkList.Count < _numChunks)
         {
             for (int i = 0; i < _numChunks - _activeChunkList.Count; i++)
@@ -97,6 +96,7 @@ public class Spawner : Singleton<Spawner>
             if (myChunk.GetChunkState() == Chunk.ChunkState.disabled)
             {
                 _activeChunkList.Remove(myChunk);
+                EnqueueChunk(myChunk);
             }
         }
     }

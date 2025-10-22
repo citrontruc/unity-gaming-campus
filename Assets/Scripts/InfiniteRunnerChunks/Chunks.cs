@@ -17,7 +17,6 @@ public class Chunk : MonoBehaviour
     private Collider _collider;
     public Transform StartPoint;
     public Transform EndPoint;
-    private Spawner _spawner => Singleton<Spawner>.Instance;
 
     void Awake()
     {
@@ -41,6 +40,12 @@ public class Chunk : MonoBehaviour
         this.gameObject.SetActive(true);
         _chunkState = ChunkState.active;
         _collider.enabled = true;
+
+        Collectible[] collectibles = GetComponentsInChildren<Collectible>(true);
+        foreach (Collectible collectible in collectibles)
+        {
+            collectible.Activate();
+        }
     }
 
     public void Deactivate()
@@ -48,6 +53,11 @@ public class Chunk : MonoBehaviour
         this.gameObject.SetActive(false);
         _chunkState = ChunkState.disabled;
         _collider.enabled = false;
-        _spawner.EnqueueChunk(this);
+        
+        Collectible[] collectibles = GetComponentsInChildren<Collectible>(true);
+        foreach (Collectible collectible in collectibles)
+        {
+            collectible.Deactivate();
+        }
     }
 }
