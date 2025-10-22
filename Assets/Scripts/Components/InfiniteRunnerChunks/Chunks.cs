@@ -51,7 +51,8 @@ public class Chunk : MonoBehaviour
         ActivateChildComponent<Collectible>();
     }
 
-    private void ActivateChildComponent<T>() where T : Component
+    private void ActivateChildComponent<T>()
+        where T : Component
     {
         T[] componentList = GetComponentsInChildren<T>(true);
         foreach (T component in componentList)
@@ -71,7 +72,8 @@ public class Chunk : MonoBehaviour
         DeactivateChildComponent<Collectible>();
     }
 
-    private void DeactivateChildComponent<T>() where T : Component
+    private void DeactivateChildComponent<T>()
+        where T : Component
     {
         T[] componentList = GetComponentsInChildren<T>(true);
         foreach (T component in componentList)
