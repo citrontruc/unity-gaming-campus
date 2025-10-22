@@ -21,6 +21,7 @@ public class Spawner : Singleton<Spawner>
     private float _levelSpeed = 5f;
 
     private int _numChunks;
+
     /// <summary>
     /// How many empty chunks do we have before we start having chunks with collectibles and Obstacles?
     /// </summary>
@@ -113,25 +114,25 @@ public class Spawner : Singleton<Spawner>
     private void AddChunkToActiveChunks(Chunk chunk)
     {
         if (_activeChunkList.Count == 0)
-            {
-                chunk.transform.position = new Vector3(
-                    SpawnPoint.position.x,
-                    SpawnPoint.position.y,
-                    Destroyer.position.z + _chunkSize
-                );
-            }
-            else
-            {
-                chunk.transform.position = new Vector3(
-                    SpawnPoint.position.x,
-                    SpawnPoint.position.y,
-                    _activeChunkList.Last().transform.position.z + _chunkSize
-                );
-            }
-            chunk.Activate();
-            _activeChunkList.Add(chunk);
+        {
+            chunk.transform.position = new Vector3(
+                SpawnPoint.position.x,
+                SpawnPoint.position.y,
+                Destroyer.position.z + _chunkSize
+            );
+        }
+        else
+        {
+            chunk.transform.position = new Vector3(
+                SpawnPoint.position.x,
+                SpawnPoint.position.y,
+                _activeChunkList.Last().transform.position.z + _chunkSize
+            );
+        }
+        chunk.Activate();
+        _activeChunkList.Add(chunk);
     }
-    
+
     private Chunk GetRandomChunk()
     {
         int chunkPosition = Random.Range(0, _spawnQueue.Count);

@@ -25,7 +25,6 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField]
     private float _currentSpeed = 10f;
     private Vector3 _moveValue = Vector3.zero;
-    private int _playerHealth = 1;
 
     #region Jump properties
     private bool _grounded = true;
@@ -50,13 +49,6 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField]
     private float _dashValue = 20f;
     private float _dashCooldown = 1f;
-    #endregion
-
-    #region Setters and Getters7
-    public void SetHealth(int healthValue)
-    {
-        _playerHealth = healthValue;
-    }
     #endregion
 
     #region Monobehaviour Methods

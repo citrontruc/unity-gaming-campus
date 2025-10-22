@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 973073876}
   - component: {fileID: 973073877}
   m_Layer: 0
-  m_Name: PlayerScore
+  m_Name: PlayerValues
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

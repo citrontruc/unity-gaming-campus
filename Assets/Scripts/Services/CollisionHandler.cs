@@ -12,7 +12,7 @@ public class CollisionHandler : Singleton<CollisionHandler>
 
     [SerializeField]
     private VoidEventChannelSO<Obstacle.Resistance> ObstacleEventChannelSO;
-    private PlayerScore _playerScore => PlayerScore.Instance;
+    private PlayerValues _playerValues => PlayerValues.Instance;
 
     #region Subscribe to events
     void OnEnable()
@@ -31,13 +31,13 @@ public class CollisionHandler : Singleton<CollisionHandler>
     #region Handle collisions with items
     private void HandleObstacle(Obstacle.Resistance _resistance)
     {
-        Debug.Log($"Player hit obstacle: {_resistance}.");
+        _playerValues.CollisionWithObstacle(_resistance);
         // Example: notify GameManager, reduce HP, etc.
     }
 
     private void HandleCollectible(int score)
     {
-        _playerScore.IncrementScore(score);
+        _playerValues.IncrementScore(score);
         //Debug.Log($"Collectible collected for {score}");
     }
     #endregion
