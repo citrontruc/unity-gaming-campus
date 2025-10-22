@@ -2,8 +2,8 @@
 An object to keep a trace of the player score and update it.
 */
 
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerValues : Singleton<PlayerValues>
 {
@@ -22,7 +22,7 @@ public class PlayerValues : Singleton<PlayerValues>
         _playerHealth = healthValue;
     }
     #endregion
-    
+
     public void IncrementScore(int value)
     {
         _playerScore += value;
