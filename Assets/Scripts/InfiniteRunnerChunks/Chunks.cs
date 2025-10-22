@@ -53,7 +53,7 @@ public class Chunk : MonoBehaviour
         this.gameObject.SetActive(false);
         _chunkState = ChunkState.disabled;
         _collider.enabled = false;
-        
+
         Collectible[] collectibles = GetComponentsInChildren<Collectible>(true);
         foreach (Collectible collectible in collectibles)
         {
