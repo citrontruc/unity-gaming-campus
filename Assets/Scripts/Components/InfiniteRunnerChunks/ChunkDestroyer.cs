@@ -10,15 +10,15 @@ public class ChunkDestroyer : Singleton<ChunkDestroyer>
         GetComponent<Collider>().isTrigger = true;
     }
 
+    /// <summary>
+    /// The destroyer deactivates any chunk it touches.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        // Put it back in a queue instead of destroying it.
         if (other.tag == _tagToDestroy)
         {
             other.GetComponent<Chunk>().Deactivate();
-            Debug.Log("Contact with chunk");
         }
-        Debug.Log("Contact");
-        //Destroy(other.gameObject);
     }
 }

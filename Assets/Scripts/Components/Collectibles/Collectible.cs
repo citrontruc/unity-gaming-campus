@@ -34,7 +34,7 @@ public abstract class Collectible : MonoBehaviour, IActivatable
     {
         GetComponent<Collider>().isTrigger = true;
     }
-    
+
     void Start()
     {
         Activate();

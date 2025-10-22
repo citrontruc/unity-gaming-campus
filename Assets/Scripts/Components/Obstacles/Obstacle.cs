@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public abstract class Obstacle : MonoBehaviour, IActivatable
+public class Obstacle : MonoBehaviour, IActivatable
 {
     [Header("Collision Events")]
     [SerializeField]
@@ -14,7 +13,8 @@ public abstract class Obstacle : MonoBehaviour, IActivatable
         unbreakable = 2,
     }
 
-    protected Resistance _resistance;
+    [SerializeField]
+    private Resistance _resistance = Resistance.small;
 
     [SerializeField]
     private string _playerTag = "Player";
