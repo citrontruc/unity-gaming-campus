@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e20fc1a56a8339198c6bb28d7f2dc74, type: 3}
   m_Name: RareChunk
   m_EditorClassIdentifier: Assembly-CSharp::ChunkCharacteristicsSO
-  NumApparitions: 3
+  NumApparitions: 1
