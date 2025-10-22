@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
-public abstract class Collectible : MonoBehaviour
+public abstract class Collectible : MonoBehaviour, IActivatable
 {
     [Header("Collision Events")]
     [SerializeField]

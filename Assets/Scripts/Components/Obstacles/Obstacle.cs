@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class Obstacle : MonoBehaviour
+public abstract class Obstacle : MonoBehaviour, IActivatable
 {
     [Header("Collision Events")]
     [SerializeField]
@@ -18,6 +18,18 @@ public abstract class Obstacle : MonoBehaviour
 
     [SerializeField]
     private string _playerTag = "Player";
+
+    #region Setters and Getters
+    public void Activate()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        this.gameObject.SetActive(false);
+    }
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {

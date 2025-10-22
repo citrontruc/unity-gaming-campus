@@ -51,7 +51,8 @@ public class Spawner : Singleton<Spawner>
         Chunk myChunk;
         for (int i = 0; i < chunks.Count(); i++)
         {
-            for (int j = 0; j < 3; j++)
+            int NumApparitions = chunks[i].GetComponent<Chunk>().GetChunkRarity();
+            for (int j = 0; j < NumApparitions; j++)
             {
                 currentVal = Instantiate(chunks[i], new Vector3(0, 0, 0), Quaternion.identity);
                 myChunk = currentVal.GetComponent<Chunk>();
@@ -63,7 +64,6 @@ public class Spawner : Singleton<Spawner>
 
     public void Update()
     {
-        Debug.Log(_spawnQueue.Count);
         if (_activeChunkList.Count < _numChunks)
         {
             for (int i = 0; i < _numChunks - _activeChunkList.Count; i++)

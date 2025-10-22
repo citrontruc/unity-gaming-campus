@@ -13,6 +13,9 @@ public class Chunk : MonoBehaviour
         disabled,
     }
 
+    [SerializeField]
+    private ChunkCharacteristicsSO _chunkRarity;
+
     private ChunkState _chunkState = ChunkState.disabled;
     private Collider _collider;
     public Transform StartPoint;
@@ -35,16 +38,28 @@ public class Chunk : MonoBehaviour
         return _chunkState;
     }
 
+    public int GetChunkRarity()
+    {
+        return _chunkRarity.NumApparitions;
+    }
+
     public void Activate()
     {
         this.gameObject.SetActive(true);
         _chunkState = ChunkState.active;
-        _collider.enabled = true;
 
-        Collectible[] collectibles = GetComponentsInChildren<Collectible>(true);
-        foreach (Collectible collectible in collectibles)
+        ActivateChildComponent<Collectible>();
+    }
+
+    private void ActivateChildComponent<T>() where T : Component
+    {
+        T[] componentList = GetComponentsInChildren<T>(true);
+        foreach (T component in componentList)
         {
-            collectible.Activate();
+            if (component is IActivatable activatable)
+            {
+                activatable.Activate();
+            }
         }
     }
 
@@ -52,12 +67,19 @@ public class Chunk : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         _chunkState = ChunkState.disabled;
-        _collider.enabled = false;
 
-        Collectible[] collectibles = GetComponentsInChildren<Collectible>(true);
-        foreach (Collectible collectible in collectibles)
+        DeactivateChildComponent<Collectible>();
+    }
+
+    private void DeactivateChildComponent<T>() where T : Component
+    {
+        T[] componentList = GetComponentsInChildren<T>(true);
+        foreach (T component in componentList)
         {
-            collectible.Deactivate();
+            if (component is IActivatable activatable)
+            {
+                activatable.Deactivate();
+            }
         }
     }
 }

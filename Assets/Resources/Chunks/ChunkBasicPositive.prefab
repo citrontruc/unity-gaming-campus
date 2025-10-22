@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5044a70d42c472f2599d9435858d2c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chunk
+  _chunkRarity: {fileID: 11400000, guid: 87bf0a1e39f52135d9d2de55b0e91336, type: 2}
   StartPoint: {fileID: 0}
   EndPoint: {fileID: 0}
 --- !u!1 &5402641533294079628
