@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4155624678846518868}
   - component: {fileID: 4256931657810161961}
   m_Layer: 0
-  m_Name: ChunkWithObstacle
+  m_Name: ChunkWithObstacleLow
   m_TagString: Chunk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5044a70d42c472f2599d9435858d2c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chunk
-  _chunkRarity: {fileID: 11400000, guid: a2e7856deaac37dbea15dbdfd186c28b, type: 2}
+  _chunkRarity: {fileID: 11400000, guid: 87bf0a1e39f52135d9d2de55b0e91336, type: 2}
   StartPoint: {fileID: 0}
   EndPoint: {fileID: 0}
 --- !u!1001 &366990144099777470
@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156473231636255787, guid: c6fd8e181e387bf8ba63599911d4407a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4156473231636255787, guid: c6fd8e181e387bf8ba63599911d4407a, type: 3}
       propertyPath: m_LocalPosition.z
