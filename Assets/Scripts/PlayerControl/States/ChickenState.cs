@@ -14,7 +14,7 @@ public class ChickenState : IState
     public void Update() { }
 
     /// <summary>
-    /// The ChickenState's special effect is.
+    /// Implement special effect here. 
     /// </summary>
     /// <returns></returns>
     public IEnumerator Special()

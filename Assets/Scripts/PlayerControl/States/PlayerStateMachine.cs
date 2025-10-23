@@ -4,39 +4,75 @@ using UnityEngine;
 [Serializable]
 public class PlayerStateMachine : Singleton<PlayerStateMachine>
 {
-    public enum PosibleState
+
+    [SerializeField]
+    private StateChangeEventChannelSO _stateChangeChannelEvent;
+
+    public enum PlayerState
     {
-        Egg,
-        Chick,
-        Chicken,
-        Rooster,
-        SuperRooster,
-        Dinosaur,
+        EggState,
+        ChickState,
+        ChickenState,
+        RoosterState,
+        SuperRoosterState,
+        DinosaurState
     }
 
     public IState CurrentState { get; private set; }
+
+    #region Subscribe to events
+    void OnEnable()
+    {
+        _stateChangeChannelEvent.onEventRaised += ConvertEnumToState;
+    }
+
+    void OnDisable()
+    {
+        _stateChangeChannelEvent.onEventRaised -= ConvertEnumToState;
+    }
+    #endregion
+
+    private void ConvertEnumToState(PlayerState state)
+    {
+        IState nextState = null;
+        switch (state)
+        {
+            case PlayerState.EggState:
+                nextState = new EggState();
+                break;
+            case PlayerState.ChickState:
+                nextState = new ChickState();
+                break;
+            case PlayerState.ChickenState:
+                nextState = new ChickState();
+                break;
+            case PlayerState.RoosterState:
+                nextState = new ChickState();
+                break;
+            case PlayerState.SuperRoosterState:
+                nextState = new ChickState();
+                break;
+            case PlayerState.DinosaurState:
+            nextState = new ChickState();
+                break;
+            default:
+                break;
+        }
+        
+        TransitionTo(nextState);
+    }
 
     /// <summary>
     /// Initializes with our first state.
     /// </summary>
     /// <param name="startingState"></param>
-    public void Initialize(IState startingState)
-    {
-        CurrentState = startingState;
-        startingState.Enter();
-    }
-
     public void TransitionTo(IState nextState)
     {
-        CurrentState.Exit();
+        CurrentState?.Exit();
         CurrentState = nextState;
-        nextState.Enter();
+        nextState?.Enter();
     }
 
-    /// <summary>
-    /// Our States give additional powers to our main character.
-    /// We don't have any additional update to do.
-    /// </summary>
     public void Update() { }
 
     /// <summary>
@@ -46,7 +82,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     {
         if (CurrentState != null)
         {
-            CurrentState.Special();
+            StartCoroutine(CurrentState.Special());
         }
     }
 }

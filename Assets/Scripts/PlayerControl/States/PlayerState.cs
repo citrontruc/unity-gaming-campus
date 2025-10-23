@@ -9,8 +9,14 @@ using System.Collections;
 /// </summary>
 public interface IState
 {
+    /// <summary>
+    /// A method to enter a state (change graphics for the state, play state sound...)
+    /// </summary>
     public void Enter();
     public void Update();
     public IEnumerator Special();
+    /// <summary>
+    /// Method to Exit State (remove grpahics)
+    /// </summary>
     public void Exit();
 }
