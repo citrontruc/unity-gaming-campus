@@ -11,6 +11,7 @@ public class PlayerValues : Singleton<PlayerValues>
 {
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+
     [SerializeField]
     public NoHealthEventChannelSO _noHealthEvent;
 

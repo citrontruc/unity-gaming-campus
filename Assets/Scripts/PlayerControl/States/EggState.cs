@@ -11,10 +11,7 @@ public class EggState : IState
     private PlayerValues _player => PlayerValues.Instance;
     private int _powerUpDuration = 10;
 
-    public void Enter()
-    {
-        
-    }
+    public void Enter() { }
 
     public void Update() { }
 

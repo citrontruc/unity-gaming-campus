@@ -19,6 +19,7 @@ public class Spawner : Singleton<Spawner>
 
     [SerializeField]
     private float _levelSpeed = 5f;
+
     [SerializeField]
     private float _speedUpFactor = 1.2f;
 

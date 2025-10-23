@@ -7,6 +7,7 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
 {
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+
     /// <summary>
     /// Since the player Abilities are cumulative, we switch them on when the user changes states.
     /// </summary>
