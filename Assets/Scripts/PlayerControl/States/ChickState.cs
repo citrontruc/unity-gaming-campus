@@ -13,7 +13,7 @@ public class ChickState : IState
 
     public void Enter()
     {
-        PlayerPowerUp.Instance.EnablePower();
+        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.Slide);
     }
 
     public void Update() { }

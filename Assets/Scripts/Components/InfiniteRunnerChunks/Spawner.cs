@@ -19,6 +19,8 @@ public class Spawner : Singleton<Spawner>
 
     [SerializeField]
     private float _levelSpeed = 5f;
+    [SerializeField]
+    private float _speedUpFactor = 1.2f;
 
     private int _numChunks;
 
@@ -32,6 +34,9 @@ public class Spawner : Singleton<Spawner>
     public Transform SpawnPoint => this.transform;
     public Transform Destroyer => Singleton<ChunkDestroyer>.Instance.transform;
 
+    [SerializeField]
+    private StateChangeEventChannelSO _stateChangeChannelEvent;
+
     public enum ChunkType
     {
         BasicChunk,
@@ -44,6 +49,18 @@ public class Spawner : Singleton<Spawner>
     public void MultiplyLevelSpeed(float value)
     {
         _levelSpeed *= value;
+    }
+    #endregion
+
+    #region Subscribe to events
+    void OnEnable()
+    {
+        _stateChangeChannelEvent.onEventRaised += SpeedUpLevel;
+    }
+
+    void OnDisable()
+    {
+        _stateChangeChannelEvent.onEventRaised -= SpeedUpLevel;
     }
     #endregion
 
@@ -146,4 +163,9 @@ public class Spawner : Singleton<Spawner>
         _spawnQueue.Add(chunk);
     }
     #endregion
+
+    public void SpeedUpLevel(PlayerStateMachine.PlayerState value)
+    {
+        _levelSpeed = _levelSpeed * _speedUpFactor;
+    }
 }

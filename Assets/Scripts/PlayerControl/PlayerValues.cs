@@ -9,14 +9,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerValues : Singleton<PlayerValues>
 {
+    [SerializeField]
+    private StateChangeEventChannelSO _stateChangeChannelEvent;
+    [SerializeField]
     public NoHealthEventChannelSO _noHealthEvent;
+
     public TMP_Text ScoreText;
     private int _playerScore = 0;
     private int _playerHealth = 1;
 
     [SerializeField]
-    private Dictionary<int, PlayerStateMachine.PlayerState> _thresholdList =
-    new Dictionary<int,PlayerStateMachine.PlayerState>()
+    private Dictionary<int, PlayerStateMachine.PlayerState> _thresholdList = new Dictionary<
+        int,
+        PlayerStateMachine.PlayerState
+    >()
     {
         { 50, PlayerStateMachine.PlayerState.ChickState },
         { 100, PlayerStateMachine.PlayerState.ChickenState },
@@ -47,7 +53,10 @@ public class PlayerValues : Singleton<PlayerValues>
     {
         foreach (KeyValuePair<int, PlayerStateMachine.PlayerState> entry in _thresholdList)
         {
-            if (entry.Key <= _playerScore && _playerScore - value < entry.Key) { }
+            if (entry.Key <= _playerScore && _playerScore - value < entry.Key)
+            {
+                _stateChangeChannelEvent?.RaiseEvent(entry.Value);
+            }
         }
         ;
     }

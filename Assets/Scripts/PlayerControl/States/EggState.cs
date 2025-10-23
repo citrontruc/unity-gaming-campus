@@ -13,7 +13,7 @@ public class EggState : IState
 
     public void Enter()
     {
-        PlayerPowerUp.EnablePower();
+        
     }
 
     public void Update() { }

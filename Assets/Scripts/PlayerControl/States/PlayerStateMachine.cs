@@ -50,16 +50,16 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
                 nextState = new ChickState();
                 break;
             case PlayerState.ChickenState:
-                nextState = new ChickState();
+                nextState = new ChickenState();
                 break;
             case PlayerState.RoosterState:
-                nextState = new ChickState();
+                nextState = new RoosterState();
                 break;
             case PlayerState.SuperRoosterState:
-                nextState = new ChickState();
+                nextState = new SuperRoosterState();
                 break;
             case PlayerState.DinosaurState:
-                nextState = new ChickState();
+                nextState = new DinosaurState();
                 break;
             default:
                 break;

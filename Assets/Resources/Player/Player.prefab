@@ -236,9 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6270e28a26f0b379d5958982d69b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPowerUp
-  _enableDoubleJump: 1
-  _enableGlide: 1
-  _enableDash: 1
+  _enableDoubleJump: 0
+  _enableGlide: 0
+  _enableDash: 0
 --- !u!1 &2127491917839794884
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f9a08fc87507220be6ea4f4d222104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScore
-  _noHealthEvent: {fileID: 0}
+  _stateChangeChannelEvent: {fileID: 11400000, guid: 692f6a67e26f41ea882b69129574be0a, type: 2}
+  _noHealthEvent: {fileID: 11400000, guid: ac2c76ed88e9f0e729d4ebd3f29849fc, type: 2}
   ScoreText: {fileID: 0}
 --- !u!1 &6191543586975001947
 GameObject:

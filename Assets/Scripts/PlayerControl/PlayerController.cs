@@ -84,7 +84,7 @@ public class PlayerController : Singleton<PlayerController>
 
         if (_specialAction.IsPressed())
         {
-            Debug.Log("Une action est en cours");
+            _playerStateMachine.Special();
         }
 
         if (_jumpAction.IsPressed())
@@ -137,11 +137,6 @@ public class PlayerController : Singleton<PlayerController>
         if (_dashAction.IsPressed())
         {
             Dash();
-        }
-
-        if (_specialAction.IsPressed())
-        {
-            _playerStateMachine.Special();
         }
     }
 

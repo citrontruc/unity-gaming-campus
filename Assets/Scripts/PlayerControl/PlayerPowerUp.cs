@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerPowerUp : Singleton<PlayerPowerUp>
 {
+    [SerializeField]
+    private StateChangeEventChannelSO _stateChangeChannelEvent;
     /// <summary>
     /// Since the player Abilities are cumulative, we switch them on when the user changes states.
     /// </summary>
@@ -37,19 +39,19 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
         switch (playerPower)
         {
             case PlayerPowerEnum.Slide:
-                CanSlide();
+                _enableSlide = true;
                 break;
             case PlayerPowerEnum.Glide:
-                CanGlide();
+                _enableGlide = true;
                 break;
             case PlayerPowerEnum.DoubleJump:
-                CanDoubleJump();
+                _enableDoubleJump = true;
                 break;
             case PlayerPowerEnum.Dash:
-                CanDash();
+                _enableDash = true;
                 break;
             case PlayerPowerEnum.DestroySmallObjects:
-                CanDestroySmallObjects();
+                _enableDestroySmallObstacles = true;
                 break;
             default:
                 break;
