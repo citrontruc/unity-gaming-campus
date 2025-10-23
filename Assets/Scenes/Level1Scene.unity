@@ -947,8 +947,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 302084127295117460, guid: 6eb257a8696492a099568ff3b32ae06a, type: 3}
       propertyPath: _speedUpFactor
-      value: 1.1
+      value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 302084127295117460, guid: 6eb257a8696492a099568ff3b32ae06a, type: 3}
+      propertyPath: _stateChangeChannelEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 692f6a67e26f41ea882b69129574be0a, type: 2}
     - target: {fileID: 437976006931405254, guid: 6eb257a8696492a099568ff3b32ae06a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

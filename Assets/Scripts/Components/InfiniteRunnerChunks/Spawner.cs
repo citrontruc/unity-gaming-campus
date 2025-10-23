@@ -38,18 +38,12 @@ public class Spawner : Singleton<Spawner>
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
 
-    public enum ChunkType
-    {
-        BasicChunk,
-    }
-
-    [SerializeField]
-    private Dictionary<ChunkType, int> _chunkRepartition = new();
-
     #region Getters and Setters
     public void MultiplyLevelSpeed(float value)
     {
+        Debug.Log($"Avant : {_levelSpeed}");
         _levelSpeed *= value;
+        Debug.Log($"Après : {_levelSpeed}");
     }
     #endregion
 
@@ -167,6 +161,6 @@ public class Spawner : Singleton<Spawner>
 
     public void SpeedUpLevel(PlayerStateMachine.PlayerState value)
     {
-        _levelSpeed = _levelSpeed * _speedUpFactor;
+        MultiplyLevelSpeed(_speedUpFactor);
     }
 }

@@ -78,6 +78,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
         CurrentState = nextState;
         nextState?.Enter();
         _specialCharge = 1;
+        Debug.Log(_specialCharge);
     }
 
     public void Update() { }
@@ -87,6 +88,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     /// </summary>
     public void Special()
     {
+        Debug.Log(_specialCharge);
         if (CurrentState != null && _specialCharge > 0)
         {
             StartCoroutine(CurrentState.Special());
