@@ -14,7 +14,7 @@ public class RoosterState : IState
     public void Update() { }
 
     /// <summary>
-    /// Implement special effect here. 
+    /// Implement special effect here.
     /// </summary>
     /// <returns></returns>
     public IEnumerator Special()

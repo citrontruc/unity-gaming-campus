@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class PlayerStateMachine : Singleton<PlayerStateMachine>
 {
-
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
 
@@ -15,7 +14,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
         ChickenState,
         RoosterState,
         SuperRoosterState,
-        DinosaurState
+        DinosaurState,
     }
 
     public IState CurrentState { get; private set; }
@@ -53,12 +52,12 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
                 nextState = new ChickState();
                 break;
             case PlayerState.DinosaurState:
-            nextState = new ChickState();
+                nextState = new ChickState();
                 break;
             default:
                 break;
         }
-        
+
         TransitionTo(nextState);
     }
 
