@@ -17,7 +17,7 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
         Dash,
         DestroySmallObjects,
     }
-    
+
     [Header("Abilities")]
     private bool _enableSlide = false;
 
