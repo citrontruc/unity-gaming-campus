@@ -3,10 +3,10 @@ An object to keep a trace of the player score and update it.
 */
 
 using TMPro;
-using UnityEngine;
 
 public class PlayerValues : Singleton<PlayerValues>
 {
+    public NoHealthEventChannelSO _noHealthEvent;
     public TMP_Text ScoreText;
     private int _playerScore = 0;
     private int _playerHealth = 1;
@@ -35,7 +35,10 @@ public class PlayerValues : Singleton<PlayerValues>
     public void CollisionWithObstacle(Obstacle.Resistance resistance)
     {
         _playerHealth -= 1;
-        Debug.Log($"Health {_playerHealth}");
+        if (_playerHealth <= 0)
+        {
+            _noHealthEvent?.RaiseEvent(0);
+        }
     }
 
     #region Monobehaviours methods

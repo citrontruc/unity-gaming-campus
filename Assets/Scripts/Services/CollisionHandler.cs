@@ -38,7 +38,6 @@ public class CollisionHandler : Singleton<CollisionHandler>
     private void HandleCollectible(int score)
     {
         _playerValues.IncrementScore(score);
-        //Debug.Log($"Collectible collected for {score}");
     }
     #endregion
 }
