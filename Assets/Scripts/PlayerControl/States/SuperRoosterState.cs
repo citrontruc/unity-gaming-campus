@@ -8,7 +8,7 @@ public class SuperRoosterState : IState
 
     public void Enter()
     {
-        // Unlock passive ability.
+        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.Dash);
     }
 
     public void Update() { }

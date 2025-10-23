@@ -9,6 +9,15 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
     /// Since the player Abilities are cumulative, we switch them on when the user changes states.
     /// </summary>
     #region Abilities
+    public enum PlayerPowerEnum
+    {
+        Slide,
+        Glide,
+        DoubleJump,
+        Dash,
+        DestroySmallObjects,
+    }
+    
     [Header("Abilities")]
     private bool _enableSlide = false;
 
@@ -23,6 +32,35 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
     private bool _enableDestroySmallObstacles = false;
     #endregion
 
+    public void EnablePower(PlayerPowerEnum playerPower)
+    {
+        switch (playerPower)
+        {
+            case PlayerPowerEnum.Slide:
+                CanSlide();
+                break;
+            case PlayerPowerEnum.Glide:
+                CanGlide();
+                break;
+            case PlayerPowerEnum.DoubleJump:
+                CanDoubleJump();
+                break;
+            case PlayerPowerEnum.Dash:
+                CanDash();
+                break;
+            case PlayerPowerEnum.DestroySmallObjects:
+                CanDestroySmallObjects();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public bool CanSlide()
+    {
+        return _enableSlide;
+    }
+
     public bool CanDoubleJump()
     {
         return _enableDoubleJump;
@@ -36,5 +74,10 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
     public bool CanGlide()
     {
         return _enableGlide;
+    }
+
+    public bool CanDestroySmallObjects()
+    {
+        return _enableDestroySmallObstacles;
     }
 }

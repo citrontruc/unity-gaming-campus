@@ -8,7 +8,7 @@ public class RoosterState : IState
 
     public void Enter()
     {
-        // Unlock passive ability.
+        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.DoubleJump);
     }
 
     public void Update() { }

@@ -7,7 +7,7 @@ public class SuperCorn : Collectible
 
     void Awake()
     {
-        _value = 200;
+        _value = 20;
     }
 
     void Start() { }

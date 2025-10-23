@@ -8,7 +8,7 @@ public class ChickenState : IState
 
     public void Enter()
     {
-        // Unlock passive ability.
+        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.Glide);
     }
 
     public void Update() { }

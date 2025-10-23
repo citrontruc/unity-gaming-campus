@@ -8,7 +8,7 @@ public class DinosaurState : IState
 
     public void Enter()
     {
-        // Unlock passive ability.
+        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.DestroySmallObjects);
     }
 
     public void Update() { }

@@ -18,6 +18,13 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     }
 
     public IState CurrentState { get; private set; }
+    private int _specialCharge = 1;
+
+    public override void Awake()
+    {
+        base.Awake();
+        CurrentState = new EggState();
+    }
 
     #region Subscribe to events
     void OnEnable()
@@ -70,6 +77,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
         CurrentState?.Exit();
         CurrentState = nextState;
         nextState?.Enter();
+        _specialCharge = 1;
     }
 
     public void Update() { }
@@ -79,9 +87,10 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     /// </summary>
     public void Special()
     {
-        if (CurrentState != null)
+        if (CurrentState != null && _specialCharge > 0)
         {
             StartCoroutine(CurrentState.Special());
+            _specialCharge--;
         }
     }
 }
