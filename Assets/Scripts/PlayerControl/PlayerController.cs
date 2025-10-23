@@ -72,7 +72,7 @@ public class PlayerController : Singleton<PlayerController>
     private void Update()
     {
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
-        _moveValue = new(moveValue.x, 0f, moveValue.y);
+        _moveValue = new(moveValue.x, 0f, 0f);
         _moveValue.Normalize();
 
         if (!_grounded && IsGrounded())

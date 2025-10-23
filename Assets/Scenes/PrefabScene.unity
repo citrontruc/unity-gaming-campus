@@ -1107,6 +1107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 9141186488331742549, guid: b8fff226c5fbbd1549d9dbc7dc24c33a, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1184,6 +1188,10 @@ PrefabInstance:
     - target: {fileID: 8170935166940281131, guid: 21cda47735f37a65e9198a661ba46ab5, type: 3}
       propertyPath: m_Name
       value: FloorBoardSlim
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170935166940281131, guid: 21cda47735f37a65e9198a661ba46ab5, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 8607694050568878378, guid: 21cda47735f37a65e9198a661ba46ab5, type: 3}
       propertyPath: m_LocalPosition.x
