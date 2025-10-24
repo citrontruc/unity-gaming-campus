@@ -1,3 +1,7 @@
+/*
+The RoosterState. it is the fourth state the player is in.
+*/
+
 using System.Collections;
 using UnityEngine;
 

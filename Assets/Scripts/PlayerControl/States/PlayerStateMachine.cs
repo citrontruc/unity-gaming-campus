@@ -1,12 +1,15 @@
+/*
+A state machine to handle player state transition.
+Also handles special powers.
+*/
+
 using System;
 using UnityEngine;
 
 [Serializable]
 public class PlayerStateMachine : Singleton<PlayerStateMachine>
 {
-    [SerializeField]
-    private StateChangeEventChannelSO _stateChangeChannelEvent;
-
+    #region State change
     public enum PlayerState
     {
         EggState,
@@ -17,14 +20,25 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
         DinosaurState,
     }
 
+    [SerializeField]
+    private StateChangeEventChannelSO _stateChangeChannelEvent;
     public IState CurrentState { get; private set; }
+    #endregion
+
+    /// <summary>
+    /// Special powers
+    /// </summary>
     private int _specialCharge = 1;
 
+    #region Monobehaviour methods
     public override void Awake()
     {
         base.Awake();
         CurrentState = new EggState();
     }
+
+    public void Update() { }
+    #endregion
 
     #region Subscribe to events
     void OnEnable()
@@ -38,6 +52,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     }
     #endregion
 
+    #region State transition
     private void ConvertEnumToState(PlayerState state)
     {
         IState nextState = null;
@@ -78,17 +93,14 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
         CurrentState = nextState;
         nextState?.Enter();
         _specialCharge = 1;
-        Debug.Log(_specialCharge);
     }
-
-    public void Update() { }
+    #endregion
 
     /// <summary>
     /// Each state has a different special capacity.
     /// </summary>
     public void Special()
     {
-        Debug.Log(_specialCharge);
         if (CurrentState != null && _specialCharge > 0)
         {
             StartCoroutine(CurrentState.Special());

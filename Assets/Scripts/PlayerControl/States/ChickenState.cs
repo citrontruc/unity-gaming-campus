@@ -1,3 +1,7 @@
+/*
+The ChickentState. it is the third state the player is in.
+*/
+
 using System.Collections;
 using UnityEngine;
 

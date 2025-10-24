@@ -1,3 +1,7 @@
+/*
+The SuperRoosterState. it is the fifth state the player is in.
+*/
+
 using System.Collections;
 using UnityEngine;
 

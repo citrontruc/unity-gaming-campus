@@ -1,3 +1,7 @@
+/*
+The DinosaurState. it is the last state the player is in.
+*/
+
 using System.Collections;
 using UnityEngine;
 
