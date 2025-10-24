@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class EggState : IState
 {
-    private PlayerValues _player => PlayerValues.Instance;
+    private PlayerHealth _player => PlayerHealth.Instance;
     private int _powerUpDuration = 10;
 
     public void Enter() { }

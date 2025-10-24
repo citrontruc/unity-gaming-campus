@@ -7,20 +7,37 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
+    #region State informations
     public enum ChunkState
     {
         active,
         disabled,
     }
+    private ChunkState _chunkState = ChunkState.disabled;
+    #endregion
 
     [SerializeField]
     private ChunkCharacteristicsSO _chunkRarity;
 
-    private ChunkState _chunkState = ChunkState.disabled;
+    #region Chunk components
     private Collider _collider;
     public Transform StartPoint;
     public Transform EndPoint;
+    #endregion
 
+    #region Getters and Setters
+    public ChunkState GetChunkState()
+    {
+        return _chunkState;
+    }
+
+    public int GetChunkRarity()
+    {
+        return _chunkRarity.NumApparitions;
+    }
+    #endregion
+
+    #region Monobehaviour methods
     void Awake()
     {
         _collider = GetComponent<Collider>();
@@ -32,17 +49,9 @@ public class Chunk : MonoBehaviour
             );
         }
     }
+    #endregion
 
-    public ChunkState GetChunkState()
-    {
-        return _chunkState;
-    }
-
-    public int GetChunkRarity()
-    {
-        return _chunkRarity.NumApparitions;
-    }
-
+    #region Activate and deactivate chunks
     public void Activate()
     {
         this.gameObject.SetActive(true);
@@ -84,4 +93,5 @@ public class Chunk : MonoBehaviour
             }
         }
     }
+    #endregion
 }

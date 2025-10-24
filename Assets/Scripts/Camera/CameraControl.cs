@@ -1,3 +1,7 @@
+/*
+A simple script to make the camera follow the user.
+*/
+
 using UnityEngine;
 
 public class Follow_player : MonoBehaviour

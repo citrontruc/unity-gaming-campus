@@ -1,0 +1,4 @@
+/*
+More complex collectable. Increases values of collectables.
+TODO
+*/

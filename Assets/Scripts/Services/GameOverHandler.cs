@@ -1,6 +1,10 @@
+/*
+Handles the transition between scenes on player Death.
+*/
+
 using UnityEngine;
 
-public class SceneHandler : Singleton<SceneHandler>
+public class GameOverHandler : Singleton<GameOverHandler>
 {
     public string NextScene = "GameOverScene";
     public NoHealthEventChannelSO _noHealthEventChannelSO;

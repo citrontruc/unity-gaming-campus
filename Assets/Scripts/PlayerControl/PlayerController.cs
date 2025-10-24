@@ -1,5 +1,7 @@
-/*A class to handle player movement.
-Uses the new unity input system.*/
+/*
+A class to handle player movement.
+Uses the new unity input system.
+*/
 
 using System.Collections;
 using UnityEngine;
@@ -23,9 +25,11 @@ public class PlayerController : Singleton<PlayerController>
     private InputAction _dashAction;
     #endregion
 
+    #region Movement properties
     [SerializeField]
     private float _currentSpeed = 10f;
     private Vector3 _moveValue = Vector3.zero;
+    #endregion
 
     #region Jump properties
     private bool _grounded = true;
@@ -72,20 +76,13 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
+        // Movement
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
         _moveValue = new(moveValue.x, 0f, 0f);
         _moveValue.Normalize();
 
-        if (!_grounded && IsGrounded())
-        {
-            RecoverFromJump();
-        }
-        _grounded = IsGrounded();
-
-        if (_specialAction.IsPressed())
-        {
-            _playerStateMachine.Special();
-        }
+        // Jump
+        CheckIfRecoverFromJump();
 
         if (_jumpAction.IsPressed())
         {
@@ -134,9 +131,16 @@ public class PlayerController : Singleton<PlayerController>
             _jumpContinuousPress = false;
         }
 
+        // Dash
         if (_dashAction.IsPressed())
         {
             Dash();
+        }
+
+        // Special
+        if (_specialAction.IsPressed())
+        {
+            _playerStateMachine.Special();
         }
     }
 
@@ -148,6 +152,15 @@ public class PlayerController : Singleton<PlayerController>
     #endregion
 
     #region Jump & Double Jump
+    private void CheckIfRecoverFromJump()
+    {
+        if (!_grounded && IsGrounded())
+        {
+            RecoverFromJump();
+        }
+        _grounded = IsGrounded();
+    }
+
     private bool IsGrounded()
     {
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _raycastDistance);

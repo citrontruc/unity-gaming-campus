@@ -1,3 +1,7 @@
+/*
+A class to handle events with arguments.
+*/
+
 using UnityEngine;
 using UnityEngine.Events;
 

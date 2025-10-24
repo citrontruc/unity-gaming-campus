@@ -1,3 +1,7 @@
+/*
+Basic collectable. Brings points to the player.
+*/
+
 using UnityEngine;
 
 public class Corn : Collectible

@@ -186,10 +186,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3568584916200298194}
-  - {fileID: 7702608372622984133}
   - {fileID: 6185055395073921252}
   - {fileID: 3538128892215657837}
   - {fileID: 5155796353079154395}
+  - {fileID: 6144157916025696579}
+  - {fileID: 4315582218278401935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1954078008788043157
@@ -236,10 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6270e28a26f0b379d5958982d69b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPowerUp
+  _stateChangeChannelEvent: {fileID: 0}
   _enableDoubleJump: 0
   _enableGlide: 0
   _enableDash: 0
---- !u!1 &2127491917839794884
+--- !u!1 &3006334604619638145
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,45 +249,89 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7702608372622984133}
-  - component: {fileID: 1835402662807651382}
+  - component: {fileID: 4315582218278401935}
+  - component: {fileID: 8324616425150411796}
   m_Layer: 0
-  m_Name: PlayerValues
+  m_Name: PlayerScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7702608372622984133
+--- !u!4 &4315582218278401935
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127491917839794884}
+  m_GameObject: {fileID: 3006334604619638145}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.047529, y: 6.20512, z: -9.56306}
+  m_LocalPosition: {x: -2.63438, y: 1.3538, z: -0.39620018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5767173521502060921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1835402662807651382
+--- !u!114 &8324616425150411796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127491917839794884}
+  m_GameObject: {fileID: 3006334604619638145}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84f9a08fc87507220be6ea4f4d222104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScore
   _stateChangeChannelEvent: {fileID: 11400000, guid: 692f6a67e26f41ea882b69129574be0a, type: 2}
-  _noHealthEvent: {fileID: 11400000, guid: ac2c76ed88e9f0e729d4ebd3f29849fc, type: 2}
   ScoreText: {fileID: 0}
+--- !u!1 &4993119400277758811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6144157916025696579}
+  - component: {fileID: 5887903957881071634}
+  m_Layer: 0
+  m_Name: PlayerHealth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6144157916025696579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4993119400277758811}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.63438, y: 1.3538, z: -0.39620018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5767173521502060921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5887903957881071634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4993119400277758811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebb5908e7e1eae9d987363a7443e1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  _noHealthEvent: {fileID: 11400000, guid: ac2c76ed88e9f0e729d4ebd3f29849fc, type: 2}
 --- !u!1 &6191543586975001947
 GameObject:
   m_ObjectHideFlags: 0

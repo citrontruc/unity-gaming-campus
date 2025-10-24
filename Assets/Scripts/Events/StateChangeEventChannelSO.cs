@@ -1,5 +1,5 @@
 /*
-A channel to handle collisions with obstacle objects.
+A channel to user state change.
 */
 
 using UnityEngine;

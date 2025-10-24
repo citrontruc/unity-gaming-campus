@@ -1,11 +1,21 @@
+/*
+A class to implement obstacles the player musst avoid.
+*/
+
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour, IActivatable
 {
+    #region Collision properties
     [Header("Collision Events")]
     [SerializeField]
     private ObstacleCollisionEventChannelSO CollisionEvent;
 
+    [SerializeField]
+    private string _playerTag = "Player";
+    #endregion
+
+    #region Obstacle properties
     public enum Resistance
     {
         small = 0,
@@ -15,9 +25,7 @@ public class Obstacle : MonoBehaviour, IActivatable
 
     [SerializeField]
     private Resistance _resistance = Resistance.small;
-
-    [SerializeField]
-    private string _playerTag = "Player";
+    #endregion    
 
     #region Setters and Getters
     public void Activate()
@@ -31,6 +39,7 @@ public class Obstacle : MonoBehaviour, IActivatable
     }
     #endregion
 
+    #region Monobehaviour methods
     void Awake()
     {
         GetComponent<Collider>().isTrigger = true;
@@ -43,4 +52,5 @@ public class Obstacle : MonoBehaviour, IActivatable
             CollisionEvent?.RaiseEvent(_resistance);
         }
     }
+    #endregion
 }

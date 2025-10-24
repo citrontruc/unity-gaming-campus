@@ -1,5 +1,7 @@
-/*An object to store important information about the player.
-It is a singleton meant to represent the player score, preferences and other.*/
+/*
+An object to store important information about the player.
+It is a singleton meant to represent the player score, preferences and other.
+*/
 
 using UnityEngine;
 
@@ -35,6 +37,7 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
     private bool _enableDestroySmallObstacles = false;
     #endregion
 
+    #region Getters and Setters
     public void EnablePower(PlayerPowerEnum playerPower)
     {
         switch (playerPower)
@@ -83,4 +86,5 @@ public class PlayerPowerUp : Singleton<PlayerPowerUp>
     {
         return _enableDestroySmallObstacles;
     }
+    #endregion
 }

@@ -1,5 +1,5 @@
 /*
-A class to spawn new chunks and choose which chunks to use next.
+A class to spawn new chunks and move existing chunks.
 */
 
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class Spawner : Singleton<Spawner>
 {
+    #region Chunk Creation properties
     /// <summary>
     /// We have a list of chunks and every time, we want to generate tile,
     /// we take a tile at random from our queue.
@@ -17,14 +18,7 @@ public class Spawner : Singleton<Spawner>
     private List<Chunk> _activeChunkList = new();
     private int _randomSeed = 42;
 
-    [SerializeField]
-    private float _levelSpeed = 5f;
-
-    [SerializeField]
-    private float _speedUpFactor = 1.2f;
-
     private int _numChunks;
-
     /// <summary>
     /// How many empty chunks do we have before we start having chunks with collectibles and Obstacles?
     /// </summary>
@@ -34,16 +28,31 @@ public class Spawner : Singleton<Spawner>
     private int _chunkSize = 20;
     public Transform SpawnPoint => this.transform;
     public Transform Destroyer => Singleton<ChunkDestroyer>.Instance.transform;
+    #endregion
+
+    #region Movement related properties
+    [SerializeField]
+    private float _levelSpeed = 5f;
 
     [SerializeField]
+    private float _speedUpFactor = 1.2f;
+
+    /// <summary>
+    /// We use the state change to know when to speed up the game.
+    /// </summary>
+    [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+    #endregion
 
     #region Getters and Setters
     public void MultiplyLevelSpeed(float value)
     {
-        Debug.Log($"Avant : {_levelSpeed}");
         _levelSpeed *= value;
-        Debug.Log($"Après : {_levelSpeed}");
+    }
+
+    public void SpeedUpLevel(PlayerStateMachine.PlayerState value)
+    {
+        MultiplyLevelSpeed(_speedUpFactor);
     }
     #endregion
 
@@ -59,6 +68,7 @@ public class Spawner : Singleton<Spawner>
     }
     #endregion
 
+    #region Monobehaviour methods
     /// <summary>
     /// We set our seed for randomness in the Awake method.
     /// </summary>
@@ -121,6 +131,7 @@ public class Spawner : Singleton<Spawner>
             }
         }
     }
+    #endregion
 
     #region Retrieve chunks from lists
     private void AddChunkToActiveChunks(Chunk chunk)
@@ -158,9 +169,4 @@ public class Spawner : Singleton<Spawner>
         _spawnQueue.Add(chunk);
     }
     #endregion
-
-    public void SpeedUpLevel(PlayerStateMachine.PlayerState value)
-    {
-        MultiplyLevelSpeed(_speedUpFactor);
-    }
 }

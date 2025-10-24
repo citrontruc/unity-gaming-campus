@@ -1,0 +1,4 @@
+/*
+More complex collectable. Attracts other collectables.
+TODO
+*/

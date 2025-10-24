@@ -6,6 +6,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public abstract class Collectible : MonoBehaviour, IActivatable
 {
+    /// <summary>
+    /// Channel to declare Collected events
+    /// </summary>
     [Header("Collision Events")]
     [SerializeField]
     private ScoreEventChannelSO CollectedEvent;

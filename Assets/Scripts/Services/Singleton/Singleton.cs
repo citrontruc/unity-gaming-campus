@@ -1,5 +1,6 @@
 /*
-A class for to create singletons and make sure that any duplicate instance gets deleted.
+A class to create singletons and make sure that any duplicate instance gets deleted.
+There must be only one singleton per scene.
 */
 
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour
     where T : Component
 {
+    #region Singleton access
     private static T instance;
     public static T Instance
     {
@@ -23,7 +25,9 @@ public class Singleton<T> : MonoBehaviour
             return instance;
         }
     }
+    #endregion
 
+    #region Monobehaviour methods
     public virtual void Awake()
     {
         RemoveDuplicates();
@@ -40,6 +44,7 @@ public class Singleton<T> : MonoBehaviour
             //DontDestroyOnLoad(gameObj);
         }
     }
+    #endregion
 
     private void RemoveDuplicates()
     {

@@ -1,23 +1,27 @@
 /*
-An object to keep a trace of the player score and update it.
+An object to keep a trace of the player score.
 */
 
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerValues : Singleton<PlayerValues>
+public class PlayerScore : Singleton<PlayerScore>
 {
+    #region Event Channels
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+    #endregion
 
-    [SerializeField]
-    public NoHealthEventChannelSO _noHealthEvent;
-
-    public TMP_Text ScoreText;
+    #region Player score
     private int _playerScore = 0;
-    private int _playerHealth = 1;
+    #endregion
+
+    #region Score related effects
+    /// <summary>
+    /// Write player score on screen.
+    /// </summary>
+    public TMP_Text ScoreText;
 
     [SerializeField]
     private Dictionary<int, PlayerStateMachine.PlayerState> _thresholdList = new Dictionary<
@@ -31,19 +35,16 @@ public class PlayerValues : Singleton<PlayerValues>
         { 500, PlayerStateMachine.PlayerState.SuperRoosterState },
         { 1000, PlayerStateMachine.PlayerState.DinosaurState },
     };
+    #endregion
 
     #region Setters and Getters
     public int GetScore()
     {
         return _playerScore;
     }
-
-    public void SetHealth(int healthValue)
-    {
-        _playerHealth = healthValue;
-    }
     #endregion
 
+    #region Update score and activate corresponding effects
     public void IncrementScore(int value)
     {
         _playerScore += value;
@@ -61,19 +62,7 @@ public class PlayerValues : Singleton<PlayerValues>
         }
         ;
     }
-
-    /// <summary>
-    /// Certain PlayerStates can break fragile obstacles.
-    /// </summary>
-    /// <param name="resistance">Resistance of the obstacle we just hit.</param>
-    public void CollisionWithObstacle(Obstacle.Resistance resistance)
-    {
-        _playerHealth -= 1;
-        if (_playerHealth <= 0)
-        {
-            _noHealthEvent?.RaiseEvent(0);
-        }
-    }
+    #endregion
 
     #region Monobehaviours methods
     void Update()

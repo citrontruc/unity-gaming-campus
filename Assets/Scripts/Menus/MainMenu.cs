@@ -1,3 +1,7 @@
+/*
+A simple menu to start or quit game.
+*/
+
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
