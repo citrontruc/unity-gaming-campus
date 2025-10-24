@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 308018920}
   - component: {fileID: 308018919}
   m_Layer: 0
-  m_Name: SceneHandler
+  m_Name: GameOverHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
