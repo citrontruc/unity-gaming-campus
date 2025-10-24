@@ -23,6 +23,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+
     [SerializeField]
     private PlayerPowerUp _playerPowerUp;
     public IState CurrentState { get; private set; }
