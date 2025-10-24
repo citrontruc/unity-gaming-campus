@@ -4,7 +4,7 @@ A class to destroy chunks that leave the screen.
 
 using UnityEngine;
 
-public class ChunkDestroyer : Singleton<ChunkDestroyer>
+public class ChunkDestroyer : MonoBehaviour
 {
     [SerializeField]
     private string _tagToDestroy = "Chunk";

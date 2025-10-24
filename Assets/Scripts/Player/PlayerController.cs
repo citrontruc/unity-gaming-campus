@@ -11,8 +11,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : Singleton<PlayerController>
 {
     private Rigidbody _rb;
-    private PlayerPowerUp _playerPowerUp => PlayerPowerUp.Instance;
-    private PlayerStateMachine _playerStateMachine => PlayerStateMachine.Instance;
+    public PlayerPowerUp _playerPowerUp;
+    public PlayerStateMachine _playerStateMachine;
 
     /// <summary>
     /// Reference to the actions our player will take.

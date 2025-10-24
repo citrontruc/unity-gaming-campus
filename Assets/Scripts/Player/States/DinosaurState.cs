@@ -10,9 +10,9 @@ public class DinosaurState : IState
     private Spawner _spawner => Spawner.Instance;
     private int _powerUpDuration = 10;
 
-    public void Enter()
+    public void Enter(PlayerPowerUp playerPowerUp)
     {
-        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.DestroySmallObjects);
+        playerPowerUp.EnablePower(PlayerPowerUp.PlayerPowerEnum.DestroySmallObjects);
     }
 
     public void Update() { }

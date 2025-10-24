@@ -23,7 +23,7 @@ public class Spawner : Singleton<Spawner>
     /// <summary>
     /// How many empty chunks do we have before we start having chunks with collectibles and Obstacles?
     /// </summary>
-    private int _numChunksAtBeginning = 3;
+    private int _numChunksAtBeginning = 2;
     private string _chunkFolderName = "Chunks";
     private string _beginningChunkName = "EmptyChunk";
     private int _chunkSize = 20;

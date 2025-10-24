@@ -58,7 +58,7 @@ Let's have a look at our Scripts. Our scripts folder contains the following fold
 - Menus: Scripts to define our menus.
 - Player: Scripts to define how our player moves, how to update the score, handle state change, health and all player-related elements. 
 - ScriptableObjects: Scripts to define our Scriptable Objects.
-- Services: Singletons to handle transversal services (gameover, collisions and singletons).
+- Services: Scripts to handle transversal services (gameover and singletons).
 
 Have a great day!
 
@@ -113,11 +113,11 @@ Le dossier principale de ce repository est le dossier Assets. Il contient les é
 ### Focus sur les scripts
 
 Notre dossier Scripts contient les éléments suivants :
-- Camera: Scripts pour gérer les mouvements de la caméra en fonction du joueur.
-- Components: Script pour gérer les éléments constitutifs d'une scène (chunks, collectibles, obstacles). Gère le spawn et la destruction des Chunks. Les chunks sont choisis au hasard en piochant dans les prefabs à disposition.
-- Menus: Scripts pour définir les menus.
-- Player: Scripts pour définir les mouvements du joueur, la mise à jour des scores, la gestion de la santé, le changement d"état du joueur et tous les éléments liés au joueur. 
-- ScriptableObjects: Scripts pour définir nos scriptableObjects
-- Services: Singletons gérant les services transverses (Gestion des GameOver, collisions et singletons).
+- Camera : Scripts pour gérer les mouvements de la caméra en fonction du joueur.
+- Components : Script pour gérer les éléments constitutifs d'une scène (chunks, collectibles, obstacles). Gère le spawn et la destruction des Chunks. Les chunks sont choisis au hasard en piochant dans les prefabs à disposition.
+- Menus : Scripts pour définir les menus.
+- Player : Scripts pour définir les mouvements du joueur, la mise à jour des scores, la gestion de la santé, le changement d"état du joueur et tous les éléments liés au joueur. 
+- ScriptableObjects : Scripts pour définir nos scriptableObjects
+- Services : Scripts gérant les services transverses (Gestion des GameOver et singletons).
 
 Passez une excellente journée !

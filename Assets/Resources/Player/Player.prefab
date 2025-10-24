@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df3dbadaedc1686395d32c960066f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _playerPowerUp: {fileID: 4770755204541861674}
+  _playerStateMachine: {fileID: 6671607054649734520}
   _currentSpeed: 10
   _raycastDistance: 0.55
   _jumpValue: 2
@@ -237,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6270e28a26f0b379d5958982d69b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPowerUp
-  _stateChangeChannelEvent: {fileID: 0}
+  _stateChangeChannelEvent: {fileID: 11400000, guid: 692f6a67e26f41ea882b69129574be0a, type: 2}
   _enableDoubleJump: 0
   _enableGlide: 0
   _enableDash: 0
@@ -377,6 +379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
   _stateChangeChannelEvent: {fileID: 11400000, guid: 692f6a67e26f41ea882b69129574be0a, type: 2}
+  _playerPowerUp: {fileID: 4770755204541861674}
+  SpecialText: {fileID: 0}
 --- !u!1 &7966173107871928043
 GameObject:
   m_ObjectHideFlags: 0

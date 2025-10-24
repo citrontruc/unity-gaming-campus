@@ -11,9 +11,9 @@ public class ChickState : IState
     private Spawner _spawner => Spawner.Instance;
     private int _powerUpDuration = 10;
 
-    public void Enter()
+    public void Enter(PlayerPowerUp playerPowerUp)
     {
-        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.Slide);
+        playerPowerUp.EnablePower(PlayerPowerUp.PlayerPowerEnum.Slide);
     }
 
     public void Update() { }

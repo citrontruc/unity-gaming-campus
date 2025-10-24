@@ -10,9 +10,9 @@ public class SuperRoosterState : IState
     private Spawner _spawner => Spawner.Instance;
     private int _powerUpDuration = 10;
 
-    public void Enter()
+    public void Enter(PlayerPowerUp playerPowerUp)
     {
-        PlayerPowerUp.Instance.EnablePower(PlayerPowerUp.PlayerPowerEnum.Dash);
+        playerPowerUp.EnablePower(PlayerPowerUp.PlayerPowerEnum.Dash);
     }
 
     public void Update() { }

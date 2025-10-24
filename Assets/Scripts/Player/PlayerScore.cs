@@ -67,7 +67,10 @@ public class PlayerScore : Singleton<PlayerScore>
     #region Monobehaviours methods
     void Update()
     {
-        ScoreText.text = $"Score: {_playerScore}";
+        if (ScoreText != null)
+        {
+            ScoreText.text = $"Score: {_playerScore}";
+        }
     }
     #endregion
 }

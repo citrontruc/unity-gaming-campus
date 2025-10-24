@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public class PlayerStateMachine : Singleton<PlayerStateMachine>
+public class PlayerStateMachine : MonoBehaviour
 {
     #region State change
     public enum PlayerState
@@ -23,6 +23,8 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
 
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+    [SerializeField]
+    private PlayerPowerUp _playerPowerUp;
     public IState CurrentState { get; private set; }
     #endregion
 
@@ -33,9 +35,8 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     public TMP_Text SpecialText;
 
     #region Monobehaviour methods
-    public override void Awake()
+    public void Awake()
     {
-        base.Awake();
         CurrentState = new EggState();
     }
 
@@ -99,7 +100,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     {
         CurrentState?.Exit();
         CurrentState = nextState;
-        nextState?.Enter();
+        nextState?.Enter(_playerPowerUp);
         _specialCharge = 1;
     }
     #endregion

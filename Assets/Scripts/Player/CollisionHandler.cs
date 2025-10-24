@@ -5,7 +5,7 @@ Collision events are triggered by the player when he touches another entity.
 
 using UnityEngine;
 
-public class CollisionHandler : Singleton<CollisionHandler>
+public class CollisionHandler : MonoBehaviour
 {
     [SerializeField]
     private VoidEventChannelSO<int> collectableEventChannelSO;

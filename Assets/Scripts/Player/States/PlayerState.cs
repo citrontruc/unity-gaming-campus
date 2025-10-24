@@ -13,7 +13,7 @@ public interface IState
     /// <summary>
     /// A method to enter a state (change graphics for the state, play state sound...)
     /// </summary>
-    public void Enter();
+    public void Enter(PlayerPowerUp playerPowerUp);
     public void Update();
     public IEnumerator Special();
 
