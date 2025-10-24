@@ -25,7 +25,7 @@ public class Obstacle : MonoBehaviour, IActivatable
 
     [SerializeField]
     private Resistance _resistance = Resistance.small;
-    #endregion    
+    #endregion
 
     #region Setters and Getters
     public void Activate()

@@ -13,6 +13,7 @@ public class Chunk : MonoBehaviour
         active,
         disabled,
     }
+
     private ChunkState _chunkState = ChunkState.disabled;
     #endregion
 

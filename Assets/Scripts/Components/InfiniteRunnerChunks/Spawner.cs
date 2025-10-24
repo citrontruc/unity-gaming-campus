@@ -19,6 +19,7 @@ public class Spawner : Singleton<Spawner>
     private int _randomSeed = 42;
 
     private int _numChunks;
+
     /// <summary>
     /// How many empty chunks do we have before we start having chunks with collectibles and Obstacles?
     /// </summary>
