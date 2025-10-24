@@ -4,6 +4,7 @@ Also handles special powers.
 */
 
 using System;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -29,6 +30,7 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
     /// Special powers
     /// </summary>
     private int _specialCharge = 1;
+    public TMP_Text SpecialText;
 
     #region Monobehaviour methods
     public override void Awake()
@@ -37,7 +39,13 @@ public class PlayerStateMachine : Singleton<PlayerStateMachine>
         CurrentState = new EggState();
     }
 
-    public void Update() { }
+    public void Update()
+    {
+        if (SpecialText != null)
+        {
+            SpecialText.text = $"Special: {_specialCharge}";
+        }
+    }
     #endregion
 
     #region Subscribe to events
