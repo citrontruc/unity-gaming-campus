@@ -101,3 +101,6 @@ InitTestScene*.unity*
 
 # Ignore text Mesh Pro library
 /[Aa]ssets/TextMesh Pro/*
+
+# Sound folder
+/[Aa]ssets/Sounds/*
