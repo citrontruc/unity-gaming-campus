@@ -8,17 +8,15 @@ using UnityEngine;
 public class AudioManager : ImmortalSingleton<AudioManager>
 {
     public AudioSource musicSource;
+    public float VolumeBackground = 0.5f;
+
+    #region Audio samples
     public AudioClip CollectibleSound;
     public AudioClip musicStart;
-    public float VolumeBackground = 0.5f;
+    #endregion
 
     [SerializeField]
     private VoidEventChannelSO<int> collectableEventChannelSO;
-
-    public override void Awake()
-    {
-        base.Awake();
-    }
 
     #region Subscribe to events
     void OnEnable()
@@ -32,6 +30,12 @@ public class AudioManager : ImmortalSingleton<AudioManager>
     }
     #endregion
 
+    #region Monobehaviour methods
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     public void Start()
     {
         musicSource = GetComponent<AudioSource>();
@@ -39,6 +43,7 @@ public class AudioManager : ImmortalSingleton<AudioManager>
         musicSource.loop = true;
         musicSource.Play();
     }
+    #endregion
 
     private void PlayCollectibleSound(int value)
     {
