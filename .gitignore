@@ -104,3 +104,7 @@ InitTestScene*.unity*
 
 # Sound folder
 /[Aa]ssets/Sounds/*
+
+# Visual Assets
+*.fbx
+*.anim

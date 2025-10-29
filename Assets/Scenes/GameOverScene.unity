@@ -1382,13 +1382,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1353032037443396028, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 1835402662807651382, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 1025531926}
     - target: {fileID: 5767173521502060921, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.39296
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5767173521502060921, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1396,7 +1400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5767173521502060921, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.83072
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5767173521502060921, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
       propertyPath: m_LocalRotation.w

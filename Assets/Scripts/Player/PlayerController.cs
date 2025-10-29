@@ -4,12 +4,14 @@ Uses the new unity input system.
 */
 
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
 public class PlayerController : Singleton<PlayerController>
 {
+    public Object playerModel;
     private Rigidbody _rb;
     public PlayerPowerUp _playerPowerUp;
     public PlayerStateMachine _playerStateMachine;
@@ -148,6 +150,10 @@ public class PlayerController : Singleton<PlayerController>
     {
         //_rb.AddForce(_moveValue * _currentSpeed, ForceMode.Acceleration);
         transform.Translate(_moveValue * _currentSpeed * Time.deltaTime);
+        if (playerModel != null)
+        {
+            playerModel.GetComponent<Transform>().position = transform.position;
+        }
     }
     #endregion
 
