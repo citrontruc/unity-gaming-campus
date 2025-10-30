@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider))]
 public class PlayerController : Singleton<PlayerController>
 {
-    public Object playerModel;
+    public PlayerAnimator Animator;
     private Rigidbody _rb;
     public PlayerPowerUp _playerPowerUp;
     public PlayerStateMachine _playerStateMachine;
@@ -150,9 +150,9 @@ public class PlayerController : Singleton<PlayerController>
     {
         //_rb.AddForce(_moveValue * _currentSpeed, ForceMode.Acceleration);
         transform.Translate(_moveValue * _currentSpeed * Time.deltaTime);
-        if (playerModel != null)
+        if (Animator != null)
         {
-            playerModel.GetComponent<Transform>().position = transform.position;
+            Animator.MoveModel(this.transform.position);
         }
     }
     #endregion
