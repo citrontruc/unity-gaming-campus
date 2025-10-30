@@ -208,6 +208,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1841198005436889862, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
   m_PrefabInstance: {fileID: 69356111313585948}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &175125798 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6610373807926054043, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
+  m_PrefabInstance: {fileID: 69356111313585948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &200234259
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,6 +980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
   playerModel: {fileID: 175125796}
+  _playerAnimator: {fileID: 175125798}
 --- !u!1001 &69356111313585948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -995,6 +1001,10 @@ PrefabInstance:
       propertyPath: _noHealthEvent
       value: 
       objectReference: {fileID: 11400000, guid: ac2c76ed88e9f0e729d4ebd3f29849fc, type: 2}
+    - target: {fileID: 2291555512626708228, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 1938740881}
     - target: {fileID: 5767173521502060921, guid: 3aeb2f019a5708200ad03fe594240356, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
