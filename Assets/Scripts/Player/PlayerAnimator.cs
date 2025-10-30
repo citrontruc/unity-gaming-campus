@@ -37,10 +37,9 @@ public class PlayerAnimator : MonoBehaviour
 
     public void SetSpecial(bool specialValue)
     {
-        Debug.Log(specialValue);
         _playerAnimator.SetBool("Special", specialValue);
     }
-    
+
     public void SetJump(bool jumpValue)
     {
         _playerAnimator.SetBool("Jump", jumpValue);
