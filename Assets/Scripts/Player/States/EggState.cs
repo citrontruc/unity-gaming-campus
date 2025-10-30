@@ -20,11 +20,13 @@ public class EggState : IState
     /// We achieve that by making the player have two hitpoints for a limited amount of time.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator Special()
+    public IEnumerator Special(PlayerAnimator animator)
     {
+        animator.SetSpecial(true);
         _player.SetHealth(2);
         yield return new WaitForSeconds(_powerUpDuration);
         _player.SetHealth(1);
+        animator.SetSpecial(false);
     }
 
     public void Exit() { }

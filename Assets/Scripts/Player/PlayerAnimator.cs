@@ -1,10 +1,10 @@
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerAnimator : MonoBehaviour
 {
     public GameObject playerModel;
+
     [SerializeField]
     private Animator _playerAnimator;
     private Spawner _spawner => Singleton<Spawner>.Instance;
@@ -18,7 +18,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Update()
     {
-        _playerAnimator.SetFloat("Speed", _spawner.GetLevelSpeed()/_speedThreshold);
+        _playerAnimator.SetFloat("Speed", _spawner.GetLevelSpeed() / _speedThreshold);
     }
 
     public void MoveModel(Vector3 position)
@@ -33,5 +33,16 @@ public class PlayerAnimator : MonoBehaviour
         {
             playerModel.transform.localRotation = quaternion.Euler(0, _rotationHead, 0);
         }
+    }
+
+    public void SetSpecial(bool specialValue)
+    {
+        Debug.Log(specialValue);
+        _playerAnimator.SetBool("Special", specialValue);
+    }
+    
+    public void SetJump(bool jumpValue)
+    {
+        _playerAnimator.SetBool("Jump", jumpValue);
     }
 }

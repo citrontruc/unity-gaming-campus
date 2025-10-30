@@ -15,7 +15,7 @@ public interface IState
     /// </summary>
     public void Enter(PlayerPowerUp playerPowerUp);
     public void Update();
-    public IEnumerator Special();
+    public IEnumerator Special(PlayerAnimator animator);
 
     /// <summary>
     /// Method to Exit State (remove grpahics)

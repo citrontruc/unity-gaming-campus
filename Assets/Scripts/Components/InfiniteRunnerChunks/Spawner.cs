@@ -55,6 +55,7 @@ public class Spawner : Singleton<Spawner>
     {
         MultiplyLevelSpeed(_speedUpFactor);
     }
+
     public float GetLevelSpeed()
     {
         return _levelSpeed;

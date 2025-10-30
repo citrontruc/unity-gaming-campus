@@ -109,11 +109,11 @@ public class PlayerStateMachine : MonoBehaviour
     /// <summary>
     /// Each state has a different special capacity.
     /// </summary>
-    public void Special()
+    public void Special(PlayerAnimator animator)
     {
         if (CurrentState != null && _specialCharge > 0)
         {
-            StartCoroutine(CurrentState.Special());
+            StartCoroutine(CurrentState.Special(animator));
             _specialCharge--;
         }
     }

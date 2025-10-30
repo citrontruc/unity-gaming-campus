@@ -23,8 +23,9 @@ public class ChickState : IState
     /// We achieve that by making the player have two hitpoints for a limited amount of time.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator Special()
+    public IEnumerator Special(PlayerAnimator animator)
     {
+        animator.SetSpecial(true);
         _spawner.MultiplyLevelSpeed(.5f);
         yield return new WaitForSeconds(_powerUpDuration);
         _spawner.MultiplyLevelSpeed(2f);

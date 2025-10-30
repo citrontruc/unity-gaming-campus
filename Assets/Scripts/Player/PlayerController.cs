@@ -4,7 +4,6 @@ Uses the new unity input system.
 */
 
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -142,7 +141,7 @@ public class PlayerController : Singleton<PlayerController>
         // Special
         if (_specialAction.IsPressed())
         {
-            _playerStateMachine.Special();
+            _playerStateMachine.Special(Animator);
         }
     }
 
@@ -193,6 +192,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private IEnumerator JumpPress()
     {
+        Animator.SetJump(true);
         _canJump = false;
         yield return new WaitForSeconds(_jumpCooldown);
         _canJump = true;
@@ -200,6 +200,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void RecoverFromJump()
     {
+        Animator.SetJump(false);
         _canDoubleJump = true;
         _glideTimer = 0f;
         _canJump = true;
