@@ -1,7 +1,6 @@
 /* Class to create collectible objects.*/
 
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
 public abstract class Collectible : MonoBehaviour, IActivatable
