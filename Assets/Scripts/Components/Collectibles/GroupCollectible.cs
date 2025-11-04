@@ -7,14 +7,13 @@ public class GroupCollectible : MonoBehaviour
     void Start()
     {
         MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-        CombineInstance[] instances =
-            meshFilters.Select(x =>
-                new CombineInstance
-                {
-                    mesh = x.sharedMesh,
-                    transform = x.transform.localToWorldMatrix,
-                }
-            ).ToArray();
+        CombineInstance[] instances = meshFilters
+            .Select(x => new CombineInstance
+            {
+                mesh = x.sharedMesh,
+                transform = x.transform.localToWorldMatrix,
+            })
+            .ToArray();
 
         foreach (var meshFilter in meshFilters)
         {

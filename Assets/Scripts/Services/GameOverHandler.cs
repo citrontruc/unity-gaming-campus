@@ -2,7 +2,7 @@
 Handles the transition between scenes on player Death.
 */
 
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverHandler : Singleton<GameOverHandler>
 {
@@ -23,6 +23,6 @@ public class GameOverHandler : Singleton<GameOverHandler>
 
     private void _transitionScene(int value)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(NextScene);
+        SceneManager.LoadScene(NextScene);
     }
 }
