@@ -23,6 +23,12 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+    [SerializeField]
+    private ChangeLevelSpeedSO _changeLevelSpeedChannelEvent;
+    [SerializeField]
+    private SpecialAnimationChannelSO _specialAnimationChannelEvent;
+    [SerializeField]
+    private SetHealthEventChannelSO _setHealthChannelEvent;
 
     [SerializeField]
     private PlayerPowerUp _playerPowerUp;
@@ -38,7 +44,8 @@ public class PlayerStateMachine : MonoBehaviour
     #region Monobehaviour methods
     public void Awake()
     {
-        CurrentState = new EggState();
+        IState eggState = new EggState();
+        TransitionTo(eggState);
     }
 
     public void Update()
@@ -59,6 +66,21 @@ public class PlayerStateMachine : MonoBehaviour
     void OnDisable()
     {
         _stateChangeChannelEvent.onEventRaised -= ConvertEnumToState;
+    }
+
+    public void InvokeChangeLevelSpeed(float value)
+    {
+        _changeLevelSpeedChannelEvent.RaiseEvent(value);
+    }
+
+    public void SpecialAnimation(bool value)
+    {
+        _specialAnimationChannelEvent.RaiseEvent(value);
+    }
+
+    public void SetHealth(int value)
+    {
+        _setHealthChannelEvent.RaiseEvent(value);
     }
     #endregion
 
@@ -101,7 +123,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         CurrentState?.Exit();
         CurrentState = nextState;
-        nextState?.Enter(_playerPowerUp);
+        nextState?.Enter(this, _playerPowerUp);
         _specialCharge = 1;
     }
     #endregion
@@ -109,11 +131,11 @@ public class PlayerStateMachine : MonoBehaviour
     /// <summary>
     /// Each state has a different special capacity.
     /// </summary>
-    public void Special(PlayerAnimator animator)
+    public void Special()
     {
         if (CurrentState != null && _specialCharge > 0)
         {
-            StartCoroutine(CurrentState.Special(animator));
+            StartCoroutine(CurrentState.Special());
             _specialCharge--;
         }
     }

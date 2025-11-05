@@ -7,12 +7,13 @@ using UnityEngine;
 
 public class ChickenState : IState
 {
-    private Spawner _spawner => Spawner.Instance;
+    private PlayerStateMachine _playerStateMachine;
     private int _powerUpDuration = 10;
 
-    public void Enter(PlayerPowerUp playerPowerUp)
+    public void Enter(PlayerStateMachine playerStateMachine, PlayerPowerUp playerPowerUp)
     {
         playerPowerUp.EnablePower(PlayerPowerUp.PlayerPowerEnum.Glide);
+        _playerStateMachine = playerStateMachine;
     }
 
     public void Update() { }
@@ -22,13 +23,13 @@ public class ChickenState : IState
     /// Real effect not implemented here. We use the Chick's effect right now.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator Special(PlayerAnimator animator)
+    public IEnumerator Special()
     {
-        animator.SetSpecial(true);
-        _spawner.MultiplyLevelSpeed(.5f);
+        _playerStateMachine.SpecialAnimation(true);
+        _playerStateMachine.InvokeChangeLevelSpeed(.5f);
         yield return new WaitForSeconds(_powerUpDuration);
-        _spawner.MultiplyLevelSpeed(2f);
-        animator.SetSpecial(false);
+        _playerStateMachine.InvokeChangeLevelSpeed(2f);
+        _playerStateMachine.SpecialAnimation(false);
     }
 
     public void Exit() { }

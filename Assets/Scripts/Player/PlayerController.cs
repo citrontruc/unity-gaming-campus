@@ -141,7 +141,7 @@ public class PlayerController : Singleton<PlayerController>
         // Special
         if (_specialAction.IsPressed())
         {
-            _playerStateMachine.Special(Animator);
+            _playerStateMachine.Special();
         }
     }
 

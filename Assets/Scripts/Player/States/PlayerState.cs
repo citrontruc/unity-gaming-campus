@@ -13,9 +13,9 @@ public interface IState
     /// <summary>
     /// A method to enter a state (change graphics for the state, play state sound...)
     /// </summary>
-    public void Enter(PlayerPowerUp playerPowerUp);
+    public void Enter(PlayerStateMachine playerStateMachine, PlayerPowerUp playerPowerUp);
     public void Update();
-    public IEnumerator Special(PlayerAnimator animator);
+    public IEnumerator Special();
 
     /// <summary>
     /// Method to Exit State (remove grpahics)

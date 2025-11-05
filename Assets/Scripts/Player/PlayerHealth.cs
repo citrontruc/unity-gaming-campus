@@ -8,7 +8,9 @@ public class PlayerHealth : Singleton<PlayerHealth>
 {
     #region Event Channels
     [SerializeField]
-    public NoHealthEventChannelSO _noHealthEvent;
+    private NoHealthEventChannelSO _noHealthEvent;
+    [SerializeField]
+    private SetHealthEventChannelSO _setHealthChannelEvent;
     #endregion
 
     #region Player values
@@ -19,6 +21,18 @@ public class PlayerHealth : Singleton<PlayerHealth>
     public void SetHealth(int healthValue)
     {
         _playerHealth = healthValue;
+    }
+    #endregion
+
+    #region Subscribe to events
+    void OnEnable()
+    {
+        _setHealthChannelEvent.onEventRaised += SetHealth;
+    }
+
+    void OnDisable()
+    {
+        _setHealthChannelEvent.onEventRaised += SetHealth;
     }
     #endregion
 

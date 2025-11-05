@@ -9,15 +9,16 @@ using UnityEngine;
 
 public class Spawner : Singleton<Spawner>
 {
+    [SerializeField]
+    private ChunkMover _chunkMover;
+
     #region Chunk Creation properties
     /// <summary>
     /// We have a list of chunks and every time, we want to generate tile,
     /// we take a tile at random from our queue.
     /// </summary>
     private List<Chunk> _spawnQueue = new();
-    private List<Chunk> _activeChunkList = new();
     private int _randomSeed = 42;
-
     private int _numChunks;
 
     /// <summary>
@@ -28,50 +29,7 @@ public class Spawner : Singleton<Spawner>
     private string _beginningChunkName = "EmptyChunk";
     private int _chunkSize = 20;
     public Transform SpawnPoint => this.transform;
-    public Transform Destroyer => Singleton<ChunkDestroyer>.Instance.transform;
-    #endregion
-
-    #region Movement related properties
-    [SerializeField]
-    private float _levelSpeed = 5f;
-
-    [SerializeField]
-    private float _speedUpFactor = 1.2f;
-
-    /// <summary>
-    /// We use the state change to know when to speed up the game.
-    /// </summary>
-    [SerializeField]
-    private StateChangeEventChannelSO _stateChangeChannelEvent;
-    #endregion
-
-    #region Getters and Setters
-    public void MultiplyLevelSpeed(float value)
-    {
-        _levelSpeed *= value;
-    }
-
-    public void SpeedUpLevel(PlayerStateMachine.PlayerState value)
-    {
-        MultiplyLevelSpeed(_speedUpFactor);
-    }
-
-    public float GetLevelSpeed()
-    {
-        return _levelSpeed;
-    }
-    #endregion
-
-    #region Subscribe to events
-    void OnEnable()
-    {
-        _stateChangeChannelEvent.onEventRaised += SpeedUpLevel;
-    }
-
-    void OnDisable()
-    {
-        _stateChangeChannelEvent.onEventRaised -= SpeedUpLevel;
-    }
+    public Transform Destroyer;
     #endregion
 
     #region Monobehaviour methods
@@ -83,6 +41,7 @@ public class Spawner : Singleton<Spawner>
         base.Awake();
         Random.InitState(_randomSeed);
         _numChunks = (int)(SpawnPoint.position.z - Destroyer.position.z) / _chunkSize + 1;
+        Destroyer = Singleton<ChunkDestroyer>.Instance.transform;
         Initilialize();
     }
 
@@ -114,26 +73,12 @@ public class Spawner : Singleton<Spawner>
 
     public void Update()
     {
-        if (_activeChunkList.Count < _numChunks)
+        if (_chunkMover.GetNumberActiveChunks() < _numChunks)
         {
-            for (int i = 0; i < _numChunks - _activeChunkList.Count; i++)
+            for (int i = 0; i < _numChunks - _chunkMover.GetNumberActiveChunks(); i++)
             {
                 Chunk myChunk = GetRandomChunk();
                 AddChunkToActiveChunks(myChunk);
-            }
-        }
-        for (int i = _activeChunkList.Count - 1; i >= 0; i--)
-        {
-            Chunk myChunk = _activeChunkList[i];
-            myChunk.transform.Translate(0, 0, -_levelSpeed * Time.deltaTime);
-            if (myChunk.GetChunkState() == Chunk.ChunkState.disabled)
-            {
-                _activeChunkList.Remove(myChunk);
-                int NumApparitions = myChunk.GetChunkRarity();
-                if (NumApparitions > 0)
-                {
-                    EnqueueChunk(myChunk);
-                }
             }
         }
     }
@@ -142,7 +87,7 @@ public class Spawner : Singleton<Spawner>
     #region Retrieve chunks from lists
     private void AddChunkToActiveChunks(Chunk chunk)
     {
-        if (_activeChunkList.Count == 0)
+        if (_chunkMover.GetNumberActiveChunks() == 0)
         {
             chunk.transform.position = new Vector3(
                 SpawnPoint.position.x,
@@ -155,11 +100,11 @@ public class Spawner : Singleton<Spawner>
             chunk.transform.position = new Vector3(
                 SpawnPoint.position.x,
                 SpawnPoint.position.y,
-                _activeChunkList.Last().transform.position.z + _chunkSize
+                _chunkMover.GetLastChunkPosition().z + _chunkSize
             );
         }
         chunk.Activate();
-        _activeChunkList.Add(chunk);
+        _chunkMover.AddChunk(chunk);
     }
 
     private Chunk GetRandomChunk()

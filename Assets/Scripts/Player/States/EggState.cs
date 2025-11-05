@@ -8,10 +8,13 @@ using UnityEngine;
 
 public class EggState : IState
 {
-    private PlayerHealth _player => PlayerHealth.Instance;
+    private PlayerStateMachine _playerStateMachine;
     private int _powerUpDuration = 10;
 
-    public void Enter(PlayerPowerUp playerPowerUp) { }
+    public void Enter(PlayerStateMachine playerStateMachine, PlayerPowerUp playerPowerUp)
+    {
+        _playerStateMachine = playerStateMachine;
+    }
 
     public void Update() { }
 
@@ -20,13 +23,13 @@ public class EggState : IState
     /// We achieve that by making the player have two hitpoints for a limited amount of time.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator Special(PlayerAnimator animator)
+    public IEnumerator Special()
     {
-        animator.SetSpecial(true);
-        _player.SetHealth(2);
+        _playerStateMachine.SpecialAnimation(true);
+        _playerStateMachine.SetHealth(2);
         yield return new WaitForSeconds(_powerUpDuration);
-        _player.SetHealth(1);
-        animator.SetSpecial(false);
+        _playerStateMachine.SetHealth(1);
+        _playerStateMachine.SpecialAnimation(false);
     }
 
     public void Exit() { }
