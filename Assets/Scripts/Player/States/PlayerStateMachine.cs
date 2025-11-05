@@ -23,10 +23,13 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+
     [SerializeField]
     private ChangeLevelSpeedSO _changeLevelSpeedChannelEvent;
+
     [SerializeField]
     private SpecialAnimationChannelSO _specialAnimationChannelEvent;
+
     [SerializeField]
     private SetHealthEventChannelSO _setHealthChannelEvent;
 

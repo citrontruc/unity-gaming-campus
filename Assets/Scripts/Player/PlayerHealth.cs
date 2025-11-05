@@ -9,6 +9,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     #region Event Channels
     [SerializeField]
     private NoHealthEventChannelSO _noHealthEvent;
+
     [SerializeField]
     private SetHealthEventChannelSO _setHealthChannelEvent;
     #endregion

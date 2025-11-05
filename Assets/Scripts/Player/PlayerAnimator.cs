@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     public GameObject playerModel;
+
     [SerializeField]
     private SpecialAnimationChannelSO _specialAnimationChannelEvent;
 

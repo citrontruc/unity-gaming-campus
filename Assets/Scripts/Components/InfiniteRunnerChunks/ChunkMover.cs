@@ -25,6 +25,7 @@ public class ChunkMover : Singleton<ChunkMover>
     /// </summary>
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+
     [SerializeField]
     private ChangeLevelSpeedSO _changeLevelSpeedChannelEvent;
     #endregion
