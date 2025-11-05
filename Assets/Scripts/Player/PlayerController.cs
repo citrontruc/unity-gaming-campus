@@ -114,7 +114,7 @@ public class PlayerController : Singleton<PlayerController>
                 }
             }
             // If the player can glide, he will glide by maintaining the jump button.
-            // Note : we can disable gravity for the player object but rather keep it because it looks nice.
+            // We make him glide by deleting any linearVelocity on the Y axis.
             if (_playerPowerUp.CanGlide())
             {
                 _glideTimer += Time.deltaTime;
