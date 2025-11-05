@@ -8,6 +8,7 @@ public class SpecialCorn : Collectible
 {
     [SerializeField]
     private float _rotationSpeed = .5f;
+
     [SerializeField]
     private SpecialReloadEventChannelSO _specialReloadEventChannel;
 

@@ -18,6 +18,7 @@ public class AudioManager : ImmortalSingleton<AudioManager>
 
     [SerializeField]
     private VoidEventChannelSO<int> _collectibleEventChannelSO;
+
     [SerializeField]
     private VoidEventChannelSO<int> _specialCollectibleEventChannelSOalSounds;
 
