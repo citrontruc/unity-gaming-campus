@@ -6,12 +6,15 @@ using UnityEngine;
 public abstract class Collectible : MonoBehaviour, IActivatable
 {
     /// <summary>
-    /// Channel to declare Collected events
+    /// Channel to declare Collected events (example: Score increase, other bonuses)
     /// </summary>
     [Header("Collision Events")]
     [SerializeField]
     protected VoidEventChannelSO<int> CollectedEvent;
 
+    /// <summary>
+    /// Tag to indicate who can collect the collectibles
+    /// </summary>
     [SerializeField]
     private string _canCollectTag = "Player";
 

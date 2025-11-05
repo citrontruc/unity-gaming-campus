@@ -7,13 +7,17 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
+    #region Event channels
     [SerializeField]
     private VoidEventChannelSO<int> collectableEventChannelSO;
-
     [SerializeField]
     private VoidEventChannelSO<Obstacle.Resistance> ObstacleEventChannelSO;
+    #endregion
+
+    #region Elements influenced by collisions
     private PlayerScore _playerScore => PlayerScore.Instance;
     private PlayerHealth _playerHealth => PlayerHealth.Instance;
+    #endregion
 
     #region Subscribe to events
     void OnEnable()

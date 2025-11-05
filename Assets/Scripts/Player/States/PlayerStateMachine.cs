@@ -1,6 +1,6 @@
 /*
 A state machine to handle player state transition.
-Also handles special powers.
+Also handles special powers (each state is connected to the player state machine and have access to the event channels).
 */
 
 using System;
@@ -20,7 +20,8 @@ public class PlayerStateMachine : MonoBehaviour
         SuperRoosterState,
         DinosaurState,
     }
-
+    
+    #region Event Channels
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
 
@@ -35,6 +36,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField]
     private SetHealthEventChannelSO _setHealthChannelEvent;
+    #endregion
 
     [SerializeField]
     private PlayerPowerUp _playerPowerUp;

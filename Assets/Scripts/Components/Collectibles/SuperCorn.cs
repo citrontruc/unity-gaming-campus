@@ -1,5 +1,5 @@
 /*
-Basic collectable. Brings points to the player.
+Basic collectable. Gives points to the player.
 */
 
 using UnityEngine;

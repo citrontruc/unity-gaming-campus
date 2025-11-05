@@ -1,8 +1,8 @@
 /*
 A singleton that handles playing sound effects and environmental sounds.
+It is an Immortal Singleton. Put it in your main menu scene and don't put it elsewhere.
 */
 
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : ImmortalSingleton<AudioManager>
@@ -16,11 +16,13 @@ public class AudioManager : ImmortalSingleton<AudioManager>
     public AudioClip musicStart;
     #endregion
 
+    #region Event Channels
     [SerializeField]
     private VoidEventChannelSO<int> _collectibleEventChannelSO;
 
     [SerializeField]
     private VoidEventChannelSO<int> _specialCollectibleEventChannelSOalSounds;
+    #endregion
 
     #region Subscribe to events
     void OnEnable()
@@ -51,18 +53,20 @@ public class AudioManager : ImmortalSingleton<AudioManager>
     }
     #endregion
 
+    #region Play sound effects
     private void PlayCollectibleSound(int value)
     {
-        playSoundOnce(CollectibleSound, VolumeBackground);
+        PlaySoundOnce(CollectibleSound, VolumeBackground);
     }
 
     private void PlaySpecialCollectibleSound(int value)
     {
-        playSoundOnce(SpecialCollectibleSound, VolumeBackground);
+        PlaySoundOnce(SpecialCollectibleSound, VolumeBackground);
     }
 
-    private void playSoundOnce(AudioClip audioClip, float volumeBackground)
+    private void PlaySoundOnce(AudioClip audioClip, float volumeBackground)
     {
         musicSource.PlayOneShot(audioClip, volumeBackground);
     }
+    #endregion
 }

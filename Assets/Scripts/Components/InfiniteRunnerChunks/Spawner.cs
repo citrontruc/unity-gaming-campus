@@ -1,5 +1,5 @@
 /*
-A class to spawn new chunks and move existing chunks.
+A class to spawn new level chunks for our infinite runner.
 */
 
 using System.Collections.Generic;
@@ -45,11 +45,16 @@ public class Spawner : Singleton<Spawner>
         Initilialize();
     }
 
+    /// <summary>
+    ///  Loads all our available chunks and creates instances for each of our chunks depending on their rarity.
+    /// Every run starts with three empty chunks in order to let the player get the hang of things.
+    /// </summary>
     private void Initilialize()
     {
         Object[] chunks = Resources.LoadAll(_chunkFolderName, typeof(GameObject));
         Object currentVal;
         Chunk myChunk;
+        /// Initiliazes all the instances of our chunks.
         for (int i = 0; i < chunks.Count(); i++)
         {
             int NumApparitions = chunks[i].GetComponent<Chunk>().GetChunkRarity();
@@ -62,6 +67,7 @@ public class Spawner : Singleton<Spawner>
             }
         }
 
+        /// Creates empty chunks at the beginning.
         Object beginningChunk = Resources.Load($"{_chunkFolderName}/{_beginningChunkName}");
         for (int i = 0; i < _numChunksAtBeginning; i++)
         {

@@ -10,10 +10,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider))]
 public class PlayerController : Singleton<PlayerController>
 {
+    #region Components interacting with the playerController
     public PlayerAnimator Animator;
     private Rigidbody _rb;
     public PlayerPowerUp _playerPowerUp;
     public PlayerStateMachine _playerStateMachine;
+    #endregion
 
     /// <summary>
     /// Reference to the actions our player will take.

@@ -1,6 +1,6 @@
 /*
 An object whose role is to move level chunks toward the player.
-He receives Chunks from the ChunkSpawner and sends a signal when a chunk is destroyed
+He receives Chunks from the ChunkSpawner and sends a signal when a chunk is destroyed.
 */
 
 using System.Collections.Generic;
