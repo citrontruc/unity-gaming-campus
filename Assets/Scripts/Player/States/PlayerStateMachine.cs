@@ -20,7 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
         SuperRoosterState,
         DinosaurState,
     }
-    
+
     #region Event Channels
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;

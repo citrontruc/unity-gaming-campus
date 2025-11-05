@@ -10,6 +10,7 @@ public class CollisionHandler : MonoBehaviour
     #region Event channels
     [SerializeField]
     private VoidEventChannelSO<int> collectableEventChannelSO;
+
     [SerializeField]
     private VoidEventChannelSO<Obstacle.Resistance> ObstacleEventChannelSO;
     #endregion

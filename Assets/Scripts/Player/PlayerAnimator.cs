@@ -10,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
 
     #region Components to animate
     public GameObject playerModel;
+
     [SerializeField]
     private Animator _playerAnimator;
     #endregion
@@ -17,6 +18,7 @@ public class PlayerAnimator : MonoBehaviour
     #region Animations related to player movement
     private ChunkMover _chunkMover => Singleton<ChunkMover>.Instance;
     private float _speedThreshold = 6f;
+
     // Player should instantly be in the air but in order to avid jarring effects,
     // we set a maxJumpSpeed.
     private float _maxJumpSpeed = 0.6f;
