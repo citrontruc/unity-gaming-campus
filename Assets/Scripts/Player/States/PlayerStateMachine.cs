@@ -25,6 +25,9 @@ public class PlayerStateMachine : MonoBehaviour
     private StateChangeEventChannelSO _stateChangeChannelEvent;
 
     [SerializeField]
+    private SpecialReloadEventChannelSO _specialReloadChannelEvent;
+
+    [SerializeField]
     private ChangeLevelSpeedSO _changeLevelSpeedChannelEvent;
 
     [SerializeField]
@@ -64,11 +67,13 @@ public class PlayerStateMachine : MonoBehaviour
     void OnEnable()
     {
         _stateChangeChannelEvent.onEventRaised += ConvertEnumToState;
+        _specialReloadChannelEvent.onEventRaised += SetSpecialCharge;
     }
 
     void OnDisable()
     {
         _stateChangeChannelEvent.onEventRaised -= ConvertEnumToState;
+        _specialReloadChannelEvent.onEventRaised -= SetSpecialCharge;
     }
 
     public void InvokeChangeLevelSpeed(float value)
@@ -84,6 +89,11 @@ public class PlayerStateMachine : MonoBehaviour
     public void SetHealth(int value)
     {
         _setHealthChannelEvent.RaiseEvent(value);
+    }
+
+    public void SetSpecialCharge(int value)
+    {
+        _specialCharge = value;
     }
     #endregion
 

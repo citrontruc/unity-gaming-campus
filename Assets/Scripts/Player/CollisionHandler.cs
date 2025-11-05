@@ -33,7 +33,6 @@ public class CollisionHandler : MonoBehaviour
     private void HandleObstacle(Obstacle.Resistance _resistance)
     {
         _playerHealth.CollisionWithObstacle(_resistance);
-        // Example: notify GameManager, reduce HP, etc.
     }
 
     private void HandleCollectible(int score)

@@ -1599,9 +1599,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 9eb802eecaa12477facd318eea553bb8, type: 3}
     - target: {fileID: 973956578919046429, guid: 8634871fd14770f4db5513d8b020d606, type: 3}
+      propertyPath: SpecialCollectibleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c26e329abec04323a9ce665bea04eb2, type: 3}
+    - target: {fileID: 973956578919046429, guid: 8634871fd14770f4db5513d8b020d606, type: 3}
       propertyPath: collectableEventChannelSO
       value: 
       objectReference: {fileID: 11400000, guid: 711763cf59426cf50b0643d5e6335e0a, type: 2}
+    - target: {fileID: 973956578919046429, guid: 8634871fd14770f4db5513d8b020d606, type: 3}
+      propertyPath: _collectibleEventChannelSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 711763cf59426cf50b0643d5e6335e0a, type: 2}
+    - target: {fileID: 973956578919046429, guid: 8634871fd14770f4db5513d8b020d606, type: 3}
+      propertyPath: _specialCollectibleEventChannelSOalSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: 50e49584f689d82bf9e7ece6022e2a03, type: 2}
     - target: {fileID: 9045453210829089703, guid: 8634871fd14770f4db5513d8b020d606, type: 3}
       propertyPath: m_Name
       value: AudioManager

@@ -42,7 +42,7 @@ public class PlayerController : Singleton<PlayerController>
 
     [SerializeField]
     private float _jumpValue = 2f;
-    private float _jumpCooldown = 0.2f;
+    private float _jumpCooldown = 0.05f;
     private string _groundTag = "Ground";
     private float _glideValue = 3f;
     private float _glideTimer = 0f;

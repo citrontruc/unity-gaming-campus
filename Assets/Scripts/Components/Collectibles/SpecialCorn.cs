@@ -1,20 +1,25 @@
 /*
-Basic collectable. Brings points to the player.
+A collectible to give the player another Special power Charge.
 */
 
 using UnityEngine;
 
-public class SuperCorn : Collectible
+public class SpecialCorn : Collectible
 {
     [SerializeField]
     private float _rotationSpeed = .5f;
+    [SerializeField]
+    private SpecialReloadEventChannelSO _specialReloadEventChannel;
 
     void Awake()
     {
-        _value = 10;
+        _value = 1;
     }
 
-    void Start() { }
+    void Start()
+    {
+        CollectedEvent = _specialReloadEventChannel;
+    }
 
     void Update()
     {

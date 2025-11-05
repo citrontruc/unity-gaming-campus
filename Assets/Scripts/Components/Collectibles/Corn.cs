@@ -11,7 +11,7 @@ public class Corn : Collectible
 
     void Awake()
     {
-        _value = 10;
+        _value = 5;
     }
 
     void Start() { }

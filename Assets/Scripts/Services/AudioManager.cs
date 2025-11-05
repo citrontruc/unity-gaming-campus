@@ -12,21 +12,26 @@ public class AudioManager : ImmortalSingleton<AudioManager>
 
     #region Audio samples
     public AudioClip CollectibleSound;
+    public AudioClip SpecialCollectibleSound;
     public AudioClip musicStart;
     #endregion
 
     [SerializeField]
-    private VoidEventChannelSO<int> collectableEventChannelSO;
+    private VoidEventChannelSO<int> _collectibleEventChannelSO;
+    [SerializeField]
+    private VoidEventChannelSO<int> _specialCollectibleEventChannelSOalSounds;
 
     #region Subscribe to events
     void OnEnable()
     {
-        collectableEventChannelSO.onEventRaised += PlayCollectibleSound;
+        _collectibleEventChannelSO.onEventRaised += PlayCollectibleSound;
+        _specialCollectibleEventChannelSOalSounds.onEventRaised += PlaySpecialCollectibleSound;
     }
 
     void OnDisable()
     {
-        collectableEventChannelSO.onEventRaised -= PlayCollectibleSound;
+        _collectibleEventChannelSO.onEventRaised -= PlayCollectibleSound;
+        _specialCollectibleEventChannelSOalSounds.onEventRaised -= PlaySpecialCollectibleSound;
     }
     #endregion
 
@@ -47,6 +52,16 @@ public class AudioManager : ImmortalSingleton<AudioManager>
 
     private void PlayCollectibleSound(int value)
     {
-        musicSource.PlayOneShot(CollectibleSound, VolumeBackground);
+        playSoundOnce(CollectibleSound, VolumeBackground);
+    }
+
+    private void PlaySpecialCollectibleSound(int value)
+    {
+        playSoundOnce(SpecialCollectibleSound, VolumeBackground);
+    }
+
+    private void playSoundOnce(AudioClip audioClip, float volumeBackground)
+    {
+        musicSource.PlayOneShot(audioClip, volumeBackground);
     }
 }

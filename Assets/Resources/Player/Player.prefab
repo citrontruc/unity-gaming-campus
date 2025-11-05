@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateMachine
   _stateChangeChannelEvent: {fileID: 11400000, guid: 692f6a67e26f41ea882b69129574be0a, type: 2}
+  _specialReloadChannelEvent: {fileID: 11400000, guid: 50e49584f689d82bf9e7ece6022e2a03, type: 2}
   _changeLevelSpeedChannelEvent: {fileID: 11400000, guid: 5b868b135f1025fdcb2053cefef078af, type: 2}
   _specialAnimationChannelEvent: {fileID: 11400000, guid: 2c4dc549a41707e168f5d6a784d50d81, type: 2}
   _setHealthChannelEvent: {fileID: 11400000, guid: 5fe072b2606c5a89790ca3610f263be7, type: 2}

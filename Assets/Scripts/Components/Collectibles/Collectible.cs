@@ -10,7 +10,7 @@ public abstract class Collectible : MonoBehaviour, IActivatable
     /// </summary>
     [Header("Collision Events")]
     [SerializeField]
-    private ScoreEventChannelSO CollectedEvent;
+    protected VoidEventChannelSO<int> CollectedEvent;
 
     [SerializeField]
     private string _canCollectTag = "Player";
