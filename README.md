@@ -1,8 +1,8 @@
 # unity-gaming-campus
 
-Version 1.0: 20251024
+Version 1.1: 20251105
 
-Si vous êtes de GamingCampus, vous pouvez trouver une présentation détaillée du rojet dans Presentation_InfiniteRunner.pdf.
+Si vous êtes de GamingCampus, vous pouvez trouver une présentation détaillée du projet dans Presentation_InfiniteRunner.pdf.
 
 # English Version (french below)
 
@@ -54,10 +54,10 @@ The main folder for this repository is **Assets**. It contains the following ele
 
 Let's have a look at our Scripts. Our scripts folder contains the following folders:
 - Camera: Scripts to handle how our camera moves depending on player movement.
-- Components: Scripts to handle the components of a scene (level chunks, obstacles and collectibles). Also handles how chunks spawn and are destroyed. Chunks are chosen at random from the Chunks prefabs.
+- InfiniteRunnerComponents: Scripts to handle the components of a scene (level chunks, obstacles and collectibles). Also handles how chunks spawn and are destroyed. Chunks are chosen at random from the Chunks prefabs.
 - Menus: Scripts to define our menus.
 - Player: Scripts to define how our player moves, how to update the score, handle state change, health and all player-related elements. 
-- ScriptableObjects: Scripts to define our Scriptable Objects.
+- ScriptableObjects: Scripts to define a general Scriptable Object class.
 - Services: Scripts to handle transversal services (gameover and singletons).
 
 Have a great day!
@@ -114,10 +114,10 @@ Le dossier principale de ce repository est le dossier Assets. Il contient les é
 
 Notre dossier Scripts contient les éléments suivants :
 - Camera : Scripts pour gérer les mouvements de la caméra en fonction du joueur.
-- Components : Script pour gérer les éléments constitutifs d'une scène (chunks, collectibles, obstacles). Gère le spawn et la destruction des Chunks. Les chunks sont choisis au hasard en piochant dans les prefabs à disposition.
+- InfiniteRunnerComponents : Script pour gérer les éléments constitutifs d'une scène (chunks, collectibles, obstacles). Gère le spawn et la destruction des Chunks. Les chunks sont choisis au hasard en piochant dans les prefabs à disposition.
 - Menus : Scripts pour définir les menus.
 - Player : Scripts pour définir les mouvements du joueur, la mise à jour des scores, la gestion de la santé, le changement d"état du joueur et tous les éléments liés au joueur. 
-- ScriptableObjects : Scripts pour définir nos scriptableObjects
+- ScriptableObjects : Scripts pour définir une classe générale pour nos ScriptableObjects.
 - Services : Scripts gérant les services transverses (Gestion des GameOver et singletons).
 
 Passez une excellente journée !
