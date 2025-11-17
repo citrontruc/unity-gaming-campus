@@ -18,7 +18,7 @@ public interface IState
     public IEnumerator Special();
 
     /// <summary>
-    /// Method to Exit State (remove grpahics)
+    /// Method to Exit State
     /// </summary>
     public void Exit();
 }

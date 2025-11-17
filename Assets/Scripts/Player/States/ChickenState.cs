@@ -1,5 +1,5 @@
 /*
-The ChickentState. it is the third state the player is in.
+The ChickenState. it is the third state the player is in.
 */
 
 using System.Collections;
