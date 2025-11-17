@@ -35,9 +35,9 @@ public class CollisionHandler : MonoBehaviour
     #endregion
 
     #region Handle collisions with items
-    private void HandleObstacle(Obstacle.Resistance _resistance)
+    private void HandleObstacle(Obstacle.Resistance resistance)
     {
-        _playerHealth.CollisionWithObstacle(_resistance);
+        _playerHealth.CollisionWithObstacle(resistance);
     }
 
     private void HandleCollectible(int score)
