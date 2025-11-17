@@ -20,6 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
         SuperRoosterState,
         DinosaurState,
     }
+
     public IState CurrentState { get; private set; }
     #endregion
 
