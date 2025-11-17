@@ -20,6 +20,8 @@ public class PlayerStateMachine : MonoBehaviour
         SuperRoosterState,
         DinosaurState,
     }
+    public IState CurrentState { get; private set; }
+    #endregion
 
     #region Event Channels
     [SerializeField]
@@ -38,16 +40,16 @@ public class PlayerStateMachine : MonoBehaviour
     private SetHealthEventChannelSO _setHealthChannelEvent;
     #endregion
 
+    #region PowerUp handling
     [SerializeField]
     private PlayerPowerUp _playerPowerUp;
-    public IState CurrentState { get; private set; }
-    #endregion
 
     /// <summary>
     /// Special powers
     /// </summary>
     private int _specialCharge = 1;
     public TMP_Text SpecialText;
+    #endregion
 
     #region Monobehaviour methods
     public void Awake()
