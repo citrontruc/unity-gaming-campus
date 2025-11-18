@@ -5,6 +5,7 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
 {
     #region Read JSON HighScore
     private string _jsonDirectory = "Assets/Data/highscore.json";
+
     public class HighScoreJson
     {
         public int HighScore;
@@ -12,6 +13,7 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
     #endregion
 
     private int _highScore = 0;
+
     [SerializeField]
     private HighScoreEventChannelSO _highScoreEventChannelSO;
 

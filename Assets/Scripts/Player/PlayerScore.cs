@@ -11,8 +11,10 @@ public class PlayerScore : Singleton<PlayerScore>
     #region Event Channels
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+
     [SerializeField]
     private HighScoreEventChannelSO _highScoreEventChannelEvent;
+
     [SerializeField]
     private NoHealthEventChannelSO _noHealthEvent;
     #endregion
