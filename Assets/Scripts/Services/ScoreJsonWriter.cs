@@ -1,3 +1,7 @@
+/*
+A component to read and write High Score values to JSON.
+*/
+
 using System.IO;
 using UnityEngine;
 
@@ -8,7 +12,7 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
     private HighScoreEventChannelSO _highScoreEventChannelSO;
     #endregion
 
-    #region Read JSON HighScore
+    #region Read/Write JSON HighScore
     private string _jsonDirectory = "Assets/Data/highscore.json";
 
     public class HighScoreJson
@@ -19,11 +23,14 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
 
     private int _highScore = 0;
 
+    #region Getters and Setters
     public int GetHighScore()
     {
         return _highScore;
     }
+    #endregion
 
+    #region Monobehaviour methods
     void OnEnable()
     {
         ReadScoreFromJson();
@@ -34,7 +41,9 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
     {
         _highScoreEventChannelSO.onEventRaised -= WriteScoreToJson;
     }
+    #endregion
 
+    #region Read and Write methods
     public void ReadScoreFromJson()
     {
         string jsonString = File.ReadAllText(_jsonDirectory);
@@ -54,4 +63,5 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
             File.WriteAllText(_jsonDirectory, jsonString);
         }
     }
+    #endregion
 }
