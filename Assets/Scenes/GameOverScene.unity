@@ -282,7 +282,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 464884571}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameOverMenu, Assembly-CSharp
         m_MethodName: PlayGameButton
         m_Mode: 1
         m_Arguments:
@@ -574,9 +574,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 464884566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b85340c2a0c5390cb4b3b22432a0bac, type: 3}
+  m_Script: {fileID: 11500000, guid: 953f4c0956453d6b2a16437515a04099, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverMenu
 --- !u!1 &594671149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,7 +1187,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 464884571}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameOverMenu, Assembly-CSharp
         m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
