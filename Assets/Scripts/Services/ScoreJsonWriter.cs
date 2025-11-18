@@ -49,7 +49,6 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
         string jsonString = File.ReadAllText(_jsonDirectory);
         HighScoreJson highScoreJson = JsonUtility.FromJson<HighScoreJson>(jsonString);
         _highScore = highScoreJson.HighScore;
-        Debug.Log(_highScore);
     }
 
     public void WriteScoreToJson(int highScore)
