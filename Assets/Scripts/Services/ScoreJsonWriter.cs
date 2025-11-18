@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
 {
+    #region Event Channels
+    [SerializeField]
+    private HighScoreEventChannelSO _highScoreEventChannelSO;
+    #endregion
+
     #region Read JSON HighScore
     private string _jsonDirectory = "Assets/Data/highscore.json";
 
@@ -14,21 +19,23 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
 
     private int _highScore = 0;
 
-    [SerializeField]
-    private HighScoreEventChannelSO _highScoreEventChannelSO;
+    public int GetHighScore()
+    {
+        return _highScore;
+    }
 
     void OnEnable()
     {
-        ReadScore();
-        _highScoreEventChannelSO.onEventRaised += WriteScore;
+        ReadScoreFromJson();
+        _highScoreEventChannelSO.onEventRaised += WriteScoreToJson;
     }
 
     void OnDisable()
     {
-        _highScoreEventChannelSO.onEventRaised -= WriteScore;
+        _highScoreEventChannelSO.onEventRaised -= WriteScoreToJson;
     }
 
-    public void ReadScore()
+    public void ReadScoreFromJson()
     {
         string jsonString = File.ReadAllText(_jsonDirectory);
         HighScoreJson highScoreJson = JsonUtility.FromJson<HighScoreJson>(jsonString);
@@ -36,7 +43,7 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
         Debug.Log(_highScore);
     }
 
-    public void WriteScore(int highScore)
+    public void WriteScoreToJson(int highScore)
     {
         if (highScore > _highScore)
         {
