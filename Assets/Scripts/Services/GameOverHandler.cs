@@ -2,12 +2,16 @@
 Handles the transition between scenes on player Death.
 */
 
-using UnityEngine.SceneManagement;
-
 public class GameOverHandler : Singleton<GameOverHandler>
 {
-    public string NextScene = "GameOverScene";
+    #region Event Channels
     public NoHealthEventChannelSO _noHealthEventChannelSO;
+    #endregion
+
+    #region Scene Transition Attributes
+    public string NextScene = "GameOverScene";
+    private SceneTransitionManager _sceneTransitionManager => ImmortalSingleton<SceneTransitionManager>.Instance;
+    #endregion
 
     #region Subscribe to events
     void OnEnable()
@@ -23,6 +27,6 @@ public class GameOverHandler : Singleton<GameOverHandler>
 
     private void _transitionScene(int value)
     {
-        SceneManager.LoadScene(NextScene);
+        _sceneTransitionManager.LoadScene(NextScene);
     }
 }
