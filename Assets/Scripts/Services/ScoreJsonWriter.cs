@@ -51,6 +51,11 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
         _highScore = highScoreJson.HighScore;
     }
 
+    /// <summary>
+    /// On signal, check if the declared score is a high score
+    /// Save it to JSON if it is the case.
+    /// </summary>
+    /// <param name="highScore">Declared score for the run</param>
     public void WriteScoreToJson(int highScore)
     {
         if (highScore > _highScore)

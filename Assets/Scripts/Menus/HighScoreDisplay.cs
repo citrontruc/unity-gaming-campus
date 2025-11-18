@@ -12,6 +12,10 @@ public class HighScoreDisplay : MonoBehaviour
     private TMP_Text _highScoreText;
     private ScoreJsonWriter _jsonScoreWriter => ImmortalSingleton<ScoreJsonWriter>.Instance;
 
+    /// <summary>
+    /// This component must be attached to a TMP_Text component.
+    /// Score is handled by a ScoreJsonWriter. We wait for it to be created to move on.
+    /// </summary>
     #region Monobehaviour methods
     void Awake()
     {
