@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitionManager : ImmortalSingleton<SceneTransitionManager>
 {
-    private string _currentScene = SceneManager.GetActiveScene().name;
+    private string _currentScene => SceneManager.GetActiveScene().name;
 
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
-        _currentScene = scene;
     }
 }
