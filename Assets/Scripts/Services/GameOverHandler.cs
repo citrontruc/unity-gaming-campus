@@ -10,7 +10,8 @@ public class GameOverHandler : Singleton<GameOverHandler>
 
     #region Scene Transition Attributes
     public string NextScene = "GameOverScene";
-    private SceneTransitionManager _sceneTransitionManager => ImmortalSingleton<SceneTransitionManager>.Instance;
+    private SceneTransitionManager _sceneTransitionManager =>
+        ImmortalSingleton<SceneTransitionManager>.Instance;
     #endregion
 
     #region Subscribe to events

@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class GameOverMenu : MonoBehaviour
 {
-    private SceneTransitionManager _sceneTransitionManager => ImmortalSingleton<SceneTransitionManager>.Instance;
+    private SceneTransitionManager _sceneTransitionManager =>
+        ImmortalSingleton<SceneTransitionManager>.Instance;
 
     public void PlayGameButton()
     {
