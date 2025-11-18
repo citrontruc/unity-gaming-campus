@@ -11,6 +11,10 @@ public class PlayerScore : Singleton<PlayerScore>
     #region Event Channels
     [SerializeField]
     private StateChangeEventChannelSO _stateChangeChannelEvent;
+    [SerializeField]
+    private HighScoreEventChannelSO _highScoreEventChannelEvent;
+    [SerializeField]
+    private NoHealthEventChannelSO _noHealthEvent;
     #endregion
 
     #region Player score
@@ -62,9 +66,24 @@ public class PlayerScore : Singleton<PlayerScore>
         }
         ;
     }
+
+    public void BroadCastScore(int health)
+    {
+        _highScoreEventChannelEvent.RaiseEvent(_playerScore);
+    }
     #endregion
 
     #region Monobehaviours methods
+    void OnEnable()
+    {
+        _noHealthEvent.onEventRaised += BroadCastScore;
+    }
+
+    void OnDisable()
+    {
+        _noHealthEvent.onEventRaised -= BroadCastScore;
+    }
+
     void Update()
     {
         if (ScoreText != null)

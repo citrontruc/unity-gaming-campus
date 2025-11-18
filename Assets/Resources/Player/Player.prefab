@@ -290,6 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScore
   _stateChangeChannelEvent: {fileID: 11400000, guid: 692f6a67e26f41ea882b69129574be0a, type: 2}
+  _highScoreEventChannelEvent: {fileID: 11400000, guid: f9148a86abdf77883832f08957610c03, type: 2}
+  _noHealthEvent: {fileID: 11400000, guid: ac2c76ed88e9f0e729d4ebd3f29849fc, type: 2}
   ScoreText: {fileID: 0}
 --- !u!1 &4993119400277758811
 GameObject:
@@ -516,8 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a70c0aa4eca28cae83580ca73c6f184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
-  playerModel: {fileID: 1841198005436889862}
   _specialAnimationChannelEvent: {fileID: 11400000, guid: 2c4dc549a41707e168f5d6a784d50d81, type: 2}
+  playerModel: {fileID: 1841198005436889862}
   _playerAnimator: {fileID: 6610373807926054043}
 --- !u!95 &6610373807926054043 stripped
 Animator:
