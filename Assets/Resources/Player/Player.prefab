@@ -128,6 +128,10 @@ MonoBehaviour:
   Animator: {fileID: 6583363578936210758}
   _playerPowerUp: {fileID: 4770755204541861674}
   _playerStateMachine: {fileID: 6671607054649734520}
+  _moveEventChannel: {fileID: 11400000, guid: f4589b946ecc8005fb3b5f20f889b01d, type: 2}
+  _jumpEventChannel: {fileID: 11400000, guid: ad1225f4e8d1cf40cb0792f3514de065, type: 2}
+  _specialEventChannel: {fileID: 11400000, guid: c268594b44757c91dbe2ce5d621bd635, type: 2}
+  _dashEventChannel: {fileID: 11400000, guid: 1ecaaf5066b0d11208a34503c9584438, type: 2}
   _currentSpeed: 10
   _raycastDistance: 0.55
   _jumpValue: 2
@@ -168,6 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5767173521502060921}
+  - component: {fileID: 1084547052310267755}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -197,6 +202,22 @@ Transform:
   - {fileID: 1353032037443396028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1084547052310267755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999254517091703022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c617ddb79a5d505678304f686a6815ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Input
+  _moveEventChannel: {fileID: 11400000, guid: f4589b946ecc8005fb3b5f20f889b01d, type: 2}
+  _jumpEventChannel: {fileID: 11400000, guid: ad1225f4e8d1cf40cb0792f3514de065, type: 2}
+  _specialEventChannel: {fileID: 11400000, guid: c268594b44757c91dbe2ce5d621bd635, type: 2}
+  _dashEventChannel: {fileID: 11400000, guid: 1ecaaf5066b0d11208a34503c9584438, type: 2}
 --- !u!1 &1954078008788043157
 GameObject:
   m_ObjectHideFlags: 0

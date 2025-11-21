@@ -1,14 +1,15 @@
 /*
 A class to handle player movement.
-Uses the new unity input system.
+It relies on player input in order to get the input.
 */
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
-public class PlayerController : Singleton<PlayerController>
+public class PlayerController : MonoBehaviour
 {
     #region Components interacting with the playerController
     public PlayerAnimator Animator;
@@ -18,14 +19,18 @@ public class PlayerController : Singleton<PlayerController>
     #endregion
 
     /// <summary>
-    /// Reference to the actions our player will take.
+    /// All player inputs are retrieved by the Input component
     /// </summary>
-    #region Actions
-    [Header("Movement")]
-    private InputAction _moveAction;
-    private InputAction _jumpAction;
-    private InputAction _specialAction;
-    private InputAction _dashAction;
+    #region Event Channels
+    [Header("Event Channels")]
+    [SerializeField]
+    private MoveEventChannelSO _moveEventChannel;
+    [SerializeField]
+    private JumpEventChannelSO _jumpEventChannel;
+    [SerializeField]
+    private SpecialEventChannelSO _specialEventChannel;
+    [SerializeField]
+    private DashEventChannelSO _dashEventChannel;
     #endregion
 
     #region Movement properties
@@ -60,34 +65,58 @@ public class PlayerController : Singleton<PlayerController>
     #endregion
 
     #region Monobehaviour Methods
-    public override void Awake()
+    public void Awake()
     {
-        base.Awake();
         _rb = GetComponent<Rigidbody>();
     }
 
     /// <summary>
-    /// We find the reference of all the actions that are possible to take.
+    /// We subscribe to event channels to get user Input.
     /// </summary>
-    private void Start()
+    private void OnEnable()
     {
-        _moveAction = InputSystem.actions.FindAction("Move");
-        _jumpAction = InputSystem.actions.FindAction("Jump");
-        _specialAction = InputSystem.actions.FindAction("Special");
-        _dashAction = InputSystem.actions.FindAction("Dash");
+        _moveEventChannel.onEventRaised += Move;
+        _jumpEventChannel.onEventRaised += Jump;
+        _dashEventChannel.onEventRaised += Dash;
+        _specialEventChannel.onEventRaised += Special;
+    }
+
+    private void OnDisable()
+    {
+        _moveEventChannel.onEventRaised -= Move;
+        _jumpEventChannel.onEventRaised -= Jump;
+        _dashEventChannel.onEventRaised -= Dash;
+        _specialEventChannel.onEventRaised -= Special;
     }
 
     private void Update()
     {
-        // Movement
-        Vector2 moveValue = _moveAction.ReadValue<Vector2>();
+        CheckIfRecoverFromJump();
+    }
+
+    private void FixedUpdate()
+    {
+        //_rb.AddForce(_moveValue * _currentSpeed, ForceMode.Acceleration);
+        transform.Translate(_moveValue * _currentSpeed * Time.deltaTime);
+        if (Animator != null)
+        {
+            Animator.MoveModel(this.transform.position);
+        }
+    }
+    #endregion
+
+    #region Movement
+    private void Move(Vector2 moveValue)
+    {
         _moveValue = new(moveValue.x, 0f, 0f);
         _moveValue.Normalize();
+    }
+    #endregion
 
-        // Jump
-        CheckIfRecoverFromJump();
-
-        if (_jumpAction.IsPressed())
+    #region Jump & Double Jump
+    private void Jump(Boolean jumpAction)
+    {
+        if (jumpAction)
         {
             // When the player presses the button, there is a brief window where he cannot jump.
             if (_canJump)
@@ -133,37 +162,13 @@ public class PlayerController : Singleton<PlayerController>
         {
             _jumpContinuousPress = false;
         }
-
-        // Dash
-        if (_dashAction.IsPressed())
-        {
-            Dash();
-        }
-
-        // Special
-        if (_specialAction.IsPressed())
-        {
-            _playerStateMachine.Special();
-        }
     }
 
-    private void FixedUpdate()
-    {
-        //_rb.AddForce(_moveValue * _currentSpeed, ForceMode.Acceleration);
-        transform.Translate(_moveValue * _currentSpeed * Time.deltaTime);
-        if (Animator != null)
-        {
-            Animator.MoveModel(this.transform.position);
-        }
-    }
-    #endregion
-
-    #region Jump & Double Jump
     private void CheckIfRecoverFromJump()
     {
         if (!_grounded && IsGrounded())
         {
-            RecoverFromJump();
+            JumpRecovery();
         }
         _grounded = IsGrounded();
     }
@@ -189,10 +194,14 @@ public class PlayerController : Singleton<PlayerController>
     {
         //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
         transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
-        StartCoroutine(JumpPress());
+        StartCoroutine(MakeJumpAction());
     }
 
-    private IEnumerator JumpPress()
+    /// <summary>
+    /// A method to animate our 3D model
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator MakeJumpAction()
     {
         Animator.SetJump(true);
         _canJump = false;
@@ -200,7 +209,11 @@ public class PlayerController : Singleton<PlayerController>
         _canJump = true;
     }
 
-    private void RecoverFromJump()
+    /// <summary>
+    /// A method to recover from a jump 
+    /// TODO: jump recovery animation
+    /// </summary>
+    private void JumpRecovery()
     {
         Animator.SetJump(false);
         _canDoubleJump = true;
@@ -213,24 +226,34 @@ public class PlayerController : Singleton<PlayerController>
     /// <summary>
     /// Logic for the player dash action. A dash is a sudden burst of speed from the player.
     /// </summary>
-    private void Dash()
+    private void Dash(Boolean dashAction)
     {
-        if (_canDash && _playerPowerUp.CanDash())
+        if (_canDash && _playerPowerUp.CanDash() && dashAction)
         {
             // We check that the player is actually moving and not standing still.
             if (_moveValue * _dashValue != _moveValue)
             {
                 transform.Translate(_moveValue * _currentSpeed * _dashValue * Time.deltaTime);
-                StartCoroutine(DashPress());
+                StartCoroutine(DashRecovery());
             }
         }
     }
 
-    private IEnumerator DashPress()
+    private IEnumerator DashRecovery()
     {
         _canDash = false;
         yield return new WaitForSeconds(_dashCooldown);
         _canDash = true;
+    }
+    #endregion
+
+    #region Movement
+    private void Special(Boolean specialAction)
+    {
+        if (specialAction)
+        {
+            _playerStateMachine.Special();
+        }
     }
     #endregion
 }
