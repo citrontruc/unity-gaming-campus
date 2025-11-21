@@ -14,12 +14,12 @@ public class SpecialCorn : Collectible
 
     void Awake()
     {
-        _value = 1;
+        _value = 5;
     }
 
     void Start()
     {
-        CollectedEvent = _specialReloadEventChannel;
+        _collectedEvent = _specialReloadEventChannel;
     }
 
     void Update()

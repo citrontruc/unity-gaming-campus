@@ -10,7 +10,7 @@ public abstract class Collectible : MonoBehaviour, IActivatable
     /// </summary>
     [Header("Collision Events")]
     [SerializeField]
-    protected VoidEventChannelSO<int> CollectedEvent;
+    protected VoidEventChannelSO<int> _collectedEvent;
 
     /// <summary>
     /// Tag to indicate who can collect the collectibles
@@ -49,7 +49,7 @@ public abstract class Collectible : MonoBehaviour, IActivatable
     {
         if (other.CompareTag(_canCollectTag))
         {
-            CollectedEvent?.RaiseEvent(_value);
+            _collectedEvent?.RaiseEvent(_value);
             Deactivate();
         }
     }

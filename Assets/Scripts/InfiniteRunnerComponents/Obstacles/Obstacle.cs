@@ -1,5 +1,5 @@
 /*
-A class to implement obstacles the player musst avoid.
+A class to implement obstacles the player must avoid.
 */
 
 using UnityEngine;
