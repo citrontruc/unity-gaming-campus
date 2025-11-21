@@ -11,10 +11,13 @@ public class Input : Singleton<Input>
     [Header("Event Channels")]
     [SerializeField]
     private MoveEventChannelSO _moveEventChannel;
+
     [SerializeField]
     private JumpEventChannelSO _jumpEventChannel;
+
     [SerializeField]
     private SpecialEventChannelSO _specialEventChannel;
+
     [SerializeField]
     private DashEventChannelSO _dashEventChannel;
     #endregion
@@ -51,6 +54,5 @@ public class Input : Singleton<Input>
 
         // Dash
         _dashEventChannel.RaiseEvent(_dashAction.IsPressed());
-        
     }
 }

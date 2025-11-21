@@ -25,10 +25,13 @@ public class PlayerController : MonoBehaviour
     [Header("Event Channels")]
     [SerializeField]
     private MoveEventChannelSO _moveEventChannel;
+
     [SerializeField]
     private JumpEventChannelSO _jumpEventChannel;
+
     [SerializeField]
     private SpecialEventChannelSO _specialEventChannel;
+
     [SerializeField]
     private DashEventChannelSO _dashEventChannel;
     #endregion
@@ -210,7 +213,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// A method to recover from a jump 
+    /// A method to recover from a jump
     /// TODO: jump recovery animation
     /// </summary>
     private void JumpRecovery()
