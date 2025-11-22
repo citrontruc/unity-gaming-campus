@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e635a9c4f7f055edaf4e3eb299ba6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuperCorn
-  CollectedEvent: {fileID: 11400000, guid: 711763cf59426cf50b0643d5e6335e0a, type: 2}
+  _collectedEvent: {fileID: 11400000, guid: 711763cf59426cf50b0643d5e6335e0a, type: 2}
   _canCollectTag: Player
   _value: 0
   _rotationSpeed: 0.5
