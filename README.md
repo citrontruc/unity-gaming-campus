@@ -1,6 +1,6 @@
 # unity-gaming-campus
 
-Version 1.1: 20251105
+Version 1.2: 20251124
 
 Si vous êtes de GamingCampus, vous pouvez trouver une présentation détaillée du projet dans Presentation_InfiniteRunner.pdf.
 
@@ -8,7 +8,7 @@ Si vous êtes de GamingCampus, vous pouvez trouver une présentation détaillée
 
 ---
 
-This project was coded for Unity. In order to try it, create a new unity project (we'll code it InfiniteRunner) and put the code from this git in the InfiniteRunner folder.
+This project was coded for Unity. In order to try it, create a new unity project (we'll code it InfiniteRunner) and put the code from this git in the InfiniteRunner folder. Unity will ask you to install libraries (Like TextMeshPro). This project uses assets (models, animations and sounds) that need to be downloaded separately. You can get them from pixabay (sounds) or mixamo (models and animations).
 
 ## Description
 
@@ -26,7 +26,7 @@ The player must avoid obstacles (red rectangles).
 
 ### Progression
 
-Depending on the number of corn the player has collected, the player changes state and gains new aptitudes and new special powers. Aptitudes are new moves for the player and can be used whenever in game, special powers need special power charges to be activated and last for 10 s. Players gain a special power charge when changing state.
+Depending on the number of corn the player has collected, the player changes state and gains new aptitudes and new special powers. Aptitudes are new moves for the player and can be used whenever in game, special powers need special power charges to be activated and last for 10 s. Players gain a special power charge when changing state or they can gain one from retrieving a green collectible.
 
 **Whenever the player changes state, the level speeds up**.
 
@@ -44,8 +44,11 @@ Depending on the number of corn the player has collected, the player changes sta
 ### Overview
 
 The main folder for this repository is **Assets**. It contains the following elements:
-- Events: Contains all scriptable objects.
+- Animations: Put your animations in this folder.
+- Data: contains json to save high scores.
+- Events: Contains all of the events we created (does not contain scripts).
 - Materials: Contains all materials.
+- Models: Put your models in this folder.
 - Resources: Contains all Prefabs depending on their type.
 - Scenes: Contains all our game scenes (MainMenu, our level, the game overscreen and a test scene to test our level chunks and movement).
 - Scripts: Contains our code.
@@ -68,7 +71,9 @@ Have a great day!
 
 ---
 
-Ce projet a été codé pour Unity. Si vous souhaitez l'utiliser, créez un nouveau projet unity (appelons le InfiniteRunner) et mettez le code de ce repository dans le dossier InfiniteRunner.
+Ce projet a été codé pour Unity. Si vous souhaitez l'utiliser, créez un nouveau projet unity (appelons le InfiniteRunner) et mettez le code de ce repository dans le dossier InfiniteRunner. Unity vous demandera d'installer quelques librairies (comme TextMeshPro).
+
+Ce projet utilise des assets qu'il vous faudra récupérer séparement (modèles 3D, animations et sons). Vous pouvez les récupérer gratuitement depuis pixabay (sons) et mixamo (modèles et animations).
 
 ## Description
 
@@ -104,8 +109,11 @@ En fonction du nombre de grains que le joueur a collecté, il change d'états et
 ### Vue d'oiseau
 
 Le dossier principale de ce repository est le dossier Assets. Il contient les éléments suivants :
+- Animations : mettez vos animations ici.
+- Data : Contient les JSON pour sauvegarder les high scores.
 - Events : contient tous les scriptable objects.
 - Materials : contient tous les matériaux.
+- Models : Mettez vos modèles 3D ici.
 - Resources : contient tous les prefabs.
 - Scenes : contient toutes les scènes de jeu (mainmenu, game over et scène de niveau. Contient aussi un niveau de test afin de créer et tester des chunks).
 - Scripts : contient tout le code du jeu.
