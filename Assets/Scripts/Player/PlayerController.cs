@@ -6,7 +6,6 @@ It relies on player input in order to get the input.
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
 public class PlayerController : MonoBehaviour
