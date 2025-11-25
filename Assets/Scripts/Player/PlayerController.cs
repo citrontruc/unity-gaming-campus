@@ -132,14 +132,14 @@ public class PlayerController : MonoBehaviour
                             && _canDoubleJump
                         )
                         {
-                            Jump();
+                            JumpTranslate();
                             _canDoubleJump = false;
                         }
                         break;
                     case true:
                         if (!_jumpContinuousPress)
                         {
-                            Jump();
+                            JumpTranslate();
                         }
                         break;
                 }
@@ -175,6 +175,10 @@ public class PlayerController : MonoBehaviour
         _grounded = IsGrounded();
     }
 
+    /// <summary>
+    /// We check if the player is grounded by shooting a raycast under him and seeing if it collides with the ground. 
+    /// </summary>
+    /// <returns></returns>
     private bool IsGrounded()
     {
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _raycastDistance);
@@ -190,9 +194,9 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// A method to handle jump, glide and double jump.
+    /// A method to handle jump and / or double jump.
     /// </summary>
-    private void Jump()
+    private void JumpTranslate()
     {
         //_rb.AddForce(Vector3.up * _jumpValue, ForceMode.Impulse);
         transform.Translate(Vector3.up * (_jumpValue + this.transform.position.y));
@@ -200,7 +204,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// A method to animate our 3D model
+    /// A method to animate our 3D model and avoid automatic double jump when the key is pressed.
     /// </summary>
     /// <returns></returns>
     private IEnumerator MakeJumpAction()
@@ -249,7 +253,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region Movement
+    #region Special
     private void Special(Boolean specialAction)
     {
         if (specialAction)

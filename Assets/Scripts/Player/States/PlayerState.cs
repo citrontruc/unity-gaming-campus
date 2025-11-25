@@ -1,5 +1,5 @@
 /*
-An abstract class in order to define states for our player.
+An Interface class in order to define states for our player.
 */
 
 using System.Collections;

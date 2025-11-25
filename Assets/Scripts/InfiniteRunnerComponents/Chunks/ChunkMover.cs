@@ -84,6 +84,10 @@ public class ChunkMover : Singleton<ChunkMover>
     }
     #endregion
 
+    /// <summary>
+    /// We move all our chunks in the level.
+    /// If we find a disabled chunk, we remove it from the Active Chunks.
+    /// </summary>
     public void Update()
     {
         for (int i = _activeChunkList.Count - 1; i >= 0; i--)
