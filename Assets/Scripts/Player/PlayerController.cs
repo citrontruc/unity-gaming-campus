@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// We check if the player is grounded by shooting a raycast under him and seeing if it collides with the ground. 
+    /// We check if the player is grounded by shooting a raycast under him and seeing if it collides with the ground.
     /// </summary>
     /// <returns></returns>
     private bool IsGrounded()
