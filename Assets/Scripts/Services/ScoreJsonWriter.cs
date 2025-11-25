@@ -55,6 +55,7 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
             File.WriteAllText(_jsonDirectory, _defaultJson);
         }
     }
+
     public void ReadScoreFromJson()
     {
         string jsonString = File.ReadAllText(_jsonDirectory);
