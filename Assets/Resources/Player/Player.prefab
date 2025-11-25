@@ -133,9 +133,9 @@ MonoBehaviour:
   _specialEventChannel: {fileID: 11400000, guid: c268594b44757c91dbe2ce5d621bd635, type: 2}
   _dashEventChannel: {fileID: 11400000, guid: 1ecaaf5066b0d11208a34503c9584438, type: 2}
   _currentSpeed: 10
-  _raycastDistance: 0.55
+  _raycastDistance: 0.6
   _jumpValue: 2
-  _dashValue: 20
+  _dashValue: 10
 --- !u!54 &7837413664439760419
 Rigidbody:
   m_ObjectHideFlags: 0

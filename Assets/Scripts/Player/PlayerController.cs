@@ -47,11 +47,11 @@ public class PlayerController : MonoBehaviour
     private bool _canJump = true;
 
     [SerializeField]
-    private float _raycastDistance = .55f;
+    private float _raycastDistance = .6f;
 
     [SerializeField]
     private float _jumpValue = 2f;
-    private float _jumpCooldown = 0.05f;
+    private float _jumpCooldown = 0.001f;
     private string _groundTag = "Ground";
     private float _glideValue = 3f;
     private float _glideTimer = 0f;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private bool _canDash = true;
 
     [SerializeField]
-    private float _dashValue = 20f;
+    private float _dashValue = 10f;
     private float _dashCooldown = 1f;
     #endregion
 
