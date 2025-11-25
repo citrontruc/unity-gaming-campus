@@ -13,7 +13,9 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
     #endregion
 
     #region Read/Write JSON HighScore
-    private string _jsonDirectory = "Assets/Data/highscore.json";
+    private string _fileName = "highscore.json";
+    private string _jsonDirectory;
+    private string _defaultJson = "{\"HighScore\":0}";
 
     public class HighScoreJson
     {
@@ -33,6 +35,8 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
     #region Monobehaviour methods
     void OnEnable()
     {
+        _jsonDirectory = Path.Combine(Application.persistentDataPath, _fileName);
+        InitializeJson();
         ReadScoreFromJson();
         _highScoreEventChannelSO.onEventRaised += WriteScoreToJson;
     }
@@ -44,6 +48,13 @@ public class ScoreJsonWriter : ImmortalSingleton<ScoreJsonWriter>
     #endregion
 
     #region Read and Write methods
+    private void InitializeJson()
+    {
+        if (!File.Exists(_jsonDirectory))
+        {
+            File.WriteAllText(_jsonDirectory, _defaultJson);
+        }
+    }
     public void ReadScoreFromJson()
     {
         string jsonString = File.ReadAllText(_jsonDirectory);
